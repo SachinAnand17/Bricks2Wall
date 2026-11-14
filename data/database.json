@@ -1,0 +1,814 @@
+{
+  "properties": [
+    {
+      "id": "prop-1",
+      "slug": "demo-contemporary-2-bed-residence",
+      "title": "DEMO — Contemporary 2-Bed Residence",
+      "tagline": "Light-filled modern apartment with architectural finishes and park views",
+      "transactionType": "buy",
+      "propertyType": "Apartment",
+      "price": 8500000,
+      "priceDisplay": "₹85,00,000 (sample)",
+      "contactForPrice": false,
+      "isFeatured": true,
+      "isVerified": true,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Demo Locality — North Greens",
+      "subLocality": "Tower 4, Sector 12",
+      "addressSummary": "Demo Locality, North Greens (Exact unit address shared upon viewing confirmation)",
+      "coordinates": {
+        "lat": 28.5355,
+        "lng": 77.391
+      },
+      "builtUpAreaSqFt": 1050,
+      "carpetAreaSqFt": 890,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "balconies": 1,
+      "parkingSpaces": 1,
+      "furnishingStatus": "Semi-Furnished",
+      "possessionStatus": "Ready to Move",
+      "possessionDate": "Ready to Move",
+      "facing": "North-East",
+      "floorNumber": "7th Floor",
+      "totalFloors": 14,
+      "description": "This sample listing showcases a thoughtfully designed 2-bedroom home featuring floor-to-ceiling double-glazed windows, Italian composite marble flooring, and an open-concept kitchen. The layout maximizes natural airflow and morning sunlight, offering views across manicured community greens.",
+      "highlights": [
+        "Dual balcony with landscaped garden views",
+        "Engineered wooden flooring in master suite",
+        "Modular German kitchen with concealed fittings",
+        "EV charging provision in dedicated basement parking"
+      ],
+      "amenities": [
+        "24/7 Security & CCTV",
+        "Clubhouse with Swimming Pool",
+        "Fully Equipped Fitness Centre",
+        "High Speed Elevators",
+        "Power Backup 100%",
+        "Rainwater Harvesting"
+      ],
+      "media": [
+        {
+          "id": "m1-1",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+          "caption": "Living salon with expansive natural lighting",
+          "altText": "Contemporary living room interior with warm aesthetic",
+          "isPrimary": true,
+          "order": 1
+        },
+        {
+          "id": "m1-2",
+          "url": "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Designer modular kitchen and breakfast counter",
+          "altText": "Modern kitchen with sleek cabinetry",
+          "isPrimary": false,
+          "order": 2
+        },
+        {
+          "id": "m1-3",
+          "url": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Master bedroom retreat with ensuite bath",
+          "altText": "Master bedroom with large windows",
+          "isPrimary": false,
+          "order": 3
+        }
+      ],
+      "reraRegistrationNumber": "DEMO-RERA-PRJ-2024-001",
+      "reraApproved": true,
+      "projectDeveloper": "Apex Skyline Developments (Sample)",
+      "createdAt": "2026-10-15T10:00:00Z",
+      "updatedAt": "2026-11-10T14:30:00Z",
+      "availabilityConfirmedAt": "2026-11-12T09:00:00Z",
+      "assignedAgentId": "agent-1"
+    },
+    {
+      "id": "prop-2",
+      "slug": "demo-family-3-bed-apartment",
+      "title": "DEMO — Family 3-Bed Apartment",
+      "tagline": "Expansive family residence with corner orientation and cross ventilation",
+      "transactionType": "buy",
+      "propertyType": "Apartment",
+      "price": 13500000,
+      "priceDisplay": "₹1,35,00,000 (sample)",
+      "contactForPrice": false,
+      "isFeatured": true,
+      "isVerified": true,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Demo Locality — Central Boulevard",
+      "subLocality": "Grand Residences, Sector 45",
+      "addressSummary": "Central Boulevard, Sector 45 (Exact unit verified upon booking)",
+      "coordinates": {
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "builtUpAreaSqFt": 1480,
+      "carpetAreaSqFt": 1250,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "balconies": 2,
+      "parkingSpaces": 2,
+      "furnishingStatus": "Semi-Furnished",
+      "possessionStatus": "Ready to Move",
+      "possessionDate": "Ready to Move",
+      "facing": "East",
+      "floorNumber": "11th Floor",
+      "totalFloors": 22,
+      "description": "A spacious 3-bedroom residence engineered for modern family living. Features generous room proportions, separated private quarters, wide entertaining balconies, and smart home lighting infrastructure.",
+      "highlights": [
+        "Corner layout with 3-side open ventilation",
+        "Dedicated domestic helper room with washroom",
+        "Two covered multi-level parking bays",
+        "Direct connectivity to prime arterial expressway"
+      ],
+      "amenities": [
+        "Gated Community with Biometric Access",
+        "Heated Indoor Pool & Spa",
+        "Tennis & Badminton Courts",
+        "Children Play Area",
+        "Jogging Track & Zen Garden",
+        "Concierge Desk"
+      ],
+      "media": [
+        {
+          "id": "m2-1",
+          "url": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
+          "caption": "Panoramic open lounge and formal dining",
+          "altText": "Spacious high ceiling apartment lounge",
+          "isPrimary": true,
+          "order": 1
+        },
+        {
+          "id": "m2-2",
+          "url": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Sunlit breakfast terrace",
+          "altText": "Balcony overlooking skyline",
+          "isPrimary": false,
+          "order": 2
+        },
+        {
+          "id": "m2-3",
+          "url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Ensuite luxury bathroom with soaking tub",
+          "altText": "Modern bathroom with stone finish",
+          "isPrimary": false,
+          "order": 3
+        }
+      ],
+      "reraRegistrationNumber": "DEMO-RERA-PRJ-2024-002",
+      "reraApproved": true,
+      "projectDeveloper": "Boulevard Signature Homes (Sample)",
+      "createdAt": "2026-10-18T11:00:00Z",
+      "updatedAt": "2026-11-11T12:00:00Z",
+      "availabilityConfirmedAt": "2026-11-13T10:00:00Z",
+      "assignedAgentId": "agent-2"
+    },
+    {
+      "id": "prop-3",
+      "slug": "demo-furnished-city-apartment",
+      "title": "DEMO — Furnished City Apartment",
+      "tagline": "Curated turnkey rental with high-speed fiber and premium appliances",
+      "transactionType": "rent",
+      "propertyType": "Apartment",
+      "price": 38000,
+      "priceDisplay": "₹38,000 / month (sample)",
+      "contactForPrice": false,
+      "isFeatured": true,
+      "isVerified": true,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Demo Locality — Tech Corridor",
+      "subLocality": "Urban Heights, Phase 2",
+      "addressSummary": "Tech Corridor, Phase 2 (Verified tenancy agreements managed directly)",
+      "coordinates": {
+        "lat": 12.9716,
+        "lng": 77.5946
+      },
+      "builtUpAreaSqFt": 900,
+      "carpetAreaSqFt": 780,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "balconies": 1,
+      "parkingSpaces": 1,
+      "furnishingStatus": "Fully Furnished",
+      "possessionStatus": "Immediate",
+      "possessionDate": "Immediate Occupancy",
+      "facing": "North",
+      "floorNumber": "4th Floor",
+      "totalFloors": 12,
+      "maintenanceCharges": "₹3,500 / month",
+      "description": "An executive furnished apartment ready for swift occupancy. Professionally styled with bespoke Scandinavian furniture, high-efficiency inverter air conditioning, washer-dryer, and ergonomic work-from-home study alcove.",
+      "highlights": [
+        "Turnkey ready with branded electronics and kitchenware",
+        "Walking proximity to tech parks and rapid metro",
+        "Pet friendly residential society",
+        "Transparent rental lease agreements"
+      ],
+      "amenities": [
+        "Co-working Lounge & High Speed Wi-Fi",
+        "Rooftop Terrace Barbecue Area",
+        "24/7 Security Patrol",
+        "Package Delivery Locker Room",
+        "Automated Waste Disposal"
+      ],
+      "media": [
+        {
+          "id": "m3-1",
+          "url": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1400&q=80",
+          "caption": "Minimalist designer interior with abundant daylight",
+          "altText": "Fully furnished urban apartment living room",
+          "isPrimary": true,
+          "order": 1
+        },
+        {
+          "id": "m3-2",
+          "url": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Bedroom with ergonomic desk setup",
+          "altText": "Cozy modern bedroom and workspace",
+          "isPrimary": false,
+          "order": 2
+        }
+      ],
+      "createdAt": "2026-10-22T08:00:00Z",
+      "updatedAt": "2026-11-09T16:00:00Z",
+      "availabilityConfirmedAt": "2026-11-13T11:00:00Z",
+      "assignedAgentId": "agent-1"
+    },
+    {
+      "id": "prop-4",
+      "slug": "demo-boutique-office-suite",
+      "title": "DEMO — Boutique Office Suite",
+      "tagline": "Grade-A commercial workspace with acoustic privacy and executive conference suite",
+      "transactionType": "commercial",
+      "propertyType": "Office Suite",
+      "price": 75000,
+      "priceDisplay": "₹75,000 / month (sample)",
+      "contactForPrice": false,
+      "isFeatured": true,
+      "isVerified": true,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Demo Locality — Financial District",
+      "subLocality": "Equinox Tower, Level 8",
+      "addressSummary": "Financial District, Equinox Tower (Corporate leasing team on-site)",
+      "coordinates": {
+        "lat": 19.076,
+        "lng": 72.8777
+      },
+      "builtUpAreaSqFt": 1200,
+      "carpetAreaSqFt": 1020,
+      "parkingSpaces": 2,
+      "furnishingStatus": "Fully Furnished",
+      "possessionStatus": "Immediate",
+      "possessionDate": "Immediate",
+      "maintenanceCharges": "₹12 / sq ft",
+      "suitableFor": [
+        "Fintech & Consulting",
+        "Corporate Branch Office",
+        "Legal & Advisory Firms",
+        "Tech Agency"
+      ],
+      "description": "A Grade-A boutique office suite in a LEED Gold certified commercial tower. Plug-and-play layout configured with 18 workstations, 2 executive cabins, 8-seater conference room with video conferencing hardware, and reception lobby.",
+      "highlights": [
+        "LEED Gold Certified green commercial building",
+        "Dual optical fiber redundancy",
+        "Dedicated visitor parking and valet services",
+        "On-site cafeteria and coffee roasters"
+      ],
+      "amenities": [
+        "Central Chilled-Water Air Conditioning",
+        "Triple Redundant Power Backup",
+        "Baggage X-Ray & Turnstile Security",
+        "Multilevel Automated Car Parking",
+        "Professional Facility Management"
+      ],
+      "media": [
+        {
+          "id": "m4-1",
+          "url": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80",
+          "caption": "Executive boardroom and collaborative floor",
+          "altText": "Modern commercial office interior with floor to ceiling glass",
+          "isPrimary": true,
+          "order": 1
+        },
+        {
+          "id": "m4-2",
+          "url": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Ergonomic workstations with open ceiling concept",
+          "altText": "Collaborative desk layout in commercial suite",
+          "isPrimary": false,
+          "order": 2
+        }
+      ],
+      "createdAt": "2026-10-25T14:00:00Z",
+      "updatedAt": "2026-11-08T09:00:00Z",
+      "availabilityConfirmedAt": "2026-11-12T15:00:00Z",
+      "assignedAgentId": "agent-2"
+    },
+    {
+      "id": "prop-5",
+      "slug": "demo-retail-frontage-unit",
+      "title": "DEMO — Retail Frontage Unit",
+      "tagline": "High-footfall corner retail showroom with 35-foot glass display frontage",
+      "transactionType": "commercial",
+      "propertyType": "Retail Frontage",
+      "price": 110000,
+      "priceDisplay": "₹1,10,000 / month (sample)",
+      "contactForPrice": false,
+      "isFeatured": false,
+      "isVerified": true,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Demo Locality — High Street Promenade",
+      "subLocality": "The Promenade, Shop G-03",
+      "addressSummary": "High Street Promenade (Pedestrian high-street zone)",
+      "coordinates": {
+        "lat": 28.6139,
+        "lng": 77.209
+      },
+      "builtUpAreaSqFt": 650,
+      "carpetAreaSqFt": 580,
+      "parkingSpaces": 1,
+      "furnishingStatus": "Unfurnished",
+      "possessionStatus": "Immediate",
+      "possessionDate": "Immediate",
+      "suitableFor": [
+        "Luxury Apparel & Jewellery",
+        "Artisan Bakery / Cafe",
+        "Flagship Electronics",
+        "Specialty Clinic"
+      ],
+      "description": "Prominent ground-floor retail showroom benefiting from continuous foot traffic in the city’s premier lifestyle quarter. Features high 14-foot slab-to-slab clearance, prominent exterior signage rights, and provisions for wet plumbing.",
+      "highlights": [
+        "35-foot wide seamless glass display frontage",
+        "High footfall pedestrian shopping boulevard",
+        "Exhaust & 3-phase commercial electrical supply provision",
+        "Dedicated loading bay at rear"
+      ],
+      "amenities": [
+        "High Street Common Area Maintenance",
+        "Pedestrian Plaza Security",
+        "Fire Sprinkler & Hydrant Network",
+        "Customer Valet Parking Desk"
+      ],
+      "media": [
+        {
+          "id": "m5-1",
+          "url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=80",
+          "caption": "High street storefront with expansive display exposure",
+          "altText": "Modern retail storefront on commercial street",
+          "isPrimary": true,
+          "order": 1
+        },
+        {
+          "id": "m5-2",
+          "url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+          "caption": "High-ceiling open layout suitable for custom retail fit-out",
+          "altText": "Interior retail showroom space",
+          "isPrimary": false,
+          "order": 2
+        }
+      ],
+      "createdAt": "2026-10-28T12:00:00Z",
+      "updatedAt": "2026-11-07T11:00:00Z",
+      "availabilityConfirmedAt": "2026-11-11T16:00:00Z",
+      "assignedAgentId": "agent-1"
+    },
+    {
+      "id": "prop-6",
+      "slug": "demo-premium-4-bed-home",
+      "title": "DEMO — Premium 4-Bed Home",
+      "tagline": "Architect-designed luxury estate featuring private plunge pool and double-height living salon",
+      "transactionType": "buy",
+      "propertyType": "Penthouse",
+      "price": 26000000,
+      "priceDisplay": "₹2,60,00,000 (sample)",
+      "contactForPrice": false,
+      "isFeatured": true,
+      "isVerified": true,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Demo Locality — Golf Links Estate",
+      "subLocality": "The Sky Villa Collection",
+      "addressSummary": "Golf Links Estate (Private gated enclave, appointment-only viewings)",
+      "coordinates": {
+        "lat": 28.48,
+        "lng": 77.08
+      },
+      "builtUpAreaSqFt": 2400,
+      "carpetAreaSqFt": 2100,
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "balconies": 3,
+      "parkingSpaces": 3,
+      "furnishingStatus": "Semi-Furnished",
+      "possessionStatus": "Ready to Move",
+      "possessionDate": "Ready to Move",
+      "facing": "North-East",
+      "floorNumber": "Top Floor Penthouse",
+      "totalFloors": 18,
+      "description": "An exceptional high-floor sky residence crafted for discerning connoisseurs. Offers a double-height 22-foot living salon, expansive wrap-around entertainment terraces, private plunge deck, imported Statuario marble finishes, and panoramic golf course vistas.",
+      "highlights": [
+        "Double-height ceiling in grand entertaining salon",
+        "Private temperature-controlled plunge pool on terrace",
+        "Private elevator lobby with biometric credentials",
+        "Unobstructed 270-degree skyline and green fairway views"
+      ],
+      "amenities": [
+        "Private Elevator Access to Residence",
+        "Olympic-Length Infinity Pool",
+        "Private Resident Wine Cellar & Tasting Room",
+        "Championship Golf Course Access",
+        "White-Glove 24/7 Butler & Valet Service"
+      ],
+      "media": [
+        {
+          "id": "m6-1",
+          "url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80",
+          "caption": "Grand double-height living salon with floor-to-ceiling glass",
+          "altText": "Ultra luxury modern living room with double height ceiling",
+          "isPrimary": true,
+          "order": 1
+        },
+        {
+          "id": "m6-2",
+          "url": "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Private sunset sky deck and entertainment terrace",
+          "altText": "Luxury penthouse terrace overlooking horizon",
+          "isPrimary": false,
+          "order": 2
+        },
+        {
+          "id": "m6-3",
+          "url": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Master sanctuary with walk-in dressing wardrobe",
+          "altText": "Luxury master bedroom with custom joinery",
+          "isPrimary": false,
+          "order": 3
+        }
+      ],
+      "reraRegistrationNumber": "DEMO-RERA-PRJ-2024-006",
+      "reraApproved": true,
+      "projectDeveloper": "Signature Estates Global (Sample)",
+      "createdAt": "2026-10-30T10:00:00Z",
+      "updatedAt": "2026-11-12T17:00:00Z",
+      "availabilityConfirmedAt": "2026-11-14T08:00:00Z",
+      "assignedAgentId": "agent-1"
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead-1794652706432",
+      "name": "Malini Kulkarni",
+      "email": "malini.k@example.com",
+      "phone": "+91 98111 55667",
+      "enquiryType": "viewing",
+      "propertyId": "prop-6",
+      "propertyTitle": "DEMO - Premium 4-Bed Home",
+      "status": "New",
+      "preferredContactMethod": "phone",
+      "viewingDate": "2026-11-25",
+      "viewingTimeSlot": "11:00 AM",
+      "message": "Requesting private terrace walkthrough",
+      "source": "book_visit",
+      "consentGiven": true,
+      "notes": [
+        {
+          "id": "act-1794652706432",
+          "leadId": "lead-1794652706432",
+          "type": "status_change",
+          "author": "System",
+          "description": "New viewing enquiry received from book_visit",
+          "timestamp": "2026-11-14T10:38:26.432Z"
+        }
+      ],
+      "createdAt": "2026-11-14T10:38:26.432Z",
+      "updatedAt": "2026-11-14T10:38:26.432Z"
+    },
+    {
+      "id": "lead-1794652706423",
+      "name": "Dr. Sameer Kapoor",
+      "email": "sameer.kapoor@example.com",
+      "phone": "+919876511223",
+      "enquiryType": "property",
+      "propertyId": "prop-1",
+      "propertyTitle": "DEMO - Contemporary 2-Bed Residence",
+      "status": "New",
+      "preferredContactMethod": "phone",
+      "preferredTime": "Morning",
+      "message": "Interested in verified title search for 2-bed unit.",
+      "source": "website",
+      "consentGiven": true,
+      "notes": [
+        {
+          "id": "act-1794652706423",
+          "leadId": "lead-1794652706423",
+          "type": "status_change",
+          "author": "System",
+          "description": "New property enquiry received from website",
+          "timestamp": "2026-11-14T10:38:26.423Z"
+        }
+      ],
+      "createdAt": "2026-11-14T10:38:26.423Z",
+      "updatedAt": "2026-11-14T10:38:26.423Z"
+    },
+    {
+      "id": "lead-1",
+      "name": "Aravind Swaminathan",
+      "email": "aravind.s@example.com",
+      "phone": "+91 98111 22334",
+      "enquiryType": "viewing",
+      "propertyId": "prop-1",
+      "propertyTitle": "DEMO — Contemporary 2-Bed Residence",
+      "status": "Viewing scheduled",
+      "preferredContactMethod": "phone",
+      "preferredTime": "Morning (10:00 AM – 1:00 PM)",
+      "viewingDate": "2026-11-20",
+      "viewingTimeSlot": "11:00 AM",
+      "message": "Interested in visiting the sample residence with my spouse. Please confirm basement parking availability.",
+      "source": "property_page",
+      "assignedToAgentId": "agent-1",
+      "consentGiven": true,
+      "notes": [
+        {
+          "id": "note-1",
+          "leadId": "lead-1",
+          "type": "status_change",
+          "author": "System",
+          "description": "Enquiry received from property detail page",
+          "timestamp": "2026-11-13T10:15:00Z"
+        },
+        {
+          "id": "note-2",
+          "leadId": "lead-1",
+          "type": "call",
+          "author": "Vikramaditya Sengupta",
+          "description": "Spoke with client, confirmed viewing date for Nov 20 at 11:00 AM. Sent location pin over WhatsApp.",
+          "timestamp": "2026-11-13T11:30:00Z"
+        }
+      ],
+      "createdAt": "2026-11-13T10:15:00Z",
+      "updatedAt": "2026-11-13T11:30:00Z"
+    },
+    {
+      "id": "lead-2",
+      "name": "Pooja Singhal",
+      "email": "pooja.singhal@company.org",
+      "phone": "+91 99887 76655",
+      "enquiryType": "property",
+      "propertyId": "prop-4",
+      "propertyTitle": "DEMO — Boutique Office Suite",
+      "status": "New",
+      "preferredContactMethod": "email",
+      "preferredTime": "Afternoon (2:00 PM – 5:00 PM)",
+      "message": "Looking for an 18-workstation office suite for our expansion in early 2027. Need details on maintenance and internet redundancy.",
+      "source": "hero_search",
+      "consentGiven": true,
+      "notes": [
+        {
+          "id": "note-3",
+          "leadId": "lead-2",
+          "type": "status_change",
+          "author": "System",
+          "description": "New corporate inquiry received",
+          "timestamp": "2026-11-14T08:45:00Z"
+        }
+      ],
+      "createdAt": "2026-11-14T08:45:00Z",
+      "updatedAt": "2026-11-14T08:45:00Z"
+    }
+  ],
+  "viewings": [
+    {
+      "id": "view-1794652706432",
+      "leadId": "lead-1794652706432",
+      "propertyId": "prop-6",
+      "propertyTitle": "DEMO - Premium 4-Bed Home",
+      "visitorName": "Malini Kulkarni",
+      "visitorPhone": "+91 98111 55667",
+      "visitorEmail": "malini.k@example.com",
+      "preferredDate": "2026-11-25",
+      "timeSlot": "11:00 AM",
+      "status": "pending",
+      "notes": "Requesting private terrace walkthrough",
+      "createdAt": "2026-11-14T10:38:26.432Z"
+    },
+    {
+      "id": "view-1",
+      "leadId": "lead-1",
+      "propertyId": "prop-1",
+      "propertyTitle": "DEMO — Contemporary 2-Bed Residence",
+      "visitorName": "Aravind Swaminathan",
+      "visitorPhone": "+91 98111 22334",
+      "visitorEmail": "aravind.s@example.com",
+      "preferredDate": "2026-11-20",
+      "timeSlot": "11:00 AM",
+      "status": "confirmed",
+      "assignedAgentName": "Vikramaditya Sengupta",
+      "notes": "Spouse accompanying. Needs floor plan and basement parking confirmation.",
+      "createdAt": "2026-11-13T10:15:00Z"
+    }
+  ],
+  "agents": [
+    {
+      "id": "agent-1",
+      "name": "Vikramaditya Sengupta",
+      "slug": "vikramaditya-sengupta",
+      "role": "Managing Principal & Luxury Residential Advisor",
+      "licenseNumber": "B2W-ADV-014",
+      "email": "advisory@bricks2wall.com",
+      "phone": "+91 98765 43210",
+      "whatsapp": "919876543210",
+      "photoUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
+      "bio": "With over 14 years specializing in high-value residential acquisitions and family office advisory, Vikramaditya advises clients with meticulous legal verification, valuation precision, and discretionary representation.",
+      "specializations": [
+        "Luxury Penthouse Acquisitions",
+        "Prime Residential Relocation",
+        "Heritage Properties",
+        "Family Office Asset Structuring"
+      ],
+      "languages": [
+        "English",
+        "Hindi",
+        "Bengali"
+      ],
+      "activeListingsCount": 4
+    },
+    {
+      "id": "agent-2",
+      "name": "Ananya Deshmukh",
+      "slug": "ananya-deshmukh",
+      "role": "Senior Vice President — Commercial & Capital Markets",
+      "licenseNumber": "B2W-ADV-029",
+      "email": "commercial@bricks2wall.com",
+      "phone": "+91 98765 43211",
+      "whatsapp": "919876543211",
+      "photoUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+      "bio": "Ananya oversees corporate occupier solutions, Grade-A office leasing, and institutional retail strategies. Her quantitative focus provides corporate tenants and commercial investors with actionable market yield benchmarks.",
+      "specializations": [
+        "Grade-A Office Leasing",
+        "High Street Retail Acquisition",
+        "Commercial Yield Analysis",
+        "Corporate Lease Structuring"
+      ],
+      "languages": [
+        "English",
+        "Hindi",
+        "Marathi"
+      ],
+      "activeListingsCount": 3
+    }
+  ],
+  "locations": [
+    {
+      "id": "loc-1",
+      "slug": "north-greens",
+      "name": "North Greens & Forest Enclaves",
+      "city": "Demo City",
+      "tagline": "Serene tree-lined avenues with world-class residential infrastructure",
+      "overview": "North Greens is distinguished by its low-density urban masterplan, protected green buffers, and proximity to elite international schools and golf facilities. Designed for families and executives seeking equilibrium between metropolitan connectivity and serene living.",
+      "keyConnectivity": [
+        "12 mins to International Airport expressway link",
+        "8 mins to Metro Orange Line interchange",
+        "Direct arterial flyway to Central Business District"
+      ],
+      "lifestyleAmenities": [
+        "Forest jogging loops & Olympic sporting facilities",
+        "Artisan dining & organic farmers markets",
+        "Multispecialty tertiary healthcare hospitals"
+      ],
+      "averagePricePerSqFt": "₹12,500 – ₹16,800",
+      "heroImageUrl": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      "featuredPropertyCount": 2
+    },
+    {
+      "id": "loc-2",
+      "slug": "central-boulevard",
+      "name": "Central Boulevard & Cultural Quarter",
+      "city": "Demo City",
+      "tagline": "The architectural heart of the city with premier dining and heritage landmarks",
+      "overview": "Central Boulevard represents prime metropolitan pedigree. Home to prestigious residential towers, cultural institutions, galleries, and high-street lifestyle promenades.",
+      "keyConnectivity": [
+        "Walking access to central financial quarter",
+        "Rapid underground transit hub across 3 lines",
+        "Direct expressway access to neighboring tech corridors"
+      ],
+      "lifestyleAmenities": [
+        "Opera house and contemporary art institutions",
+        "Michelin-starred dining and private members clubs",
+        "Flagship luxury shopping arcades"
+      ],
+      "averagePricePerSqFt": "₹22,000 – ₹32,000",
+      "heroImageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+      "featuredPropertyCount": 3
+    },
+    {
+      "id": "loc-3",
+      "slug": "financial-district",
+      "name": "Financial District & Tech Corridor",
+      "city": "Demo City",
+      "tagline": "India’s dynamic corporate frontier housing Fortune 500 headquarters",
+      "overview": "A hyper-connected global economic node engineered for tomorrow’s enterprise. Features LEED Platinum commercial skyscrapers, intelligent infrastructure, and modern luxury serviced apartments for global professionals.",
+      "keyConnectivity": [
+        "Dedicated metro express corridor directly to airport",
+        "Grade-separated 8-lane elevated expressway",
+        "Integrated pedestrian skywalks connecting commercial towers"
+      ],
+      "lifestyleAmenities": [
+        "24/7 convention center & business hotels",
+        "Executive fitness clubs and wellness centers",
+        "Microbreweries and global culinary avenues"
+      ],
+      "averagePricePerSqFt": "₹14,000 – ₹19,500",
+      "heroImageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      "featuredPropertyCount": 2
+    }
+  ],
+  "articles": [
+    {
+      "id": "art-1",
+      "slug": "evaluating-property-title-rera-due-diligence",
+      "title": "Navigating RERA & Property Title Due Diligence: A Buyer’s Practical Handbook",
+      "category": "Documentation",
+      "readTime": "6 min read",
+      "publishedAt": "2026-11-04",
+      "excerpt": "Key legal documentation steps every property buyer in India must verify before signing sale agreements or disbursing token advances.",
+      "content": "Purchasing residential or commercial real estate requires an informed legal framework. Under the Real Estate (Regulation and Development) Act (RERA), buyers benefit from strict disclosure norms, yet practical verification remains essential.\n\n### 1. Title Search & Encumbrance Certificate\nAlways ensure an independent title verification spanning a minimum of 30 years is conducted by an experienced real estate advocate. An Encumbrance Certificate (EC) issued by the Sub-Registrar's Office confirms that the property is unencumbered by mortgages or court attachments.\n\n### 2. Sanctioned Architectural Plans & Approvals\nCross-examine the sanctioned layout plan approved by the municipal corporation or local town planning development authority against the actual site construction. Any deviation beyond permissible setback or FAR limits poses compliance hazards.\n\n### 3. Escrow Account Transparency\nFor under-construction projects, verify that the builder receives payments in the mandated 70% project escrow bank account designated on the state RERA portal. This guarantees capital allocation strictly for project execution.",
+      "heroImageUrl": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80",
+      "authorName": "Vikramaditya Sengupta",
+      "authorRole": "Managing Principal"
+    },
+    {
+      "id": "art-2",
+      "slug": "prime-residential-market-outlook-2026",
+      "title": "Prime Residential Market Outlook: Capital Appreciation & Rental Yield Benchmarks",
+      "category": "Market Trends",
+      "readTime": "8 min read",
+      "publishedAt": "2026-10-24",
+      "excerpt": "An analysis of high-end property transaction volumes, infrastructure multipliers, and inflation-hedging qualities across major urban centers.",
+      "content": "The prime residential segment continues to demonstrate resilient structural demand driven by end-user upgrades, NRIs seeking portfolio repatriation, and expanding wealth creation in technology and financial services.\n\n### Quality Over Volume\nDiscerning purchasers have increasingly consolidated demand toward Grade-A corporate developers with pristine delivery track records. Premium properties located along high-speed transit arteries have seen consistent 9-14% annual capital appreciation.\n\n### Rental Yield Realities\nWhile traditional residential rental yields in India historically hovered near 2.5% to 3.2%, modern fully managed and luxury furnished apartments in tech-adjacent nodes now command 4.2% to 5.1% gross rental yields, making them compelling additions to wealth portfolios.",
+      "heroImageUrl": "https://images.unsplash.com/photo-1460472178825-e5240623afd5?auto=format&fit=crop&w=1200&q=80",
+      "authorName": "Ananya Deshmukh",
+      "authorRole": "Senior Vice President"
+    },
+    {
+      "id": "art-3",
+      "slug": "commercial-office-leasing-checklist-for-enterprises",
+      "title": "Commercial Office Leasing: Essential Clauses for High-Growth Companies",
+      "category": "Buying Guide",
+      "readTime": "5 min read",
+      "publishedAt": "2026-10-12",
+      "excerpt": "Understanding lock-in periods, CAM reconciliation, power backup allocations, and fit-out rent-free periods before executing commercial leases.",
+      "content": "Securing a commercial headquarters requires aligning business expansion timelines with lease terms.\n\n### 1. Lock-in & Termination Provisions\nExamine the mutual lock-in period. High-growth enterprises should negotiate early exit flexibility upon paying a predetermined notice fee rather than risking open-ended penalty damages.\n\n### 2. Common Area Maintenance (CAM) Transparency\nScrutinize CAM charges. Demand clarity on what services are covered, whether HVAC electrical consumption is separately metered, and mandate annual CAM audit rights for occupants.",
+      "heroImageUrl": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+      "authorName": "Ananya Deshmukh",
+      "authorRole": "Senior Vice President"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "clientName": "Rajesh & Malini Kulkarni",
+      "clientRole": "Tech Executive & Architect",
+      "transactionType": "Residential Purchase",
+      "propertyReference": "North Greens Sky Residence",
+      "quote": "Bricks2Wall presented property documentation with complete honesty from our first meeting. No exaggerations, clear clarity on carpet area calculations, and seamless viewing scheduling. Truly a refreshing brokerage experience.",
+      "rating": 5,
+      "isVerified": true,
+      "published": true
+    },
+    {
+      "id": "test-2",
+      "clientName": "Sanjay Mehra",
+      "clientRole": "Managing Director, Apex Logistics",
+      "transactionType": "Commercial Lease",
+      "propertyReference": "Central Boulevard Corporate Suite",
+      "quote": "Ananya and the Bricks2Wall advisory team secured an exceptional Grade-A office floor for our regional expansion. Their market yield intelligence saved us months of negotiation.",
+      "rating": 5,
+      "isVerified": true,
+      "published": true
+    }
+  ],
+  "contentSettings": {
+    "announcementText": "A considered approach to finding your next property. Contact the team for current availability.",
+    "announcementActive": true,
+    "heroEyebrow": "PROPERTY, WITH PERSPECTIVE",
+    "heroHeadline": "Find a place that moves you forward.",
+    "heroCopy": "Explore carefully presented property opportunities with clear information, local insight and personal guidance from first enquiry to final decision.",
+    "primaryCtaText": "EXPLORE PROPERTIES",
+    "secondaryCtaText": "TALK TO AN ADVISOR",
+    "phoneContact": "+91 98765 43210",
+    "whatsappContact": "+91 98765 43210",
+    "emailContact": "enquiry@bricks2wall.com",
+    "officeAddress": "Level 5, Signature Tower, Central Business Avenue, Demo City, India",
+    "businessHours": "Monday – Saturday: 9:30 AM – 7:00 PM IST (Site visits available on Sundays by appointment)",
+    "reraDisclaimerText": "Bricks2Wall is a real estate brokerage and advisory firm. All property details, measurements, pricing, and availability are subject to physical verification and owner confirmation. Please verify all project RERA registration credentials before finalizing any transaction."
+  }
+}
