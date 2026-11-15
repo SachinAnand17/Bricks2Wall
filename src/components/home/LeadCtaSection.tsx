@@ -2,11 +2,28 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Phone, Mail, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, Phone, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
+import { ContentSettings } from '@/types';
 
-export default function LeadCtaSection() {
+interface LeadCtaSectionProps {
+  settings?: ContentSettings;
+}
+
+export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
   const router = useRouter();
+
+  const eyebrow = settings?.leadCtaEyebrow || 'Direct Advisory';
+  const heading = settings?.leadCtaHeading || 'Your next property conversation starts here.';
+  const copy = settings?.leadCtaCopy || 'Tell us what you are looking for and our team will help you take the next step with verified insights and personal guidance.';
+  const formTitle = settings?.leadFormTitle || 'Request Property Consultation';
+  const formSubtitle = settings?.leadFormSubtitle || 'Receive curated property recommendations matched to your parameters.';
+  const submitButtonText = settings?.leadSubmitButtonText || 'Submit Property Enquiry';
+  const consentText = settings?.leadConsentText || 'I consent to receiving verified property details and direct contact from a licensed Bricks2Wall property advisor. We respect your privacy.';
+
+  const phone = settings?.phoneContact || '+91 98765 43210';
+  const email = settings?.emailContact || 'enquiry@bricks2wall.com';
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -63,7 +80,7 @@ export default function LeadCtaSection() {
       } else {
         setErrorMsg(data.error || 'Unable to submit enquiry. Please try again or call our direct line.');
       }
-    } catch (err) {
+    } catch {
       setErrorMsg('A network error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -82,15 +99,15 @@ export default function LeadCtaSection() {
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gold-deep">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne" />
-              <span>Direct Advisory</span>
+              <span>{eyebrow}</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium leading-tight">
-              Your next property conversation starts here.
+              {heading}
             </h2>
 
             <p className="text-text-slate text-base leading-relaxed">
-              Tell us what you are looking for and our team will help you take the next step with verified insights and personal guidance.
+              {copy}
             </p>
 
             <div className="space-y-4 pt-4 border-t border-canvas-grey text-xs text-text-slate">
@@ -100,8 +117,8 @@ export default function LeadCtaSection() {
                 </div>
                 <div>
                   <span className="text-text-muted block">Direct Advisory Line</span>
-                  <a href="tel:+919876543210" className="text-sm font-semibold text-navy-midnight hover:text-gold-deep">
-                    +91 98765 43210
+                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="text-sm font-semibold text-navy-midnight hover:text-gold-deep">
+                    {phone}
                   </a>
                 </div>
               </div>
@@ -112,8 +129,8 @@ export default function LeadCtaSection() {
                 </div>
                 <div>
                   <span className="text-text-muted block">Advisory Desk</span>
-                  <a href="mailto:enquiry@bricks2wall.com" className="text-sm font-semibold text-navy-midnight hover:text-gold-deep">
-                    enquiry@bricks2wall.com
+                  <a href={`mailto:${email}`} className="text-sm font-semibold text-navy-midnight hover:text-gold-deep">
+                    {email}
                   </a>
                 </div>
               </div>
@@ -124,10 +141,10 @@ export default function LeadCtaSection() {
           <div className="lg:col-span-7">
             <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-gold-champagne/30 shadow-luxury">
               <h3 className="font-serif text-xl font-semibold text-navy-midnight mb-2">
-                Request Property Consultation
+                {formTitle}
               </h3>
               <p className="text-xs text-text-slate mb-6">
-                Receive curated property recommendations matched to your parameters.
+                {formSubtitle}
               </p>
 
               {errorMsg && (
@@ -225,7 +242,7 @@ export default function LeadCtaSection() {
                     className="mt-1 rounded text-gold-deep focus:ring-gold-champagne"
                   />
                   <label htmlFor="consentCheck" className="text-xs text-text-slate leading-relaxed">
-                    I consent to receiving verified property details and direct contact from a licensed Bricks2Wall property advisor. We respect your privacy.
+                    {consentText}
                   </label>
                 </div>
 
@@ -242,7 +259,7 @@ export default function LeadCtaSection() {
                   ) : (
                     <>
                       <Send className="w-4 h-4 text-gold-champagne" />
-                      <span>Submit Property Enquiry</span>
+                      <span>{submitButtonText}</span>
                     </>
                   )}
                 </button>

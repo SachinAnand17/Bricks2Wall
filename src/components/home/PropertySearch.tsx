@@ -2,10 +2,20 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, MapPin, Home, IndianRupee, Bed, SlidersHorizontal } from 'lucide-react';
+import { Search, MapPin, Home, IndianRupee, Bed } from 'lucide-react';
 import { TransactionType } from '@/types';
 
-export default function PropertySearch() {
+interface PropertySearchProps {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+}
+
+export default function PropertySearch({
+  title = 'Find a property that fits your plans.',
+  subtitle = 'Explore verified residential and commercial opportunities',
+  buttonText = 'Find Properties',
+}: PropertySearchProps) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<TransactionType | 'all'>('buy');
   const [locality, setLocality] = useState('all');
@@ -44,10 +54,10 @@ export default function PropertySearch() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-canvas-grey gap-4">
           <div>
             <h3 className="font-serif text-lg font-semibold text-navy-midnight">
-              Find a property that fits your plans.
+              {title}
             </h3>
             <p className="text-xs text-text-slate">
-              Explore verified residential and commercial opportunities
+              {subtitle}
             </p>
           </div>
 
@@ -154,7 +164,7 @@ export default function PropertySearch() {
               className="w-full h-11 flex items-center justify-center gap-2 px-5 rounded-xl bg-navy-midnight text-white text-xs font-semibold tracking-wider uppercase hover:bg-gold-deep transition-all duration-300 shadow-md group"
             >
               <Search className="w-4 h-4 text-gold-champagne group-hover:scale-110 transition-transform" />
-              <span>Find Properties</span>
+              <span>{buttonText}</span>
             </button>
           </div>
 

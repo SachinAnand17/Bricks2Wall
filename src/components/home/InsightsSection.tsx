@@ -1,15 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, BookOpen, Clock } from 'lucide-react';
-import { InsightArticle } from '@/types';
+import { ArrowRight, Clock } from 'lucide-react';
+import { InsightArticle, ContentSettings } from '@/types';
 import { formatDate } from '@/lib/utils';
 
 interface InsightsSectionProps {
   articles: InsightArticle[];
+  settings?: ContentSettings;
 }
 
-export default function InsightsSection({ articles }: InsightsSectionProps) {
+export default function InsightsSection({ articles, settings }: InsightsSectionProps) {
+  const eyebrow = settings?.insightsEyebrow || 'Editorial & Guides';
+  const heading = settings?.insightsHeading || 'Make your next move an informed one.';
+  const copy = settings?.insightsCopy || 'Read practical guides on property searches, neighbourhoods, documentation and the decisions that shape a successful move.';
+  const linkText = settings?.insightsLinkText || 'Browse All Articles';
+
   return (
     <section className="py-20 bg-canvas-ivory/40 border-t border-canvas-grey">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,13 +23,13 @@ export default function InsightsSection({ articles }: InsightsSectionProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6">
           <div className="space-y-3 max-w-2xl">
             <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-              Editorial & Guides
+              {eyebrow}
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
-              Make your next move an informed one.
+              {heading}
             </h2>
             <p className="text-text-slate text-sm sm:text-base">
-              Read practical guides on property searches, neighbourhoods, documentation and the decisions that shape a successful move.
+              {copy}
             </p>
           </div>
 
@@ -31,7 +37,7 @@ export default function InsightsSection({ articles }: InsightsSectionProps) {
             href="/insights"
             className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-gold-deep hover:text-navy-midnight transition-colors"
           >
-            <span>Browse All Articles</span>
+            <span>{linkText}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

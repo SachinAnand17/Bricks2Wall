@@ -119,17 +119,17 @@ k6 run tests/load/k6-load-test.js
 # 1. Install dependencies
 npm install
 
-# 2. Run development server
+# 2. Run development server (runs on port 4000)
 npm run dev
 
 # 3. Build for production
 npm run build
 
-# 4. Start production server
+# 4. Start production server (runs on port 4000)
 npm start
 ```
-Public site runs at `http://localhost:3000`  
-Admin portal runs at `http://localhost:3000/admin` (Passkey: `admin123`)
+Public site runs at `http://localhost:4000`  
+Admin portal runs at `http://localhost:4000/admin` (Passkey: `admin123`)
 
 ---
 

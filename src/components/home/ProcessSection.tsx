@@ -1,53 +1,63 @@
 import React from 'react';
 import Link from 'next/link';
 import { Calendar, Compass, Key, Search, ArrowRight } from 'lucide-react';
+import { ContentSettings } from '@/types';
 
-const STEPS = [
-  {
-    step: '01',
-    icon: Search,
-    title: 'Tell us what you need',
-    description: 'Share your location preferences, space requirements, budget, and timeline with an advisor.',
-  },
-  {
-    step: '02',
-    icon: Compass,
-    title: 'Explore relevant options',
-    description: 'Receive curated property dossiers with verified documentation, honest measurements, and video walkthroughs.',
-  },
-  {
-    step: '03',
-    icon: Calendar,
-    title: 'Arrange a viewing',
-    description: 'Walk through shortlisted residences or commercial suites with an expert advisor who provides neighborhood insight.',
-  },
-  {
-    step: '04',
-    icon: Key,
-    title: 'Move ahead with informed guidance',
-    description: 'Conclude agreements with legal due diligence, title clarity, registration support, and total peace of mind.',
-  },
-];
+interface ProcessSectionProps {
+  settings?: ContentSettings;
+}
 
-export default function ProcessSection() {
+export default function ProcessSection({ settings }: ProcessSectionProps) {
+  const eyebrow = settings?.processEyebrow || 'Transparent Workflow';
+  const heading = settings?.processHeading || 'A clearer way to move forward.';
+  const copy = settings?.processCopy || 'We replace speculation with systematic verification and personal guidance at every milestone.';
+  const ctaText = settings?.processCtaText || 'Start Your Property Conversation';
+
+  const steps = [
+    {
+      step: '01',
+      icon: Search,
+      title: settings?.step1Title || 'Tell us what you need',
+      description: settings?.step1Desc || 'Share your location preferences, space requirements, budget, and timeline with an advisor.',
+    },
+    {
+      step: '02',
+      icon: Compass,
+      title: settings?.step2Title || 'Explore relevant options',
+      description: settings?.step2Desc || 'Receive curated property dossiers with verified documentation, honest measurements, and video walkthroughs.',
+    },
+    {
+      step: '03',
+      icon: Calendar,
+      title: settings?.step3Title || 'Arrange a viewing',
+      description: settings?.step3Desc || 'Walk through shortlisted residences or commercial suites with an expert advisor who provides neighborhood insight.',
+    },
+    {
+      step: '04',
+      icon: Key,
+      title: settings?.step4Title || 'Move ahead with informed guidance',
+      description: settings?.step4Desc || 'Conclude agreements with legal due diligence, title clarity, registration support, and total peace of mind.',
+    },
+  ];
+
   return (
     <section className="py-20 bg-gradient-to-b from-white via-canvas-ivory/50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-2xl mx-auto pb-16 space-y-3">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-            Transparent Workflow
+            {eyebrow}
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
-            A clearer way to move forward.
+            {heading}
           </h2>
           <p className="text-text-slate text-sm sm:text-base">
-            We replace speculation with systematic verification and personal guidance at every milestone.
+            {copy}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {STEPS.map((item, idx) => {
+          {steps.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
@@ -88,7 +98,7 @@ export default function ProcessSection() {
             href="/book-a-visit"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-navy-midnight text-white text-xs font-semibold tracking-widest uppercase hover:bg-gold-deep transition-all duration-300 shadow-luxury"
           >
-            <span>Start Your Property Conversation</span>
+            <span>{ctaText}</span>
             <ArrowRight className="w-4 h-4 text-gold-champagne" />
           </Link>
         </div>

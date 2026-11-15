@@ -2,59 +2,68 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
+import { ContentSettings } from '@/types';
 
-const CATEGORIES = [
-  {
-    title: 'Modern Apartments',
-    subtitle: '2 & 3 Bedroom city residences',
-    count: 'Curated Collection',
-    href: '/properties?propertyType=Apartment',
-    imageUrl: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Sky Villas & Penthouses',
-    subtitle: 'High-floor architectural statements',
-    count: 'Exclusive',
-    href: '/properties?propertyType=Penthouse',
-    imageUrl: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Turnkey Rentals',
-    subtitle: 'Furnished executive homes',
-    count: 'Ready to Occupy',
-    href: '/properties/rent',
-    imageUrl: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Grade-A Office Suites',
-    subtitle: 'Corporate occupier solutions',
-    count: 'Commercial',
-    href: '/properties/commercial',
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
-  },
-];
+interface PropertyTypeGridProps {
+  settings?: ContentSettings;
+}
 
-export default function PropertyTypeGrid() {
+export default function PropertyTypeGrid({ settings }: PropertyTypeGridProps) {
+  const eyebrow = settings?.categoriesEyebrow || 'Tailored Portfolios';
+  const heading = settings?.categoriesHeading || 'Explore by Property Category';
+  const copy = settings?.categoriesCopy || 'Whether seeking an enduring family residence or an institutional commercial asset, our advisory spans verified property verticals.';
+
+  const categories = [
+    {
+      title: settings?.category1Title || 'Modern Apartments',
+      subtitle: settings?.category1Subtitle || '2 & 3 Bedroom city residences',
+      count: settings?.category1Badge || 'Curated Collection',
+      href: settings?.category1Href || '/properties?propertyType=Apartment',
+      imageUrl: settings?.category1Image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: settings?.category2Title || 'Sky Villas & Penthouses',
+      subtitle: settings?.category2Subtitle || 'High-floor architectural statements',
+      count: settings?.category2Badge || 'Exclusive',
+      href: settings?.category2Href || '/properties?propertyType=Penthouse',
+      imageUrl: settings?.category2Image || 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: settings?.category3Title || 'Turnkey Rentals',
+      subtitle: settings?.category3Subtitle || 'Furnished executive homes',
+      count: settings?.category3Badge || 'Ready to Occupy',
+      href: settings?.category3Href || '/properties/rent',
+      imageUrl: settings?.category3Image || 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: settings?.category4Title || 'Grade-A Office Suites',
+      subtitle: settings?.category4Subtitle || 'Corporate occupier solutions',
+      count: settings?.category4Badge || 'Commercial',
+      href: settings?.category4Href || '/properties/commercial',
+      imageUrl: settings?.category4Image || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    },
+  ];
+
   return (
     <section className="py-20 bg-canvas-ivory/60 border-y border-canvas-grey/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-2xl mx-auto pb-12 space-y-3">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-            Tailored Portfolios
+            {eyebrow}
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
-            Explore by Property Category
+            {heading}
           </h2>
           <p className="text-text-slate text-sm sm:text-base">
-            Whether seeking an enduring family residence or an institutional commercial asset, our advisory spans verified property verticals.
+            {copy}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat, idx) => (
             <Link
-              key={cat.title}
+              key={idx}
               href={cat.href}
               className="group relative h-80 rounded-2xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-300 border border-canvas-grey"
             >

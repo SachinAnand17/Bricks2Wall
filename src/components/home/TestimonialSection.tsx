@@ -1,13 +1,18 @@
 import React from 'react';
 import { Star, Quote, CheckCircle2 } from 'lucide-react';
-import { Testimonial } from '@/types';
+import { Testimonial, ContentSettings } from '@/types';
 
 interface TestimonialSectionProps {
   testimonials: Testimonial[];
+  settings?: ContentSettings;
 }
 
-export default function TestimonialSection({ testimonials }: TestimonialSectionProps) {
+export default function TestimonialSection({ testimonials, settings }: TestimonialSectionProps) {
   if (!testimonials || testimonials.length === 0) return null;
+
+  const eyebrow = settings?.testimonialsEyebrow || 'Client Experiences';
+  const heading = settings?.testimonialsHeading || 'Perspective from Those We Have Guided';
+  const copy = settings?.testimonialsCopy || 'Verified feedback from clients who acquired residences or commercial spaces through our advisory.';
 
   return (
     <section className="py-20 bg-white relative">
@@ -15,13 +20,13 @@ export default function TestimonialSection({ testimonials }: TestimonialSectionP
         
         <div className="text-center max-w-2xl mx-auto pb-14 space-y-3">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-            Client Experiences
+            {eyebrow}
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
-            Perspective from Those We Have Guided
+            {heading}
           </h2>
           <p className="text-text-slate text-sm sm:text-base">
-            Verified feedback from clients who acquired residences or commercial spaces through our advisory.
+            {copy}
           </p>
         </div>
 

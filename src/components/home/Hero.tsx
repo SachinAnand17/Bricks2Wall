@@ -4,22 +4,56 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Compass, Shield, Building2 } from 'lucide-react';
+import { ContentSettings } from '@/types';
 
 interface HeroProps {
+  settings?: ContentSettings;
   eyebrow?: string;
   headline?: string;
+  headlineHighlight?: string;
   copy?: string;
   primaryCtaText?: string;
+  primaryCtaHref?: string;
   secondaryCtaText?: string;
+  secondaryCtaHref?: string;
 }
 
 export default function Hero({
-  eyebrow = 'PROPERTY, WITH PERSPECTIVE',
-  headline = 'Find a place that moves you forward.',
-  copy = 'Explore carefully presented property opportunities with clear information, local insight and personal guidance from first enquiry to final decision.',
-  primaryCtaText = 'EXPLORE PROPERTIES',
-  secondaryCtaText = 'TALK TO AN ADVISOR',
+  settings,
+  eyebrow,
+  headline,
+  headlineHighlight,
+  copy,
+  primaryCtaText,
+  primaryCtaHref,
+  secondaryCtaText,
+  secondaryCtaHref,
 }: HeroProps) {
+  const currentEyebrow = eyebrow || settings?.heroEyebrow || 'PROPERTY, WITH PERSPECTIVE';
+  const currentHeadline = headline || settings?.heroHeadline || 'Find a place that';
+  const currentHighlight = headlineHighlight || settings?.heroHeadlineHighlight || 'moves you forward.';
+  const currentCopy = copy || settings?.heroCopy || 'Explore carefully presented property opportunities with clear information, local insight and personal guidance from first enquiry to final decision.';
+  const pCtaText = primaryCtaText || settings?.primaryCtaText || 'EXPLORE PROPERTIES';
+  const pCtaHref = primaryCtaHref || settings?.primaryCtaHref || '/properties';
+  const sCtaText = secondaryCtaText || settings?.secondaryCtaText || 'TALK TO AN ADVISOR';
+  const sCtaHref = secondaryCtaHref || settings?.secondaryCtaHref || '/contact';
+
+  const stat1Val = settings?.heroStat1Value || '100%';
+  const stat1Lbl = settings?.heroStat1Label || 'Verified Titles';
+  const stat2Val = settings?.heroStat2Value || 'Prime';
+  const stat2Lbl = settings?.heroStat2Label || 'Curated Portfolio';
+  const stat3Val = settings?.heroStat3Value || 'Direct';
+  const stat3Lbl = settings?.heroStat3Label || 'Personal Advisory';
+
+  const heroImg = settings?.heroImageUrl || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80';
+  const cardBadge = settings?.heroCardBadge || 'Featured Opportunity';
+  const cardTitle = settings?.heroCardTitle || 'The Sky Villa Collection';
+  const cardSubtitle = settings?.heroCardSubtitle || 'Demo Locality • Golf Links';
+  const cardHref = settings?.heroCardHref || '/properties/demo-premium-4-bed-home';
+
+  const badgeTopTitle = settings?.heroBadgeTopTitle || 'Advisory Focus';
+  const badgeTopSubtitle = settings?.heroBadgeTopSubtitle || 'Clear Data. Trusted Guidance.';
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-canvas-ivory/60 to-white pt-12 pb-16 lg:pt-20 lg:pb-28">
       {/* Background Architectural Radial Glow */}
@@ -33,34 +67,34 @@ export default function Hero({
           <div className="lg:col-span-7 space-y-7 text-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas-ivory border border-gold-champagne/30 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne animate-pulse" />
-              <span>{eyebrow}</span>
+              <span>{currentEyebrow}</span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-navy-midnight font-medium tracking-tight leading-[1.12]">
-              {headline.split('moves you forward.')[0]}
+              {currentHeadline}{' '}
               <span className="italic font-light text-gold-deep block sm:inline">
-                moves you forward.
+                {currentHighlight}
               </span>
             </h1>
 
             <p className="text-text-slate text-base sm:text-lg leading-relaxed max-w-xl font-normal">
-              {copy}
+              {currentCopy}
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <Link
-                href="/properties"
+                href={pCtaHref}
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-navy-midnight text-white text-xs font-semibold tracking-widest uppercase hover:bg-gold-deep transition-all duration-300 shadow-luxury group"
               >
-                <span>{primaryCtaText}</span>
+                <span>{pCtaText}</span>
                 <ArrowUpRight className="w-4 h-4 text-gold-champagne group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
 
               <Link
-                href="/contact"
+                href={sCtaHref}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-canvas-grey bg-white text-text-ink text-xs font-semibold tracking-widest uppercase hover:border-gold-champagne hover:text-gold-deep transition-all duration-300 shadow-sm"
               >
-                <span>{secondaryCtaText}</span>
+                <span>{sCtaText}</span>
               </Link>
             </div>
 
@@ -69,25 +103,25 @@ export default function Hero({
               <div className="space-y-1">
                 <div className="flex items-center gap-1.5 text-navy-midnight">
                   <Shield className="w-4 h-4 text-gold-champagne" />
-                  <span className="font-serif text-base font-semibold">100%</span>
+                  <span className="font-serif text-base font-semibold">{stat1Val}</span>
                 </div>
-                <p className="text-xs text-text-muted">Verified Titles</p>
+                <p className="text-xs text-text-muted">{stat1Lbl}</p>
               </div>
 
               <div className="space-y-1">
                 <div className="flex items-center gap-1.5 text-navy-midnight">
                   <Building2 className="w-4 h-4 text-gold-champagne" />
-                  <span className="font-serif text-base font-semibold">Prime</span>
+                  <span className="font-serif text-base font-semibold">{stat2Val}</span>
                 </div>
-                <p className="text-xs text-text-muted">Curated Portfolio</p>
+                <p className="text-xs text-text-muted">{stat2Lbl}</p>
               </div>
 
               <div className="space-y-1">
                 <div className="flex items-center gap-1.5 text-navy-midnight">
                   <Compass className="w-4 h-4 text-gold-champagne" />
-                  <span className="font-serif text-base font-semibold">Direct</span>
+                  <span className="font-serif text-base font-semibold">{stat3Val}</span>
                 </div>
-                <p className="text-xs text-text-muted">Personal Advisory</p>
+                <p className="text-xs text-text-muted">{stat3Lbl}</p>
               </div>
             </div>
           </div>
@@ -99,8 +133,8 @@ export default function Hero({
               {/* Primary Architectural Image */}
               <div className="relative h-[440px] sm:h-[500px] w-full rounded-2xl overflow-hidden shadow-luxury border-4 border-white">
                 <Image
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
-                  alt="Architectural Luxury Residence Showcase"
+                  src={heroImg}
+                  alt={cardTitle}
                   fill
                   priority
                   className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
@@ -112,15 +146,15 @@ export default function Hero({
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[10px] uppercase tracking-wider font-semibold text-gold-deep">
-                        Featured Opportunity
+                        {cardBadge}
                       </span>
                       <h4 className="font-serif text-sm font-semibold text-navy-midnight truncate max-w-[200px]">
-                        The Sky Villa Collection
+                        {cardTitle}
                       </h4>
-                      <p className="text-xs text-text-slate">Demo Locality • Golf Links</p>
+                      <p className="text-xs text-text-slate">{cardSubtitle}</p>
                     </div>
                     <Link
-                      href="/properties/demo-premium-4-bed-home"
+                      href={cardHref}
                       className="p-2 rounded-full bg-canvas-ivory text-navy-midnight hover:bg-gold-champagne hover:text-white transition-colors"
                     >
                       <ArrowUpRight className="w-4 h-4" />
@@ -132,9 +166,9 @@ export default function Hero({
               {/* Decorative Secondary Inset Badge */}
               <div className="absolute -top-4 -right-4 bg-navy-midnight text-white px-4 py-3 rounded-xl shadow-xl border border-gold-champagne/30 hidden sm:block">
                 <p className="text-[10px] tracking-widest uppercase text-gold-champagne font-semibold">
-                  Advisory Focus
+                  {badgeTopTitle}
                 </p>
-                <p className="font-serif text-sm font-medium">Clear Data. Trusted Guidance.</p>
+                <p className="font-serif text-sm font-medium">{badgeTopSubtitle}</p>
               </div>
             </div>
           </div>

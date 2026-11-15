@@ -18,7 +18,7 @@ import {
   getContentSettings 
 } from '@/lib/db';
 
-export const revalidate = 60; // ISR cache revalidation
+export const revalidate = 0; // Dynamic real-time updates from CMS
 
 export default function HomePage() {
   const settings = getContentSettings();
@@ -31,42 +31,56 @@ export default function HomePage() {
     <div className="space-y-0">
       {/* Hero Section */}
       <Hero
+        settings={settings}
         eyebrow={settings.heroEyebrow}
         headline={settings.heroHeadline}
+        headlineHighlight={settings.heroHeadlineHighlight}
         copy={settings.heroCopy}
         primaryCtaText={settings.primaryCtaText}
+        primaryCtaHref={settings.primaryCtaHref}
         secondaryCtaText={settings.secondaryCtaText}
+        secondaryCtaHref={settings.secondaryCtaHref}
       />
 
       {/* Prominent Search Module */}
-      <PropertySearch />
+      <PropertySearch
+        title={settings.searchTitle}
+        subtitle={settings.searchSubtitle}
+        buttonText={settings.searchButtonText}
+      />
 
       {/* Curated Featured Properties */}
-      <FeaturedProperties properties={properties} />
+      <FeaturedProperties
+        properties={properties}
+        eyebrow={settings.featuredEyebrow}
+        heading={settings.featuredHeading}
+        copy={settings.featuredCopy}
+        ctaText={settings.featuredCtaText}
+      />
 
       {/* Property-Type / Service Discovery Tiles */}
-      <PropertyTypeGrid />
+      <PropertyTypeGrid settings={settings} />
 
       {/* Value Propositions / Why Work With Us */}
-      <WhyWorkWithUs />
+      <WhyWorkWithUs settings={settings} />
 
       {/* Transparent Process / How It Works */}
-      <ProcessSection />
+      <ProcessSection settings={settings} />
 
       {/* Featured Neighbourhoods & Locality Guides */}
-      <LocationShowcase locations={locations} />
+      <LocationShowcase locations={locations} settings={settings} />
 
       {/* Trust & Regulatory Due Diligence */}
-      <TrustSection />
+      <TrustSection settings={settings} />
 
       {/* Verified Client Testimonials */}
-      <TestimonialSection testimonials={testimonials} />
+      <TestimonialSection testimonials={testimonials} settings={settings} />
 
       {/* Market Insights & RERA Editorial */}
-      <InsightsSection articles={articles} />
+      <InsightsSection articles={articles} settings={settings} />
 
       {/* Consultation Request & Final CTA */}
-      <LeadCtaSection />
+      <LeadCtaSection settings={settings} />
     </div>
   );
 }

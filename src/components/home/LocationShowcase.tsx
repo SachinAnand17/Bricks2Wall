@@ -2,13 +2,19 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, ArrowRight } from 'lucide-react';
-import { LocationGuide } from '@/types';
+import { LocationGuide, ContentSettings } from '@/types';
 
 interface LocationShowcaseProps {
   locations: LocationGuide[];
+  settings?: ContentSettings;
 }
 
-export default function LocationShowcase({ locations }: LocationShowcaseProps) {
+export default function LocationShowcase({ locations, settings }: LocationShowcaseProps) {
+  const eyebrow = settings?.locationsEyebrow || 'Locality Intelligence';
+  const heading = settings?.locationsHeading || 'Featured Neighbourhood Guides';
+  const copy = settings?.locationsCopy || 'Context shapes property value. Explore in-depth architectural and transit guides for prime enclaves.';
+  const linkText = settings?.locationsLinkText || 'View All Localities';
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,13 +22,13 @@ export default function LocationShowcase({ locations }: LocationShowcaseProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6">
           <div className="space-y-3 max-w-2xl">
             <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-              Locality Intelligence
+              {eyebrow}
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
-              Featured Neighbourhood Guides
+              {heading}
             </h2>
             <p className="text-text-slate text-sm sm:text-base">
-              Context shapes property value. Explore in-depth architectural and transit guides for prime enclaves.
+              {copy}
             </p>
           </div>
 
@@ -30,7 +36,7 @@ export default function LocationShowcase({ locations }: LocationShowcaseProps) {
             href="/locations"
             className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-gold-deep hover:text-navy-midnight transition-colors"
           >
-            <span>View All Localities</span>
+            <span>{linkText}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

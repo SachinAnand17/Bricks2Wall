@@ -75,7 +75,12 @@ function ensureDatabase(): DatabaseSchema {
 
   try {
     const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    return JSON.parse(raw) as DatabaseSchema;
+    const parsed = JSON.parse(raw) as DatabaseSchema;
+    parsed.contentSettings = {
+      ...INITIAL_CONTENT_SETTINGS,
+      ...(parsed.contentSettings || {}),
+    };
+    return parsed;
   } catch (err) {
     console.error('Error reading database file, resetting to fallback:', err);
     return {

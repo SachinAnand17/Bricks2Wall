@@ -5,7 +5,36 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, PlayCircle, ShieldCheck } from 'lucide-react';
 
-export default function Footer() {
+export interface FooterProps {
+  brandDescription?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  businessHours?: string;
+  complianceNotice?: string;
+  demoNotice?: string;
+  copyrightText?: string;
+}
+
+export default function Footer({
+  brandDescription,
+  address,
+  phone,
+  email,
+  businessHours,
+  complianceNotice,
+  demoNotice,
+  copyrightText,
+}: FooterProps = {}) {
+  const displayBrand = brandDescription || 'A premium, trustworthy property discovery and brokerage advisory. We present verified residential and commercial opportunities with architectural clarity, transparent documentation, and informed personal guidance.';
+  const displayAddress = address || 'Level 5, Signature Tower, Central Business Avenue, Demo City, India';
+  const displayPhone = phone || '+91 98765 43210';
+  const displayEmail = email || 'enquiry@bricks2wall.com';
+  const displayHours = businessHours || 'Mon – Sat: 9:30 AM – 7:00 PM IST';
+  const displayCompliance = complianceNotice || 'Regulatory & Integrity Notice: Bricks2Wall operates as a dedicated property advisory and real estate brokerage. Listing details, prices, floor measurements, and availability states are published subject to physical verification and owner confirmation. Please verify all individual state RERA project registrations and legal title documentation before entering into formal binding transactions.';
+  const displayDemo = demoNotice || 'Demo property records displayed during testing are explicitly designated with a DEMO label and represent illustrative sample listings rather than live proprietary inventory.';
+  const displayCopyright = copyrightText || 'Bricks2Wall Real Estate Advisory. All rights reserved.';
+
   const handleReplayIntro = () => {
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('b2w_intro_seen');
@@ -32,7 +61,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-white/70 text-sm leading-relaxed max-w-sm">
-              A premium, trustworthy property discovery and brokerage advisory. We present verified residential and commercial opportunities with architectural clarity, transparent documentation, and informed personal guidance.
+              {displayBrand}
             </p>
 
             <div className="pt-2 flex items-center gap-4">
@@ -131,25 +160,25 @@ export default function Footer() {
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-gold-champagne shrink-0 mt-0.5" />
                 <span className="text-xs leading-relaxed">
-                  Level 5, Signature Tower, Central Business Avenue, Demo City, India
+                  {displayAddress}
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-gold-champagne shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white text-xs">
-                  +91 98765 43210
+                <a href={`tel:${displayPhone.replace(/\s+/g, '')}`} className="hover:text-white text-xs">
+                  {displayPhone}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-gold-champagne shrink-0" />
-                <a href="mailto:enquiry@bricks2wall.com" className="hover:text-white text-xs">
-                  enquiry@bricks2wall.com
+                <a href={`mailto:${displayEmail}`} className="hover:text-white text-xs">
+                  {displayEmail}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-gold-champagne shrink-0 mt-0.5" />
                 <span className="text-xs text-white/60">
-                  Mon – Sat: 9:30 AM – 7:00 PM IST
+                  {displayHours}
                 </span>
               </li>
             </ul>
@@ -159,16 +188,16 @@ export default function Footer() {
         {/* Regulatory & Disclaimer Band */}
         <div className="pt-8 pb-6 border-b border-white/10 text-xs text-white/50 space-y-2 leading-relaxed">
           <p>
-            <strong className="text-white/70">Regulatory & Integrity Notice:</strong> Bricks2Wall operates as a dedicated property advisory and real estate brokerage. Listing details, prices, floor measurements, and availability states are published subject to physical verification and owner confirmation. Please verify all individual state RERA project registrations and legal title documentation before entering into formal binding transactions.
+            {displayCompliance}
           </p>
           <p>
-            Demo property records displayed during testing are explicitly designated with a DEMO label and represent illustrative sample listings rather than live proprietary inventory.
+            {displayDemo}
           </p>
         </div>
 
         {/* Copyright and Legal Links */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <p>© {new Date().getFullYear()} Bricks2Wall Real Estate Advisory. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {displayCopyright}</p>
           <div className="flex items-center space-x-6">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy

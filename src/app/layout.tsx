@@ -58,6 +58,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({
   children,
 }: {
@@ -72,12 +74,12 @@ export default function RootLayout({
     description: 'A premium real-estate brokerage and property advisory brand.',
     url: 'https://bricks2wall.com',
     logo: 'https://bricks2wall.com/brand/brand-logo.jpg',
-    telephone: '+91-98765-43210',
-    email: 'enquiry@bricks2wall.com',
+    telephone: settings.phoneContact || '+91-98765-43210',
+    email: settings.emailContact || 'enquiry@bricks2wall.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Level 5, Signature Tower, Central Business Avenue',
-      addressLocality: 'Demo City',
+      streetAddress: settings.officeAddress || 'Level 5, Signature Tower, Central Business Avenue',
+      addressLocality: 'Noida / NCR',
       addressCountry: 'IN',
     },
     openingHoursSpecification: [
@@ -104,11 +106,19 @@ export default function RootLayout({
 
         {/* Announcement Bar */}
         {settings.announcementActive && (
-          <AnnouncementBar text={settings.announcementText} />
+          <AnnouncementBar
+            text={settings.announcementText}
+            linkText={settings.announcementLinkText}
+            linkHref={settings.announcementLinkHref}
+          />
         )}
 
         {/* Primary Navigation Header */}
-        <Header />
+        <Header
+          phone={settings.phoneContact || settings.headerPhone}
+          ctaText={settings.headerCtaText}
+          ctaHref={settings.headerCtaHref}
+        />
 
         {/* Main Body */}
         <main className="flex-1">
@@ -116,7 +126,16 @@ export default function RootLayout({
         </main>
 
         {/* Footer */}
-        <Footer />
+        <Footer
+          brandDescription={settings.footerBrandDescription}
+          address={settings.officeAddress}
+          phone={settings.phoneContact}
+          email={settings.emailContact}
+          businessHours={settings.businessHours}
+          complianceNotice={settings.footerComplianceNotice}
+          demoNotice={settings.footerDemoNotice}
+          copyrightText={settings.footerCopyrightText}
+        />
       </body>
     </html>
   );

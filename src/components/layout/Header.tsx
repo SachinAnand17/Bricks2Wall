@@ -6,7 +6,17 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Phone, Calendar, Search } from 'lucide-react';
 
-export default function Header() {
+export interface HeaderProps {
+  phone?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
+  const displayPhone = phone || '+91 98765 43210';
+  const displayCtaText = ctaText || 'Book a Visit';
+  const displayCtaHref = ctaHref || '/book-a-visit';
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [propertiesDropdownOpen, setPropertiesDropdownOpen] = useState(false);
@@ -157,19 +167,19 @@ export default function Header() {
             </Link>
 
             <a
-              href="tel:+919876543210"
+              href={`tel:${displayPhone.replace(/\s+/g, '')}`}
               className="flex items-center gap-1.5 text-xs text-text-slate hover:text-navy-midnight font-medium px-2 py-1"
             >
               <Phone className="w-3.5 h-3.5 text-gold-champagne" />
-              <span>+91 98765 43210</span>
+              <span>{displayPhone}</span>
             </a>
 
             <Link
-              href="/book-a-visit"
+              href={displayCtaHref}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-gold-champagne text-gold-deep bg-white hover:bg-gold-champagne hover:text-navy-deep transition-all duration-300 shadow-sm"
             >
               <Calendar className="w-3.5 h-3.5" />
-              <span>Book a Visit</span>
+              <span>{displayCtaText}</span>
             </Link>
 
             <Link
@@ -247,18 +257,18 @@ export default function Header() {
 
           <div className="pt-4 border-t border-canvas-grey/60 space-y-3">
             <a
-              href="tel:+919876543210"
+              href={`tel:${displayPhone.replace(/\s+/g, '')}`}
               className="flex items-center gap-2 text-sm text-text-slate px-3"
             >
               <Phone className="w-4 h-4 text-gold-champagne" />
-              <span>+91 98765 43210</span>
+              <span>{displayPhone}</span>
             </a>
             <div className="flex gap-2 pt-2">
               <Link
-                href="/book-a-visit"
+                href={displayCtaHref}
                 className="flex-1 text-center py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-champagne text-navy-deep shadow-sm"
               >
-                Schedule Site Visit
+                {displayCtaText}
               </Link>
               <Link
                 href="/admin"

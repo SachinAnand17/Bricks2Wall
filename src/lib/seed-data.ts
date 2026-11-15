@@ -146,8 +146,8 @@ export const INITIAL_PROPERTIES: Property[] = [
       },
       {
         id: 'm2-3',
-        url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Ensuite luxury bathroom with soaking tub',
+        url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Ensuite luxury bathroom with stone finish',
         altText: 'Modern bathroom with stone finish',
         isPrimary: false,
         order: 3
@@ -625,19 +625,160 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 ];
 
 export const INITIAL_CONTENT_SETTINGS: ContentSettings = {
-  announcementText: 'A considered approach to finding your next property. Contact the team for current availability.',
+  // 1. Top Announcement Bar
   announcementActive: true,
+  announcementText: 'A considered approach to finding your next property. Contact the team for current availability.',
+  announcementLinkText: 'Talk to an Advisor',
+  announcementLinkHref: '/contact',
+
+  // 2. Navigation & Header
+  headerPhone: '+91 98765 43210',
+  headerCtaText: 'Book a Visit',
+  headerCtaHref: '/book-a-visit',
+
+  // 3. Hero Section
   heroEyebrow: 'PROPERTY, WITH PERSPECTIVE',
-  heroHeadline: 'Find a place that moves you forward.',
+  heroHeadline: 'Find a place that',
+  heroHeadlineHighlight: 'moves you forward.',
   heroCopy: 'Explore carefully presented property opportunities with clear information, local insight and personal guidance from first enquiry to final decision.',
   primaryCtaText: 'EXPLORE PROPERTIES',
+  primaryCtaHref: '/properties',
   secondaryCtaText: 'TALK TO AN ADVISOR',
+  secondaryCtaHref: '/contact',
+  heroStat1Value: '100%',
+  heroStat1Label: 'Verified Titles',
+  heroStat2Value: 'Prime',
+  heroStat2Label: 'Curated Portfolio',
+  heroStat3Value: 'Direct',
+  heroStat3Label: 'Personal Advisory',
+  heroImageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+  heroCardBadge: 'Featured Opportunity',
+  heroCardTitle: 'The Sky Villa Collection',
+  heroCardSubtitle: 'Demo Locality • Golf Links',
+  heroCardHref: '/properties/demo-premium-4-bed-home',
+  heroBadgeTopTitle: 'Advisory Focus',
+  heroBadgeTopSubtitle: 'Clear Data. Trusted Guidance.',
+
+  // 4. Property Search Module
+  searchTitle: 'Find a property that fits your plans.',
+  searchSubtitle: 'Explore verified residential and commercial opportunities',
+  searchButtonText: 'Find Properties',
+
+  // 5. Featured Properties Section
+  featuredEyebrow: 'Curated Opportunities',
+  featuredHeading: 'A closer look at selected properties.',
+  featuredCopy: 'Explore a curated selection of current opportunities. Listing details and availability are subject to confirmation.',
+  featuredCtaText: 'Explore Complete Catalogue',
+
+  // 6. Property Category Discovery Tiles
+  categoriesEyebrow: 'Tailored Portfolios',
+  categoriesHeading: 'Explore by Property Category',
+  categoriesCopy: 'Whether seeking an enduring family residence or an institutional commercial asset, our advisory spans verified property verticals.',
+  category1Title: 'Modern Apartments',
+  category1Subtitle: '2 & 3 Bedroom city residences',
+  category1Badge: 'Curated Collection',
+  category1Image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+  category1Href: '/properties?propertyType=Apartment',
+  category2Title: 'Sky Villas & Penthouses',
+  category2Subtitle: 'High-floor architectural statements',
+  category2Badge: 'Exclusive',
+  category2Image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
+  category2Href: '/properties?propertyType=Penthouse',
+  category3Title: 'Turnkey Rentals',
+  category3Subtitle: 'Furnished executive homes',
+  category3Badge: 'Ready to Occupy',
+  category3Image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
+  category3Href: '/properties/rent',
+  category4Title: 'Grade-A Office Suites',
+  category4Subtitle: 'Corporate occupier solutions',
+  category4Badge: 'Commercial',
+  category4Image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+  category4Href: '/properties/commercial',
+
+  // 7. Why Work With Us / The Bricks2Wall Standard
+  whyEyebrow: 'The Bricks2Wall Standard',
+  whyHeading: 'Guidance at every step of your property journey.',
+  whyCopy: 'From understanding your exact spatial and financial requirements to arranging private viewings and navigating closing documentation, our team helps make property decisions clearer.',
+  whyStoryLinkText: 'Read Our Advisory Story',
+  pillar1Title: 'Verified Title & Due Diligence',
+  pillar1Desc: 'Every property presented undergoes meticulous title search, RERA disclosure review, and occupancy certificate verification before reaching you.',
+  pillar2Title: 'Honest Carpet Area & Pricing',
+  pillar2Desc: 'We demystify super built-up calculations. You receive transparent carpet area breakdowns, maintenance benchmarks, and realistic yield evaluations.',
+  pillar3Title: 'High-Touch Advisory, Zero Pressure',
+  pillar3Desc: 'Our licensed advisors represent your long-term interests with discretion, objectivity, and architectural perspective rather than pushy salesmanship.',
+  pillar4Title: 'End-to-End Documentation Support',
+  pillar4Desc: 'From initial agreement structuring to stamp duty calculation and registration coordination, our legal team safeguards every milestone.',
+
+  // 8. Process Section (A Clearer Way to Move Forward)
+  processEyebrow: 'Transparent Workflow',
+  processHeading: 'A clearer way to move forward.',
+  processCopy: 'We replace speculation with systematic verification and personal guidance at every milestone.',
+  step1Title: 'Tell us what you need',
+  step1Desc: 'Share your location preferences, space requirements, budget, and timeline with an advisor.',
+  step2Title: 'Explore relevant options',
+  step2Desc: 'Receive curated property dossiers with verified documentation, honest measurements, and video walkthroughs.',
+  step3Title: 'Arrange a viewing',
+  step3Desc: 'Walk through shortlisted residences or commercial suites with an expert advisor who provides neighborhood insight.',
+  step4Title: 'Move ahead with informed guidance',
+  step4Desc: 'Conclude agreements with legal due diligence, title clarity, registration support, and total peace of mind.',
+  processCtaText: 'Start Your Property Conversation',
+
+  // 9. Locations Section
+  locationsEyebrow: 'Locality Intelligence',
+  locationsHeading: 'Featured Neighbourhood Guides',
+  locationsCopy: 'Context shapes property value. Explore in-depth architectural and transit guides for prime enclaves.',
+  locationsLinkText: 'View All Localities',
+
+  // 10. Trust & Regulatory Rigor Section
+  trustEyebrow: 'Integrity & Regulatory Rigor',
+  trustHeading: 'Clarity matters in every property decision.',
+  trustCopy: 'We focus on accurate listing information, responsive communication and practical guidance. Ask our team to confirm current availability, pricing and documentation for any property before committing capital.',
+  trustPoint1Title: 'Zero Fabricated Inventory',
+  trustPoint1Desc: 'We refuse to list fictitious demo units or phantom listings to attract leads. In development environments, sample listings are visibly watermarked DEMO.',
+  trustPoint2Title: 'Dedicated Site Walkthroughs',
+  trustPoint2Desc: 'View properties with experienced advisors who walk you through setback limits, floor plan layouts, sunlight exposure, and construction quality.',
+  trustPoint3Title: 'RERA Project Compliance Checks',
+  trustPoint3Desc: 'We verify state RERA registration IDs, promoter disclosures, sanctioned layouts, and possession schedules on authorized state regulatory portals.',
+  trustGuaranteeTitle: 'The Bricks2Wall Guarantee',
+  trustGuaranteeSubtitle: 'Verified Advisory Standards',
+  trustGuaranteePoint1: 'No Hidden Surprises: All quoted property charges include breakdown of base rate, parking charges, IFMS, and expected statutory stamp duty.',
+  trustGuaranteePoint2: 'Data Privacy Assurance: Your contact details and viewing times are never sold or shared with unsolicited call centers. Only your designated Bricks2Wall advisor contacts you.',
+  trustHotlineText: 'Need instant verification on any project availability? Call our senior desk at',
+  trustCtaText: 'Speak with an Advisor',
+
+  // 11. Testimonials Section
+  testimonialsEyebrow: 'Client Experiences',
+  testimonialsHeading: 'Perspective from Those We Have Guided',
+  testimonialsCopy: 'Verified feedback from clients who acquired residences or commercial spaces through our advisory.',
+
+  // 12. Insights Section
+  insightsEyebrow: 'Editorial & Guides',
+  insightsHeading: 'Make your next move an informed one.',
+  insightsCopy: 'Read practical guides on property searches, neighbourhoods, documentation and the decisions that shape a successful move.',
+  insightsLinkText: 'Browse All Articles',
+
+  // 13. Consultation / Lead Capture Section
+  leadCtaEyebrow: 'Direct Advisory',
+  leadCtaHeading: 'Your next property conversation starts here.',
+  leadCtaCopy: 'Tell us what you are looking for and our team will help you take the next step with verified insights and personal guidance.',
+  leadFormTitle: 'Request Property Consultation',
+  leadFormSubtitle: 'Receive curated property recommendations matched to your parameters.',
+  leadSubmitButtonText: 'Submit Property Enquiry',
+  leadConsentText: 'I consent to receiving verified property details and direct contact from a licensed Bricks2Wall property advisor. We respect your privacy.',
+
+  // 14. Contact & Business Details
   phoneContact: '+91 98765 43210',
   whatsappContact: '+91 98765 43210',
   emailContact: 'enquiry@bricks2wall.com',
   officeAddress: 'Level 5, Signature Tower, Central Business Avenue, Demo City, India',
   businessHours: 'Monday – Saturday: 9:30 AM – 7:00 PM IST (Site visits available on Sundays by appointment)',
-  reraDisclaimerText: 'Bricks2Wall is a real estate brokerage and advisory firm. All property details, measurements, pricing, and availability are subject to physical verification and owner confirmation. Please verify all project RERA registration credentials before finalizing any transaction.'
+  reraDisclaimerText: 'Bricks2Wall is a real estate brokerage and advisory firm. All property details, measurements, pricing, and availability are subject to physical verification and owner confirmation. Please verify all project RERA registration credentials before finalizing any transaction.',
+
+  // 15. Footer Section
+  footerBrandDescription: 'A premium, trustworthy property discovery and brokerage advisory. We present verified residential and commercial opportunities with architectural clarity, transparent documentation, and informed personal guidance.',
+  footerComplianceNotice: 'Regulatory & Integrity Notice: Bricks2Wall operates as a dedicated property advisory and real estate brokerage. Listing details, prices, floor measurements, and availability states are published subject to physical verification and owner confirmation. Please verify all individual state RERA project registrations and legal title documentation before entering into formal binding transactions.',
+  footerDemoNotice: 'Demo property records displayed during testing are explicitly designated with a DEMO label and represent illustrative sample listings rather than live proprietary inventory.',
+  footerCopyrightText: 'Bricks2Wall Real Estate Advisory. All rights reserved.',
 };
 
 export const INITIAL_LEADS: Lead[] = [

@@ -8,14 +8,18 @@ import PropertyCard from './PropertyCard';
 
 interface FeaturedPropertiesProps {
   properties: Property[];
+  eyebrow?: string;
   heading?: string;
   copy?: string;
+  ctaText?: string;
 }
 
 export default function FeaturedProperties({
   properties,
+  eyebrow = 'Curated Opportunities',
   heading = 'A closer look at selected properties.',
   copy = 'Explore a curated selection of current opportunities. Listing details and availability are subject to confirmation.',
+  ctaText = 'Explore Complete Catalogue',
 }: FeaturedPropertiesProps) {
   const [filter, setFilter] = useState<'all' | 'buy' | 'rent' | 'commercial'>('all');
 
@@ -33,7 +37,7 @@ export default function FeaturedProperties({
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gold-deep">
               <Sparkles className="w-3.5 h-3.5 text-gold-champagne" />
-              <span>Curated Opportunities</span>
+              <span>{eyebrow}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium tracking-tight">
               {heading}
@@ -74,7 +78,7 @@ export default function FeaturedProperties({
             href="/properties"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-gold-champagne text-gold-deep bg-white hover:bg-gold-champagne hover:text-navy-deep text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-luxury group"
           >
-            <span>Explore Complete Catalogue</span>
+            <span>{ctaText}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
