@@ -31,23 +31,24 @@ export default function FeaturedProperties({
   });
 
   return (
-    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-canvas-ivory/40 to-white">
-      {/* Unique Distinctive Mandala Watermark */}
-      <MandalaWatermark seed="featured-mandala-main" position="top-right" size={540} opacity={0.08} spinDuration={160} />
+    <section className="relative overflow-hidden py-24 bg-gradient-to-b from-[#10243A] via-[#0D1D2E] to-[#091522] text-white">
+      {/* Unique Distinctive Mandala Watermarks */}
+      <MandalaWatermark seed="featured-mandala-main" position="top-right" size={620} variant="white" opacity={0.07} spinDuration={160} />
+      <MandalaWatermark seed="featured-mandala-ambient" position="bottom-left" size={480} variant="gold" opacity={0.08} spinDuration={200} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gold-deep">
-              <Sparkles className="w-3.5 h-3.5 text-gold-champagne" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C8A45D]/40 text-xs font-semibold tracking-widest uppercase text-[#C8A45D]">
+              <MandalaArt seed="featured-banner-icon" size={18} variant="gold" spin={true} spinDuration={35} />
               <span>{eyebrow}</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl text-white font-medium tracking-tight">
               {heading}
             </h2>
-            <p className="text-text-slate text-sm sm:text-base leading-relaxed">
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed">
               {copy}
             </p>
           </div>
@@ -60,8 +61,8 @@ export default function FeaturedProperties({
                 onClick={() => setFilter(tab)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
                   filter === tab
-                    ? 'bg-navy-midnight text-white shadow-sm'
-                    : 'bg-white border border-canvas-grey text-text-slate hover:border-gold-champagne hover:text-navy-midnight'
+                    ? 'bg-[#C8A45D] text-navy-deep shadow-luxury font-bold'
+                    : 'bg-white/10 border border-white/20 text-white/80 hover:border-[#C8A45D] hover:text-white'
                 }`}
               >
                 {tab === 'all' ? 'All Curated' : tab}
@@ -81,7 +82,7 @@ export default function FeaturedProperties({
         <div className="mt-12 text-center">
           <Link
             href="/properties"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-gold-champagne text-gold-deep bg-white hover:bg-gold-champagne hover:text-navy-deep text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-luxury group"
+            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border border-[#C8A45D] text-navy-deep bg-[#C8A45D] hover:bg-white hover:text-navy-midnight text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-luxury group"
           >
             <span>{ctaText}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

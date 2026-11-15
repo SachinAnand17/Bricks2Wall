@@ -77,8 +77,14 @@ export default function HomePage() {
       {/* Transparent Process / How It Works */}
       <ProcessSection settings={settings} />
 
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-process-locations" />
+
       {/* Featured Neighbourhoods & Locality Guides */}
       <LocationShowcase locations={locations} settings={settings} />
+
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-locations-trust" />
 
       {/* Trust & Regulatory Due Diligence */}
       <TrustSection settings={settings} />

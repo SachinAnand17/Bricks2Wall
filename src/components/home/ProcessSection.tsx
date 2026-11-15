@@ -43,20 +43,22 @@ export default function ProcessSection({ settings }: ProcessSectionProps) {
   ];
 
   return (
-    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-canvas-ivory/50 to-white">
+    <section className="relative overflow-hidden py-24 bg-gradient-to-br from-[#091522] via-[#0E2034] to-[#08121E] text-white">
       {/* Background Section Watermark */}
-      <MandalaWatermark seed="process-section-watermark" position="top-right" size={500} opacity={0.06} spinDuration={170} />
+      <MandalaWatermark seed="process-section-watermark" position="top-right" size={620} variant="white" opacity={0.07} spinDuration={170} />
+      <MandalaWatermark seed="process-section-watermark-left" position="bottom-left" size={480} variant="gold" opacity={0.08} spinDuration={210} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-2xl mx-auto pb-16 space-y-3">
-          <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-            {eyebrow}
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C8A45D]/40 text-xs font-semibold tracking-widest uppercase text-[#C8A45D]">
+            <MandalaArt seed="process-banner-icon" size={18} variant="gold" spin={true} spinDuration={32} />
+            <span>{eyebrow}</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl text-white font-medium">
             {heading}
           </h2>
-          <p className="text-text-slate text-sm sm:text-base">
+          <p className="text-white/70 text-sm sm:text-base">
             {copy}
           </p>
         </div>
@@ -67,7 +69,7 @@ export default function ProcessSection({ settings }: ProcessSectionProps) {
             return (
               <div
                 key={idx}
-                className="relative bg-white rounded-2xl p-6 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm flex flex-col justify-between space-y-4"
+                className="relative bg-white text-navy-midnight rounded-3xl p-6 border border-[#C8A45D]/40 hover:border-[#C8A45D] transition-all duration-300 shadow-2xl flex flex-col justify-between space-y-4 hover:-translate-y-1.5"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

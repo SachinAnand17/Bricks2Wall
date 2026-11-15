@@ -1,6 +1,60 @@
 {
   "properties": [
     {
+      "slug": "leafsong-gn-8387",
+      "title": "Leafsong GN",
+      "tagline": "",
+      "transactionType": "buy",
+      "propertyType": "Apartment",
+      "price": 2230000,
+      "priceDisplay": "₹22,30,000",
+      "contactForPrice": false,
+      "isFeatured": false,
+      "isVerified": false,
+      "isDemo": true,
+      "status": "active",
+      "city": "Demo City",
+      "locality": "Greter Noida",
+      "subLocality": "",
+      "addressSummary": "Greter Noida, Demo City",
+      "builtUpAreaSqFt": 1200,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parkingSpaces": 1,
+      "furnishingStatus": "Unfurnished",
+      "possessionStatus": "Ready to Move",
+      "possessionDate": "Immediate",
+      "facing": "North-East",
+      "description": "Verified residential opportunity represented by Bricks2Wall.",
+      "highlights": [
+        "Verified legal title",
+        "Prime accessibility",
+        "High aesthetic finishes"
+      ],
+      "amenities": [
+        "24/7 Security",
+        "Power Backup",
+        "Dedicated Parking"
+      ],
+      "media": [
+        {
+          "id": "med-1794722708387",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          "altText": "Leafsong GN",
+          "isPrimary": true,
+          "order": 1
+        }
+      ],
+      "reraRegistrationNumber": "",
+      "reraApproved": false,
+      "projectDeveloper": "",
+      "availabilityConfirmedAt": "2026-11-15T06:05:08.387Z",
+      "assignedAgentId": "agent-1",
+      "id": "prop-1794722708391",
+      "createdAt": "2026-11-15T06:05:08.391Z",
+      "updatedAt": "2026-11-15T06:05:08.391Z"
+    },
+    {
       "id": "prop-1",
       "slug": "demo-contemporary-2-bed-residence",
       "title": "DEMO — Contemporary 2-Bed Residence",
@@ -801,7 +855,7 @@
     "announcementText": "A considered approach to finding your next property. Contact the team for current availability.",
     "announcementLinkText": "Talk to an Advisor",
     "announcementLinkHref": "/contact",
-    "headerPhone": "+91 97163 89110",
+    "headerPhone": "+91 9911 899110",
     "headerCtaText": "Book a Visit",
     "headerCtaHref": "/book-a-visit",
     "heroEyebrow": "PROPERTY, WITH PERSPECTIVE",
@@ -912,10 +966,10 @@
     "leadFormSubtitle": "Receive curated property recommendations matched to your parameters.",
     "leadSubmitButtonText": "Submit Property Enquiry",
     "leadConsentText": "I consent to receiving verified property details and direct contact from a licensed Bricks2Wall property advisor. We respect your privacy.",
-    "phoneContact": "+91 97163 89110",
-    "whatsappContact": "+91 97163 89110",
+    "phoneContact": "+91 9911 899110",
+    "whatsappContact": "+91 9911 899110",
     "emailContact": "sachin.anand@bricks2wall.com",
-    "officeAddress": "Noida, Uttar Pradesh ",
+    "officeAddress": "Urbtech Trade Center  Sec 132 Noida",
     "businessHours": "MON – SAT: 9:30 AM – 7:00 PM IST (Site visits available on Sundays by appointment)",
     "reraDisclaimerText": "Bricks2Wall is a real estate brokerage and advisory firm. All property details, measurements, pricing, and availability are subject to physical verification and owner confirmation. Please verify all project RERA registration credentials before finalizing any transaction.",
     "footerBrandDescription": "A premium, trustworthy property discovery and brokerage advisory. We present verified residential and commercial opportunities with architectural clarity, transparent documentation, and informed personal guidance.",

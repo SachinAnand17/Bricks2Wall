@@ -10,49 +10,52 @@ interface IntroVideoOverlayProps {
 }
 
 export default function IntroVideoOverlay({ onComplete, forceShow = false }: IntroVideoOverlayProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  // Start visible by default so video tag renders in initial HTML with ZERO latency
+  const [isVisible, setIsVisible] = useState(true);
   const [isSlidingUp, setIsSlidingUp] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Check prefers-reduced-motion
+    // Check if replay is explicitly requested in URL query
+    const urlParams = new URLSearchParams(window.location.search);
+    const isReplay = urlParams.get('replay') === '1';
+
+    // If prefers-reduced-motion and not forceShow/replay
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion && !forceShow) {
+    if (prefersReducedMotion && !forceShow && !isReplay) {
+      setIsVisible(false);
       if (onComplete) onComplete();
       return;
     }
 
     // Check if intro has already been shown in this session
     const hasSeenIntro = sessionStorage.getItem('b2w_intro_seen');
-    if (hasSeenIntro && !forceShow) {
+    if (hasSeenIntro && !forceShow && !isReplay) {
+      setIsVisible(false);
       if (onComplete) onComplete();
       return;
     }
 
-    setIsVisible(true);
-
-    // Safety timeout: if video fails to play or load within 6.5s, slide up anyway
-    const safetyTimer = setTimeout(() => {
-      dismissIntro();
-    }, 6200);
-
-    return () => clearTimeout(safetyTimer);
-  }, [forceShow, onComplete]);
-
-  // Attempt autoplay on mount
-  useEffect(() => {
-    if (isVisible && videoRef.current) {
+    // Start video playback immediately
+    if (videoRef.current) {
       videoRef.current.currentTime = 0;
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.warn('Intro video autoplay was blocked or delayed:', error);
+        playPromise.catch((err) => {
+          console.warn('Intro video autoplay blocked:', err);
         });
       }
     }
-  }, [isVisible]);
+
+    // Safety timeout: dismiss after 5.5s maximum
+    const safetyTimer = setTimeout(() => {
+      dismissIntro();
+    }, 5500);
+
+    return () => clearTimeout(safetyTimer);
+  }, [forceShow, onComplete]);
 
   // Track playback time to animate progress bar
   const handleTimeUpdate = () => {
@@ -67,11 +70,11 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
     setIsSlidingUp(true);
     sessionStorage.setItem('b2w_intro_seen', 'true');
 
-    // Smooth upward curtain glide (1000ms) before unmounting
+    // Smooth upward curtain glide (900ms) before unmounting
     setTimeout(() => {
       setIsVisible(false);
       if (onComplete) onComplete();
-    }, 1000);
+    }, 900);
   };
 
   const handleVideoEnded = () => {
@@ -82,30 +85,30 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
     setVideoError(true);
     setTimeout(() => {
       dismissIntro();
-    }, 1800);
+    }, 1500);
   };
 
   if (!isVisible) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] w-screen h-screen bg-white text-navy-midnight overflow-hidden flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform ${
+      className={`fixed inset-0 z-[999999] w-screen h-screen bg-white text-navy-midnight overflow-hidden flex flex-col items-center justify-center transition-transform duration-900 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform ${
         isSlidingUp ? '-translate-y-full' : 'translate-y-0'
       }`}
       aria-label="Bricks2Wall Introduction Screen"
     >
-      {/* Subtle corner mandala decorations that complement the logo medallion */}
-      <div className="absolute top-4 left-4 pointer-events-none opacity-20">
-        <MandalaArt seed="intro-tl" size={140} variant="gold" spin={true} spinDuration={90} />
+      {/* Corner mandala architectural accents */}
+      <div className="absolute top-4 left-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-tl" size={130} variant="gold" spin={true} spinDuration={90} />
       </div>
-      <div className="absolute top-4 right-4 pointer-events-none opacity-20">
-        <MandalaArt seed="intro-tr" size={140} variant="gold" spin={true} spinDuration={90} />
+      <div className="absolute top-4 right-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-tr" size={130} variant="gold" spin={true} spinDuration={90} />
       </div>
-      <div className="absolute bottom-4 left-4 pointer-events-none opacity-20">
-        <MandalaArt seed="intro-bl" size={140} variant="gold" spin={true} spinDuration={90} />
+      <div className="absolute bottom-4 left-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-bl" size={130} variant="gold" spin={true} spinDuration={90} />
       </div>
-      <div className="absolute bottom-4 right-4 pointer-events-none opacity-20">
-        <MandalaArt seed="intro-br" size={140} variant="gold" spin={true} spinDuration={90} />
+      <div className="absolute bottom-4 right-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-br" size={130} variant="gold" spin={true} spinDuration={90} />
       </div>
 
       {/* Full Screen Edge-to-Edge Video Viewport */}
@@ -117,6 +120,7 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
             autoPlay
             muted
             playsInline
+            preload="auto"
             onTimeUpdate={handleTimeUpdate}
             onEnded={handleVideoEnded}
             onError={handleVideoError}
@@ -124,19 +128,16 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
           />
         ) : (
           /* Fallback Poster in case video stream fails */
-          <div className="flex flex-col items-center text-center p-8 space-y-5 animate-fade-in">
-            <div className="w-36 h-36 relative mb-2">
+          <div className="flex flex-col items-center text-center p-8 space-y-4 animate-fade-in">
+            <div className="w-48 h-28 relative mb-2">
               <Image
-                src="/brand/brand-logo.jpg"
-                alt="Bricks2Wall Emblem"
+                src="/brand/brand-logo.png"
+                alt="Bricks2Wall Logo"
                 fill
                 priority
                 className="object-contain"
               />
             </div>
-            <h1 className="font-serif text-3xl md:text-5xl text-navy-midnight tracking-wider">
-              BRICKS<span className="text-gold-champagne font-light">2</span>WALL
-            </h1>
             <p className="text-text-slate tracking-widest text-xs uppercase font-medium">
               Property, With Perspective
             </p>

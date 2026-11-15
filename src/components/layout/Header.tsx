@@ -62,7 +62,7 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
               <div className="hidden sm:flex items-center gap-3">
                 <div className="relative w-[210px] h-[52px]">
                   <Image
-                    src="/brand/brand-logo.jpg"
+                    src="/brand/brand-logo.png"
                     alt="Bricks2Wall — Property, With Perspective"
                     fill
                     priority
@@ -187,14 +187,6 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
               <Calendar className="w-3.5 h-3.5" />
               <span>{displayCtaText}</span>
             </Link>
-
-            <Link
-              href="/admin"
-              className="text-xs text-text-muted hover:text-navy-midnight border-l border-canvas-grey pl-3 py-1"
-              title="Admin CRM Portal"
-            >
-              Admin
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -269,18 +261,12 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
               <Phone className="w-4 h-4 text-gold-champagne" />
               <span>{displayPhone}</span>
             </a>
-            <div className="flex gap-2 pt-2">
+            <div className="pt-2">
               <Link
                 href={displayCtaHref}
-                className="flex-1 text-center py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-champagne text-navy-deep shadow-sm"
+                className="block w-full text-center py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-champagne text-navy-deep shadow-sm"
               >
                 {displayCtaText}
-              </Link>
-              <Link
-                href="/admin"
-                className="px-4 py-2.5 rounded-full text-xs font-semibold text-text-slate border border-canvas-grey"
-              >
-                Admin
               </Link>
             </div>
           </div>

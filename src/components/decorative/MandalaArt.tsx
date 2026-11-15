@@ -39,8 +39,8 @@ export default function MandalaArt({
   symmetry,
   variant = 'gold',
   className = '',
-  spin = false,
-  spinDuration = 120,
+  spin = true,
+  spinDuration = 90,
   opacity,
   interactive = false,
   complexity = 'elaborate',
@@ -441,7 +441,7 @@ export default function MandalaArt({
       <svg
         viewBox="0 0 600 600"
         className={`w-full h-full ${colorClasses} ${
-          spin ? 'animate-[spin_var(--spin-dur)_linear_infinite]' : ''
+          spin ? 'mandala-live-spin' : ''
         } ${hovered ? 'scale-105 transition-transform duration-500' : 'transition-transform duration-500'}`}
         style={
           {

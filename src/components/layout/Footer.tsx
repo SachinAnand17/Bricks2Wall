@@ -58,7 +58,7 @@ export default function Footer({
             <Link href="/" className="inline-block bg-white p-2 rounded-lg">
               <div className="relative w-[190px] h-[46px]">
                 <Image
-                  src="/brand/brand-logo.jpg"
+                  src="/brand/brand-logo.png"
                   alt="Bricks2Wall Logo"
                   fill
                   className="object-contain"
@@ -213,9 +213,6 @@ export default function Footer({
             </Link>
             <Link href="/disclaimer" className="hover:text-white transition-colors">
               Disclaimer
-            </Link>
-            <Link href="/admin" className="text-white/30 hover:text-white transition-colors">
-              Staff Portal
             </Link>
           </div>
         </div>

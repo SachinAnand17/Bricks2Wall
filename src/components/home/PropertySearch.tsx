@@ -174,6 +174,7 @@ export default function PropertySearch({
               type="submit"
               className="w-full h-11 flex items-center justify-center gap-2 px-5 rounded-xl bg-navy-midnight text-white text-xs font-semibold tracking-wider uppercase hover:bg-gold-deep transition-all duration-300 shadow-md group"
             >
+              <MandalaArt seed="search-btn-icon" size={16} variant="gold" spin={true} spinDuration={25} />
               <Search className="w-4 h-4 text-gold-champagne group-hover:scale-110 transition-transform" />
               <span>{buttonText}</span>
             </button>

@@ -41,8 +41,8 @@ export default function TrustSection({ settings }: TrustSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gold-deep">
-              <Scale className="w-3.5 h-3.5 text-gold-champagne" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-gold-champagne/40 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-sm">
+              <MandalaArt seed="trust-banner-icon" size={18} variant="gold" spin={true} spinDuration={32} />
               <span>{eyebrow}</span>
             </div>
 

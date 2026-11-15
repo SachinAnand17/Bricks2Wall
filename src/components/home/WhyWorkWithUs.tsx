@@ -51,8 +51,8 @@ export default function WhyWorkWithUs({ settings }: WhyWorkWithUsProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gold-deep">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-canvas-ivory border border-gold-champagne/40 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-sm">
+              <MandalaArt seed="why-banner-icon" size={18} variant="gold" spin={true} spinDuration={32} />
               <span>{eyebrow}</span>
             </div>
 

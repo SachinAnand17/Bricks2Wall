@@ -96,6 +96,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="preload" href="/brand/intro-video.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="/brand/brand-logo.png" as="image" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

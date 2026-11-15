@@ -57,13 +57,13 @@ export default function Hero({
   const badgeTopSubtitle = settings?.heroBadgeTopSubtitle || 'Clear Data. Trusted Guidance.';
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-canvas-ivory/60 to-white pt-12 pb-16 lg:pt-20 lg:pb-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFE6] to-[#FAF8F5] pt-12 pb-16 lg:pt-20 lg:pb-28 border-b border-[#E8E4DC]">
       {/* Dynamic Unique Mandala Watermarks */}
-      <MandalaWatermark seed="hero-mandala-main" position="top-left" size={640} opacity={0.09} spinDuration={150} />
-      <MandalaWatermark seed="hero-mandala-ambient" position="bottom-right" size={480} opacity={0.06} spinDuration={190} />
+      <MandalaWatermark seed="hero-mandala-main" position="top-left" size={680} opacity={0.12} spinDuration={140} />
+      <MandalaWatermark seed="hero-mandala-ambient" position="bottom-right" size={540} opacity={0.09} spinDuration={180} />
 
       {/* Background Architectural Radial Glow */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-champagne/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-champagne/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -top-20 left-10 w-72 h-72 bg-navy-midnight/5 rounded-full blur-2xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -71,8 +71,8 @@ export default function Hero({
           
           {/* Left Column: Typography & CTAs */}
           <div className="lg:col-span-7 space-y-7 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas-ivory border border-gold-champagne/30 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 border border-gold-champagne/40 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-luxury">
+              <MandalaArt seed="hero-badge-live" size={20} variant="gold" spin={true} spinDuration={35} />
               <span>{currentEyebrow}</span>
             </div>
 

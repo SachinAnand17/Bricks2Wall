@@ -47,16 +47,17 @@ export default function PropertyTypeGrid({ settings }: PropertyTypeGridProps) {
   ];
 
   return (
-    <section className="relative overflow-hidden py-20 bg-canvas-ivory/60 border-y border-canvas-grey/70">
+    <section className="relative overflow-hidden py-24 bg-[#F5F1E8] border-y border-[#DDD6C8]">
       {/* Background Architectural Mandala */}
-      <MandalaWatermark seed="category-section-bg" position="bottom-left" size={540} opacity={0.07} spinDuration={180} />
+      <MandalaWatermark seed="category-section-bg" position="bottom-left" size={620} opacity={0.09} spinDuration={180} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center max-w-2xl mx-auto pb-12 space-y-3">
-          <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
-            {eyebrow}
-          </p>
+        <div className="text-center max-w-2xl mx-auto pb-14 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-gold-champagne/40 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-sm">
+            <MandalaArt seed="category-banner-icon" size={18} variant="gold" spin={true} spinDuration={32} />
+            <span>{eyebrow}</span>
+          </div>
           <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium">
             {heading}
           </h2>

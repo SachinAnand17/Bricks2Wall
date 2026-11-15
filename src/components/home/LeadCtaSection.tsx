@@ -90,51 +90,52 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-canvas-ivory to-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-[#091828] via-[#10243A] to-[#08121E] text-white relative overflow-hidden border-t border-[#C8A45D]/30">
       {/* Background Mandala Art Watermark */}
-      <MandalaWatermark seed="lead-cta-watermark" position="top-right" size={620} opacity={0.08} spinDuration={190} />
+      <MandalaWatermark seed="lead-cta-watermark" position="top-right" size={680} variant="white" opacity={0.07} spinDuration={190} />
+      <MandalaWatermark seed="lead-cta-watermark-left" position="bottom-left" size={520} variant="gold" opacity={0.08} spinDuration={220} />
 
       {/* Champagne Gold Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-champagne/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-champagne/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column Text */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gold-deep">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-champagne" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C8A45D]/40 text-xs font-semibold tracking-widest uppercase text-[#C8A45D]">
+              <MandalaArt seed="lead-banner-icon" size={18} variant="gold" spin={true} spinDuration={32} />
               <span>{eyebrow}</span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl text-navy-midnight font-medium leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl text-white font-medium leading-tight">
               {heading}
             </h2>
 
-            <p className="text-text-slate text-base leading-relaxed">
+            <p className="text-white/70 text-base leading-relaxed">
               {copy}
             </p>
 
-            <div className="space-y-4 pt-4 border-t border-canvas-grey text-xs text-text-slate">
+            <div className="space-y-4 pt-4 border-t border-white/15 text-xs text-white/70">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-canvas-ivory flex items-center justify-center text-gold-deep">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-[#C8A45D]/30 flex items-center justify-center text-[#C8A45D]">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-text-muted block">Direct Advisory Line</span>
-                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="text-sm font-semibold text-navy-midnight hover:text-gold-deep">
+                  <span className="text-white/50 block">Direct Advisory Line</span>
+                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="text-sm font-semibold text-white hover:text-[#C8A45D]">
                     {phone}
                   </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-canvas-ivory flex items-center justify-center text-gold-deep">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-[#C8A45D]/30 flex items-center justify-center text-[#C8A45D]">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-text-muted block">Advisory Desk</span>
-                  <a href={`mailto:${email}`} className="text-sm font-semibold text-navy-midnight hover:text-gold-deep">
+                  <span className="text-white/50 block">Advisory Desk</span>
+                  <a href={`mailto:${email}`} className="text-sm font-semibold text-white hover:text-[#C8A45D]">
                     {email}
                   </a>
                 </div>
