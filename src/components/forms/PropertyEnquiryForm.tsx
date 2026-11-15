@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Send, Loader2, AlertCircle, Phone, MessageSquare } from 'lucide-react';
 import { Property } from '@/types';
 import { analytics } from '@/lib/analytics';
+import GlassSelect from '@/components/ui/GlassSelect';
 
 interface PropertyEnquiryFormProps {
   property: Property;
@@ -144,29 +145,33 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
 
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-text-slate">Preferred Mode</label>
-            <select
+            <label className="text-xs font-semibold text-text-slate block">Preferred Mode</label>
+            <GlassSelect
               value={formData.preferredContactMethod}
-              onChange={(e) => setFormData({ ...formData, preferredContactMethod: e.target.value as any })}
-              className="w-full h-10 px-2 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
-            >
-              <option value="phone">Phone Call</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="email">Email</option>
-            </select>
+              onChange={(val) => setFormData({ ...formData, preferredContactMethod: val as any })}
+              options={[
+                { value: 'phone', label: 'Phone Call' },
+                { value: 'whatsapp', label: 'WhatsApp' },
+                { value: 'email', label: 'Email' },
+              ]}
+              size="sm"
+              variant="glass"
+            />
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-text-slate">Best Time</label>
-            <select
+            <label className="text-xs font-semibold text-text-slate block">Best Time</label>
+            <GlassSelect
               value={formData.preferredTime}
-              onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-              className="w-full h-10 px-2 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
-            >
-              <option value="Morning">Morning</option>
-              <option value="Afternoon">Afternoon</option>
-              <option value="Evening">Evening</option>
-            </select>
+              onChange={(val) => setFormData({ ...formData, preferredTime: val })}
+              options={[
+                { value: 'Morning (10:00 AM – 1:00 PM)', label: 'Morning' },
+                { value: 'Afternoon (1:00 PM – 4:00 PM)', label: 'Afternoon' },
+                { value: 'Evening (4:00 PM – 7:00 PM)', label: 'Evening' },
+              ]}
+              size="sm"
+              variant="glass"
+            />
           </div>
         </div>
 

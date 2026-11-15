@@ -19,7 +19,7 @@ export default function MandalaWatermark({
   position = 'top-right',
   size = 520,
   variant = 'ambient',
-  opacity = 0.08,
+  opacity = 0.42,
   spin = true,
   spinDuration = 180,
   className = '',

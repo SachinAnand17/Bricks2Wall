@@ -7,6 +7,7 @@ import { analytics } from '@/lib/analytics';
 import { ContentSettings } from '@/types';
 import MandalaArt from '@/components/decorative/MandalaArt';
 import MandalaWatermark from '@/components/decorative/MandalaWatermark';
+import GlassSelect from '@/components/ui/GlassSelect';
 
 interface LeadCtaSectionProps {
   settings?: ContentSettings;
@@ -90,10 +91,10 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-[#091828] via-[#10243A] to-[#08121E] text-white relative overflow-hidden border-t border-[#C8A45D]/30">
-      {/* Background Mandala Art Watermark */}
-      <MandalaWatermark seed="lead-cta-watermark" position="top-right" size={680} variant="white" opacity={0.07} spinDuration={190} />
-      <MandalaWatermark seed="lead-cta-watermark-left" position="bottom-left" size={520} variant="gold" opacity={0.08} spinDuration={220} />
+    <section className="py-24 bg-gradient-to-b from-[#091828] via-[#10243A] to-[#08121E] text-white relative overflow-hidden">
+      {/* Background Mandala Art Watermarks */}
+      <MandalaWatermark seed="lead-cta-watermark" position="top-right" size={680} variant="white" opacity={0.38} spinDuration={190} />
+      <MandalaWatermark seed="lead-cta-watermark-left" position="bottom-left" size={520} variant="gold" opacity={0.35} spinDuration={220} />
 
       {/* Champagne Gold Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-champagne/15 rounded-full blur-3xl pointer-events-none" />
@@ -218,17 +219,19 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-slate">Requirement Type</label>
-                    <select
+                    <label className="text-xs font-semibold text-text-slate block">Requirement Type</label>
+                    <GlassSelect
                       value={formData.enquiryType}
-                      onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value as any })}
-                      className="w-full h-11 px-3 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
-                    >
-                      <option value="general">Residential Purchase (Buy)</option>
-                      <option value="property">Luxury Apartment / Villa</option>
-                      <option value="callback">Commercial Leasing / Office</option>
-                      <option value="viewing">Schedule Site Walkthrough</option>
-                    </select>
+                      onChange={(val) => setFormData({ ...formData, enquiryType: val as any })}
+                      options={[
+                        { value: 'general', label: 'Residential Purchase (Buy)' },
+                        { value: 'property', label: 'Luxury Apartment / Villa' },
+                        { value: 'callback', label: 'Commercial Leasing / Office' },
+                        { value: 'viewing', label: 'Schedule Site Walkthrough' },
+                      ]}
+                      size="md"
+                      variant="glass"
+                    />
                   </div>
                 </div>
 

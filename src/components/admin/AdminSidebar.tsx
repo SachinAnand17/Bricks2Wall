@@ -9,9 +9,10 @@ import { LayoutDashboard, Building2, Users, FileText, Settings, Shield, External
 interface AdminSidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  leadsCount?: number;
 }
 
-export default function AdminSidebar({ activeTab, setActiveTab }: AdminSidebarProps) {
+export default function AdminSidebar({ activeTab, setActiveTab, leadsCount = 0 }: AdminSidebarProps) {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard & Metrics', icon: LayoutDashboard },
     { id: 'properties', label: 'Property Portfolio', icon: Building2 },
@@ -25,13 +26,14 @@ export default function AdminSidebar({ activeTab, setActiveTab }: AdminSidebarPr
       <div>
         {/* Brand Header */}
         <div className="p-6 border-b border-white/10">
-          <Link href="/" className="inline-block bg-white p-2 rounded-lg">
-            <div className="relative w-[150px] h-[36px]">
+          <Link href="/" className="block group focus:outline-none">
+            <div className="relative w-[210px] h-[60px] overflow-visible">
               <Image
-                src="/brand/brand-logo.jpg"
+                src="/brand/brand-logo-white.png"
                 alt="Bricks2Wall Logo"
                 fill
-                className="object-contain"
+                priority
+                className="object-contain object-left scale-[1.25] origin-left transition-transform duration-300 group-hover:scale-[1.3]"
               />
             </div>
           </Link>
@@ -39,7 +41,7 @@ export default function AdminSidebar({ activeTab, setActiveTab }: AdminSidebarPr
             <span className="text-[10px] tracking-widest uppercase font-semibold text-gold-champagne">
               Advisory Admin
             </span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/10 text-white/70">
+            <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/10 text-white/70 font-mono">
               v1.0
             </span>
           </div>
@@ -61,7 +63,12 @@ export default function AdminSidebar({ activeTab, setActiveTab }: AdminSidebarPr
                 }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? 'text-navy-deep' : 'text-gold-champagne'}`} />
-                <span>{item.label}</span>
+                <span className="flex-1 text-left">{item.label}</span>
+                {item.id === 'leads' && leadsCount > 0 && (
+                  <span className="px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[10px] font-bold">
+                    {leadsCount}
+                  </span>
+                )}
               </button>
             );
           })}

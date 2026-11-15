@@ -3,7 +3,6 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
-import IntroVideoOverlay from '@/components/motion/IntroVideoOverlay';
 import MandalaControl from '@/components/decorative/MandalaControl';
 import { getContentSettings } from '@/lib/db';
 
@@ -104,9 +103,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-white text-text-ink antialiased">
-        {/* Intro Full-Screen Overlay (Plays 5.1s MP4 on first entry, then glides up) */}
-        <IntroVideoOverlay />
-
         {/* Announcement Bar */}
         {settings.announcementActive && (
           <AnnouncementBar

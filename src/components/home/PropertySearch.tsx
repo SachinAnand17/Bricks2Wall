@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Search, MapPin, Home, IndianRupee, Bed } from 'lucide-react';
 import { TransactionType } from '@/types';
 import MandalaArt from '@/components/decorative/MandalaArt';
+import GlassSelect from '@/components/ui/GlassSelect';
 
 interface PropertySearchProps {
   title?: string;
@@ -48,12 +49,14 @@ export default function PropertySearch({
   };
 
   return (
-    <div className="relative -mt-8 sm:-mt-12 z-20 max-w-6xl mx-auto px-4 sm:px-6">
-      <div className="relative bg-white rounded-2xl shadow-luxury border border-canvas-grey p-4 sm:p-6 lg:p-7 overflow-hidden">
+    <div className="relative -mt-8 sm:-mt-12 z-40 max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative bg-white rounded-2xl shadow-luxury border border-canvas-grey p-4 sm:p-6 lg:p-7 overflow-visible">
         
-        {/* Subtle Ambient Mandala Background */}
-        <div className="absolute -top-24 -right-24 pointer-events-none opacity-[0.06]">
-          <MandalaArt seed="search-bg" size={320} variant="gold" spin={true} spinDuration={140} />
+        {/* Prominent Bold Mandala Background safely contained in rounded corners without clipping dropdowns */}
+        <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+          <div className="absolute -top-24 -right-24 opacity-30">
+            <MandalaArt seed="search-bg" size={340} variant="gold" spin={true} spinDuration={120} />
+          </div>
         </div>
 
         {/* Top Header & Intent Tabs */}
@@ -91,7 +94,7 @@ export default function PropertySearch({
         </div>
 
         {/* Search Controls Form */}
-        <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-5 items-end">
+        <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-5 items-end relative z-20">
           
           {/* Location Field */}
           <div className="space-y-1.5">
@@ -99,17 +102,19 @@ export default function PropertySearch({
               <MapPin className="w-3.5 h-3.5 text-gold-champagne" />
               <span>Location</span>
             </label>
-            <select
+            <GlassSelect
               value={locality}
-              onChange={(e) => setLocality(e.target.value)}
-              className="w-full h-11 px-3 text-sm text-text-ink bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne transition-colors"
-            >
-              <option value="all">All Prime Localities</option>
-              <option value="North Greens">North Greens & Forest Enclaves</option>
-              <option value="Central Boulevard">Central Boulevard & Quarter</option>
-              <option value="Financial District">Financial District & Tech Park</option>
-              <option value="Golf Links">Golf Links Estate</option>
-            </select>
+              onChange={(val) => setLocality(val)}
+              options={[
+                { value: 'all', label: 'All Prime Localities' },
+                { value: 'North Greens', label: 'North Greens & Forest Enclaves' },
+                { value: 'Central Boulevard', label: 'Central Boulevard & Quarter' },
+                { value: 'Financial District', label: 'Financial District & Tech Park' },
+                { value: 'Golf Links', label: 'Golf Links Estate' },
+              ]}
+              variant="glass"
+              size="md"
+            />
           </div>
 
           {/* Property Type */}
@@ -118,17 +123,19 @@ export default function PropertySearch({
               <Home className="w-3.5 h-3.5 text-gold-champagne" />
               <span>Property Type</span>
             </label>
-            <select
+            <GlassSelect
               value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
-              className="w-full h-11 px-3 text-sm text-text-ink bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne transition-colors"
-            >
-              <option value="all">All Categories</option>
-              <option value="Apartment">Apartment</option>
-              <option value="Penthouse">Sky Villa / Penthouse</option>
-              <option value="Office Suite">Office Suite</option>
-              <option value="Retail Frontage">Retail Frontage</option>
-            </select>
+              onChange={(val) => setPropertyType(val)}
+              options={[
+                { value: 'all', label: 'All Categories' },
+                { value: 'Apartment', label: 'Apartment' },
+                { value: 'Penthouse', label: 'Sky Villa / Penthouse' },
+                { value: 'Office Suite', label: 'Office Suite' },
+                { value: 'Retail Frontage', label: 'Retail Frontage' },
+              ]}
+              variant="glass"
+              size="md"
+            />
           </div>
 
           {/* Budget */}
@@ -137,17 +144,19 @@ export default function PropertySearch({
               <IndianRupee className="w-3.5 h-3.5 text-gold-champagne" />
               <span>Budget</span>
             </label>
-            <select
+            <GlassSelect
               value={budgetRange}
-              onChange={(e) => setBudgetRange(e.target.value)}
-              className="w-full h-11 px-3 text-sm text-text-ink bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne transition-colors"
-            >
-              <option value="all">Any Price</option>
-              <option value="under-1cr">Under ₹1.00 Cr</option>
-              <option value="1cr-2cr">₹1.00 Cr – ₹2.00 Cr</option>
-              <option value="above-2cr">Above ₹2.00 Cr</option>
-              <option value="rental-budget">Rentals Under ₹50K</option>
-            </select>
+              onChange={(val) => setBudgetRange(val)}
+              options={[
+                { value: 'all', label: 'Any Price' },
+                { value: 'under-1cr', label: 'Under ₹1.00 Cr' },
+                { value: '1cr-2cr', label: '₹1.00 Cr – ₹2.00 Cr' },
+                { value: 'above-2cr', label: 'Above ₹2.00 Cr' },
+                { value: 'rental-budget', label: 'Rentals Under ₹50K' },
+              ]}
+              variant="glass"
+              size="md"
+            />
           </div>
 
           {/* Bedrooms */}
@@ -156,16 +165,18 @@ export default function PropertySearch({
               <Bed className="w-3.5 h-3.5 text-gold-champagne" />
               <span>Bedrooms</span>
             </label>
-            <select
+            <GlassSelect
               value={bedrooms}
-              onChange={(e) => setBedrooms(e.target.value)}
-              className="w-full h-11 px-3 text-sm text-text-ink bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne transition-colors"
-            >
-              <option value="all">Any Configuration</option>
-              <option value="2">2 BHK</option>
-              <option value="3">3 BHK</option>
-              <option value="4">4+ BHK</option>
-            </select>
+              onChange={(val) => setBedrooms(val)}
+              options={[
+                { value: 'all', label: 'Any Configuration' },
+                { value: '2', label: '2 BHK' },
+                { value: '3', label: '3 BHK' },
+                { value: '4', label: '4+ BHK' },
+              ]}
+              variant="glass"
+              size="md"
+            />
           </div>
 
           {/* Submit Search */}

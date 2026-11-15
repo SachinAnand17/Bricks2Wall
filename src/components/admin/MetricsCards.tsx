@@ -13,18 +13,27 @@ interface MetricsCardsProps {
 }
 
 export default function MetricsCards({ metrics }: MetricsCardsProps) {
+  const safeMetrics = metrics || {
+    totalProperties: 0,
+    activeProperties: 0,
+    totalLeads: 0,
+    newLeads: 0,
+    scheduledViewings: 0,
+    awaitingResponse: 0,
+  };
+
   const cards = [
     {
       title: 'Active Portfolio Listings',
-      value: metrics.activeProperties,
-      subtext: `${metrics.totalProperties} total records`,
+      value: safeMetrics.activeProperties ?? 0,
+      subtext: `${safeMetrics.totalProperties ?? 0} total records`,
       icon: Building2,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       title: 'Total Enquiries Captured',
-      value: metrics.totalLeads,
+      value: safeMetrics.totalLeads ?? 0,
       subtext: 'Verified CRM leads',
       icon: Users,
       color: 'text-gold-deep',
@@ -32,7 +41,7 @@ export default function MetricsCards({ metrics }: MetricsCardsProps) {
     },
     {
       title: 'New Unassigned Leads',
-      value: metrics.newLeads,
+      value: safeMetrics.newLeads ?? 0,
       subtext: 'Requires advisor response',
       icon: AlertCircle,
       color: 'text-rose-600',
@@ -40,7 +49,7 @@ export default function MetricsCards({ metrics }: MetricsCardsProps) {
     },
     {
       title: 'Site Viewings Scheduled',
-      value: metrics.scheduledViewings,
+      value: safeMetrics.scheduledViewings ?? 0,
       subtext: 'Walkthrough appointments',
       icon: Calendar,
       color: 'text-emerald-600',

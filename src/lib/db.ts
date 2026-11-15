@@ -76,6 +76,10 @@ function ensureDatabase(): DatabaseSchema {
   try {
     const raw = fs.readFileSync(DB_FILE, 'utf-8');
     const parsed = JSON.parse(raw) as DatabaseSchema;
+    if (!parsed.properties || parsed.properties.length === 0) {
+      parsed.properties = INITIAL_PROPERTIES;
+      saveDatabase(parsed);
+    }
     parsed.contentSettings = {
       ...INITIAL_CONTENT_SETTINGS,
       ...(parsed.contentSettings || {}),

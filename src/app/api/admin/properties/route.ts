@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProperties, createProperty } from '@/lib/db';
 import { slugify } from '@/lib/utils';
+import { getAdminSession } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // 1. Enforce Admin Authentication
+  const session = getAdminSession(request);
+  if (!session.authenticated) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized: Admin authentication required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const properties = getProperties();
     return NextResponse.json({ success: true, count: properties.length, properties });
@@ -15,6 +25,15 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  // 1. Enforce Admin Authentication
+  const session = getAdminSession(request);
+  if (!session.authenticated) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized: Admin authentication required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
 
@@ -36,6 +55,7 @@ export async function POST(request: NextRequest) {
       isFeatured: Boolean(body.isFeatured),
       isVerified: Boolean(body.isVerified),
       isDemo: true, // Safeguard: demo tag for non-production listings
+      availabilityConfirmedAt: new Date().toISOString().split('T')[0],
       status: body.status || 'active',
       city: body.city || 'Demo City',
       locality: body.locality,
@@ -60,17 +80,12 @@ export async function POST(request: NextRequest) {
           url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
           altText: body.title,
           isPrimary: true,
-          order: 1
+          order: 1,
         }
       ],
-      reraRegistrationNumber: body.reraRegistrationNumber || '',
-      reraApproved: Boolean(body.reraApproved),
-      projectDeveloper: body.projectDeveloper || '',
-      availabilityConfirmedAt: new Date().toISOString(),
-      assignedAgentId: body.assignedAgentId || 'agent-1'
     });
 
-    return NextResponse.json({ success: true, property });
+    return NextResponse.json({ success: true, property }, { status: 201 });
   } catch (err: any) {
     console.error('Error creating property:', err);
     return NextResponse.json({ success: false, error: 'Failed to create property' }, { status: 500 });

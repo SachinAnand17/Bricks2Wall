@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Search, SlidersHorizontal, X, LayoutGrid, Map, RotateCcw } from 'lucide-react';
 import { TransactionType } from '@/types';
+import GlassSelect from '@/components/ui/GlassSelect';
 
 interface PropertyFiltersProps {
   totalCount: number;
@@ -73,19 +74,22 @@ export default function PropertyFilters({
         {/* View Mode & Sorter */}
         <div className="flex items-center gap-3 self-end lg:self-auto">
           {/* Sorting Dropdown */}
-          <select
+          <GlassSelect
             value={currentSort}
-            onChange={(e) => updateParam('sortBy', e.target.value)}
-            className="h-10 px-3 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl text-text-slate focus:outline-none focus:border-gold-champagne"
-          >
-            <option value="newest">Sort: Newest Listed</option>
-            <option value="price_asc">Price: Low to High</option>
-            <option value="price_desc">Price: High to Low</option>
-            <option value="featured">Featured First</option>
-          </select>
+            onChange={(val) => updateParam('sortBy', val)}
+            options={[
+              { value: 'newest', label: 'Sort: Newest Listed' },
+              { value: 'price_asc', label: 'Price: Low to High' },
+              { value: 'price_desc', label: 'Price: High to Low' },
+              { value: 'featured', label: 'Featured First' },
+            ]}
+            size="md"
+            variant="glass"
+            className="w-48"
+          />
 
           {/* Grid / Map Toggle */}
-          <div className="flex items-center p-1 bg-canvas-ivory rounded-xl border border-canvas-grey">
+          <div className="flex items-center p-1 bg-canvas-ivory rounded-xl border border-canvas-grey shrink-0">
             <button
               onClick={() => onViewModeChange('grid')}
               className={`p-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-colors ${
@@ -119,55 +123,62 @@ export default function PropertyFilters({
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-canvas-grey/60">
         
         {/* Transaction Type */}
-        <select
+        <GlassSelect
           value={currentType}
-          onChange={(e) => updateParam('type', e.target.value)}
-          className="h-9 px-2.5 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-lg text-text-ink focus:outline-none focus:border-gold-champagne"
-        >
-          <option value="all">All Intent (Buy/Rent)</option>
-          <option value="buy">Buy</option>
-          <option value="rent">Rent</option>
-          <option value="commercial">Commercial</option>
-        </select>
+          onChange={(val) => updateParam('type', val)}
+          options={[
+            { value: 'all', label: 'All Intent (Buy/Rent)' },
+            { value: 'buy', label: 'Buy' },
+            { value: 'rent', label: 'Rent' },
+            { value: 'commercial', label: 'Commercial' },
+          ]}
+          size="sm"
+          variant="glass"
+        />
 
         {/* Property Category */}
-        <select
+        <GlassSelect
           value={currentPropertyType}
-          onChange={(e) => updateParam('propertyType', e.target.value)}
-          className="h-9 px-2.5 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-lg text-text-ink focus:outline-none focus:border-gold-champagne"
-        >
-          <option value="all">All Property Types</option>
-          <option value="Apartment">Apartment</option>
-          <option value="Penthouse">Sky Villa / Penthouse</option>
-          <option value="Office Suite">Office Suite</option>
-          <option value="Retail Frontage">Retail Frontage</option>
-        </select>
+          onChange={(val) => updateParam('propertyType', val)}
+          options={[
+            { value: 'all', label: 'All Property Types' },
+            { value: 'Apartment', label: 'Apartment' },
+            { value: 'Penthouse', label: 'Sky Villa / Penthouse' },
+            { value: 'Office Suite', label: 'Office Suite' },
+            { value: 'Retail Frontage', label: 'Retail Frontage' },
+          ]}
+          size="sm"
+          variant="glass"
+        />
 
         {/* Locality */}
-        <select
+        <GlassSelect
           value={currentLocality}
-          onChange={(e) => updateParam('locality', e.target.value)}
-          className="h-9 px-2.5 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-lg text-text-ink focus:outline-none focus:border-gold-champagne"
-        >
-          <option value="all">All Localities</option>
-          <option value="North Greens">North Greens</option>
-          <option value="Central Boulevard">Central Boulevard</option>
-          <option value="Financial District">Financial District</option>
-          <option value="Golf Links">Golf Links Estate</option>
-        </select>
+          onChange={(val) => updateParam('locality', val)}
+          options={[
+            { value: 'all', label: 'All Localities' },
+            { value: 'North Greens', label: 'North Greens' },
+            { value: 'Central Boulevard', label: 'Central Boulevard' },
+            { value: 'Financial District', label: 'Financial District' },
+            { value: 'Golf Links', label: 'Golf Links Estate' },
+          ]}
+          size="sm"
+          variant="glass"
+        />
 
         {/* Bedrooms */}
-        <select
+        <GlassSelect
           value={currentBedrooms}
-          onChange={(e) => updateParam('bedrooms', e.target.value)}
-          className="h-9 px-2.5 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-lg text-text-ink focus:outline-none focus:border-gold-champagne"
-        >
-          <option value="all">Any Bedrooms</option>
-          <option value="2">2 BHK</option>
-          <option value="3">3 BHK</option>
-          <option value="4">4+ BHK</option>
-        </select>
-
+          onChange={(val) => updateParam('bedrooms', val)}
+          options={[
+            { value: 'all', label: 'Any Bedrooms' },
+            { value: '2', label: '2 BHK' },
+            { value: '3', label: '3 BHK' },
+            { value: '4', label: '4+ BHK' },
+          ]}
+          size="sm"
+          variant="glass"
+        />
       </div>
 
       {/* Active Filter Chips & Result Count */}

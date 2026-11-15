@@ -92,8 +92,8 @@ export default function MandalaArt({
     for (let i = 1; i <= ringCount; i++) {
       const r = (maxR / ringCount) * i;
       const ringType = rand();
-      const strokeWidth = ringType > 0.7 ? 1.5 : 0.8;
-      const dashArray = ringType < 0.25 ? '3 5' : ringType < 0.45 ? '1 4' : ringType < 0.6 ? '8 4 2 4' : undefined;
+      const strokeWidth = ringType > 0.7 ? 3.0 : 2.2;
+      const dashArray = ringType < 0.25 ? '5 7' : ringType < 0.45 ? '3 6' : ringType < 0.6 ? '12 6 4 6' : undefined;
 
       layers.push(
         <circle
@@ -119,9 +119,9 @@ export default function MandalaArt({
         cy={center}
         r={coreR}
         fill="currentColor"
-        fillOpacity={0.06}
+        fillOpacity={0.24}
         stroke="currentColor"
-        strokeWidth={1.5}
+        strokeWidth={3.0}
       />
     );
     layers.push(
@@ -131,9 +131,9 @@ export default function MandalaArt({
         cy={center}
         r={coreR * 0.45}
         fill="currentColor"
-        fillOpacity={0.15}
+        fillOpacity={0.38}
         stroke="currentColor"
-        strokeWidth={1}
+        strokeWidth={2.4}
       />
     );
 
@@ -153,18 +153,18 @@ export default function MandalaArt({
           x2={x2}
           y2={y2}
           stroke="currentColor"
-          strokeWidth={0.9}
+          strokeWidth={2.0}
         />
       );
 
-      // Core tiny pearls
+      // Core pearls
       if (coreType === 0 || coreType === 3) {
         layers.push(
           <circle
             key={`core-dot-${i}`}
             cx={x2}
             cy={y2}
-            r={1.8}
+            r={3.2}
             fill="currentColor"
           />
         );
@@ -200,9 +200,9 @@ export default function MandalaArt({
           key={`petal1-${i}`}
           d={pathData}
           fill="currentColor"
-          fillOpacity={i % 2 === 0 ? 0.05 : 0.02}
+          fillOpacity={i % 2 === 0 ? 0.22 : 0.14}
           stroke="currentColor"
-          strokeWidth={1}
+          strokeWidth={2.4}
         />
       );
 
@@ -217,8 +217,8 @@ export default function MandalaArt({
           x2={tipX}
           y2={tipY}
           stroke="currentColor"
-          strokeWidth={0.6}
-          strokeDasharray="2 3"
+          strokeWidth={1.6}
+          strokeDasharray="4 4"
         />
       );
     }
@@ -247,7 +247,7 @@ export default function MandalaArt({
             x2={xA2}
             y2={yA2}
             stroke="currentColor"
-            strokeWidth={0.7}
+            strokeWidth={1.8}
           />
         );
       }
@@ -261,7 +261,7 @@ export default function MandalaArt({
           r={brickMid}
           fill="none"
           stroke="currentColor"
-          strokeWidth={0.8}
+          strokeWidth={2.0}
         />
       );
     }
@@ -295,9 +295,9 @@ export default function MandalaArt({
             key={`jali-${i}`}
             d={kitePath}
             fill="currentColor"
-            fillOpacity={0.04}
+            fillOpacity={0.18}
             stroke="currentColor"
-            strokeWidth={1}
+            strokeWidth={2.2}
           />
         );
       } else {
@@ -309,7 +309,7 @@ export default function MandalaArt({
             d={archPath}
             fill="none"
             stroke="currentColor"
-            strokeWidth={1.1}
+            strokeWidth={2.4}
           />
         );
       }
@@ -320,7 +320,7 @@ export default function MandalaArt({
           key={`peak-jewel-${i}`}
           cx={peakX}
           cy={peakY}
-          r={2.5}
+          r={3.5}
           fill="currentColor"
         />
       );
@@ -355,9 +355,9 @@ export default function MandalaArt({
           key={`outer-petal-${i}`}
           d={crownPath}
           fill="currentColor"
-          fillOpacity={i % 2 === 0 ? 0.03 : 0.01}
+          fillOpacity={i % 2 === 0 ? 0.16 : 0.09}
           stroke="currentColor"
-          strokeWidth={1.2}
+          strokeWidth={2.4}
         />
       );
 
@@ -374,7 +374,7 @@ export default function MandalaArt({
             x2={finialTipX}
             y2={finialTipY}
             stroke="currentColor"
-            strokeWidth={1}
+            strokeWidth={2.0}
           />
         );
 
@@ -383,7 +383,7 @@ export default function MandalaArt({
             key={`sunburst-tip-${i}`}
             cx={finialTipX}
             cy={finialTipY}
-            r={1.8}
+            r={3.2}
             fill="currentColor"
           />
         );
@@ -405,9 +405,9 @@ export default function MandalaArt({
           key={`bead-${i}`}
           cx={bx}
           cy={by}
-          r={i % 4 === 0 ? 1.6 : 0.9}
+          r={i % 4 === 0 ? 3.4 : 2.2}
           fill="currentColor"
-          fillOpacity={0.8}
+          fillOpacity={0.95}
         />
       );
     }
@@ -417,15 +417,15 @@ export default function MandalaArt({
 
   // Color styles
   const colorClasses = {
-    gold: 'text-[#C8A45D] stroke-[#C8A45D]',
-    champagne: 'text-[#C8A45D]/85 stroke-[#C8A45D]/85',
+    gold: 'text-[#D4AF37] stroke-[#D4AF37]',
+    champagne: 'text-[#E5C378] stroke-[#E5C378]',
     navy: 'text-[#10243A] stroke-[#10243A]',
-    white: 'text-white/80 stroke-white/80',
-    ambient: 'text-[#C8A45D]/40 stroke-[#C8A45D]/40',
+    white: 'text-white stroke-white',
+    ambient: 'text-[#D4AF37] stroke-[#D4AF37]',
     dark: 'text-[#18212B] stroke-[#18212B]',
   }[variant];
 
-  const effectiveOpacity = opacity !== undefined ? opacity : variant === 'ambient' ? 0.12 : 1;
+  const effectiveOpacity = opacity !== undefined ? opacity : variant === 'ambient' ? 0.45 : 0.9;
 
   return (
     <div

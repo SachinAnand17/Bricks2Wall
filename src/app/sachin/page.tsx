@@ -24,15 +24,25 @@ export default function SachinControlPanel() {
   const [settings, setSettings] = useState<ContentSettings | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Check persistent auth session
+  // Check persistent server-authenticated session via secure HTTP-only cookie
   useEffect(() => {
-    const isAuth = sessionStorage.getItem('b2w_sachin_auth');
-    if (isAuth === 'true') {
-      setIsAuthenticated(true);
-      loadData();
-    } else {
-      setLoading(false);
+    async function checkSession() {
+      try {
+        const res = await fetch('/api/admin/auth/session');
+        const data = await res.json();
+        if (res.ok && data.authenticated) {
+          setIsAuthenticated(true);
+          loadData();
+        } else {
+          setIsAuthenticated(false);
+          setLoading(false);
+        }
+      } catch (err) {
+        setIsAuthenticated(false);
+        setLoading(false);
+      }
     }
+    checkSession();
   }, []);
 
   const loadData = async () => {
@@ -40,6 +50,10 @@ export default function SachinControlPanel() {
     try {
       // 1. Metrics
       const mRes = await fetch('/api/admin/dashboard');
+      if (mRes.status === 401) {
+        setIsAuthenticated(false);
+        return;
+      }
       const mData = await mRes.json();
       if (mData.success) setMetrics(mData.metrics);
 
@@ -64,30 +78,43 @@ export default function SachinControlPanel() {
     }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
 
-    // Exact Credential Enforcement:
-    // User ID: Sachin
-    // Password: Sachin@2005
-    const validUser = userIdInput.trim().toLowerCase() === 'sachin';
-    const validPass = passwordInput === 'Sachin@2005';
+    try {
+      const res = await fetch('/api/admin/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: userIdInput,
+          password: passwordInput,
+        }),
+      });
 
-    if (validUser && validPass) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('b2w_sachin_auth', 'true');
-      loadData();
-    } else {
-      setLoginError('Invalid User ID or Password. Access denied.');
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsAuthenticated(true);
+        setPasswordInput('');
+        loadData();
+      } else {
+        setLoginError(data.error || 'Invalid User ID or Password. Access denied.');
+      }
+    } catch (err) {
+      setLoginError('Authentication service error. Please try again.');
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('b2w_sachin_auth');
-    setIsAuthenticated(false);
-    setUserIdInput('');
-    setPasswordInput('');
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/admin/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Logout error:', err);
+    } finally {
+      setIsAuthenticated(false);
+      setUserIdInput('');
+      setPasswordInput('');
+    }
   };
 
   if (!isAuthenticated) {
@@ -263,7 +290,7 @@ export default function SachinControlPanel() {
                     </button>
                   </div>
                   <div className="space-y-3">
-                    {leads.slice(0, 4).map((l) => (
+                    {(leads || []).slice(0, 4).map((l) => (
                       <div key={l.id} className="p-3 rounded-xl bg-canvas-ivory/50 border border-canvas-grey/60 flex items-center justify-between text-xs">
                         <div>
                           <p className="font-semibold text-navy-midnight">{l.name}</p>
@@ -274,6 +301,9 @@ export default function SachinControlPanel() {
                         </span>
                       </div>
                     ))}
+                    {(!leads || leads.length === 0) && (
+                      <p className="text-xs text-text-muted py-2">No leads received yet.</p>
+                    )}
                   </div>
                 </div>
 
@@ -308,7 +338,7 @@ export default function SachinControlPanel() {
 
           {/* TAB 2: INVENTORY MANAGEMENT */}
           {activeTab === 'properties' && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6">
               <PropertyTable properties={properties} onRefresh={loadData} />
             </div>
           )}
@@ -321,9 +351,16 @@ export default function SachinControlPanel() {
           )}
 
           {/* TAB 4: UNIVERSAL CONTENT CUSTOMIZER STUDIO */}
-          {activeTab === 'content' && settings && (
+          {activeTab === 'content' && (
             <div className="space-y-6 animate-fade-in">
-              <ContentEditor initialSettings={settings} onSaved={loadData} />
+              {settings ? (
+                <ContentEditor initialSettings={settings} onSaved={loadData} onRefresh={loadData} />
+              ) : (
+                <div className="bg-white rounded-2xl p-12 border border-canvas-grey text-center space-y-3">
+                  <RefreshCw className="w-6 h-6 animate-spin text-gold-deep mx-auto" />
+                  <p className="text-xs text-text-slate">Loading content customizer studio...</p>
+                </div>
+              )}
             </div>
           )}
 

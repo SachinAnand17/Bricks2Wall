@@ -23,6 +23,11 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
   const [propertiesDropdownOpen, setPropertiesDropdownOpen] = useState(false);
   const pathname = usePathname();
 
+  // Hide on admin routes
+  if (pathname && (pathname.startsWith('/sachin') || pathname.startsWith('/admin'))) {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -54,29 +59,26 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Brand Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center group focus:outline-none">
+        <div className="flex items-center justify-between h-20 sm:h-24">
+          {/* Brand Logo - Enlarged & Prominent */}
+          <div className="flex items-center shrink-0">
+            <Link href="/" className="flex items-center group focus:outline-none py-1">
               {/* Desktop Horizontal Logo */}
-              <div className="hidden sm:flex items-center gap-3">
-                <div className="relative w-[210px] h-[52px]">
+              <div className="hidden sm:flex items-center gap-2">
+                <div className="relative w-[260px] md:w-[300px] lg:w-[340px] h-[60px] md:h-[68px] lg:h-[76px] overflow-visible">
                   <Image
                     src="/brand/brand-logo.png"
                     alt="Bricks2Wall — Property, With Perspective"
                     fill
                     priority
-                    className="object-contain object-left"
+                    className="object-contain object-left scale-[1.35] origin-left transition-transform duration-300 group-hover:scale-[1.38]"
                   />
-                </div>
-                <div className="opacity-40 group-hover:opacity-90 transition-opacity">
-                  <MandalaArt seed="header-floret" size={24} variant="gold" spin={true} spinDuration={45} complexity="compact" />
                 </div>
               </div>
 
               {/* Mobile Emblem Only */}
-              <div className="sm:hidden flex items-center gap-2">
-                <div className="relative w-11 h-11 rounded-full overflow-hidden border border-gold-champagne/30">
+              <div className="sm:hidden flex items-center gap-2.5">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gold-champagne/40">
                   <Image
                     src="/brand/brand-emblem.jpg"
                     alt="Bricks2Wall Emblem"
@@ -86,14 +88,14 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
                   />
                 </div>
                 <span className="font-serif text-lg font-bold tracking-wider text-navy-midnight">
-                  BRICKS<span className="text-gold-champagne font-light">2</span>WALL
+                  BRICKS<span className="text-gold-deep font-normal">2</span>WALL
                 </span>
               </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-7">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-7">
             {/* Properties Dropdown */}
             <div
               className="relative"

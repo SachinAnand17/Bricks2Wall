@@ -47,9 +47,9 @@ export default function PropertyTypeGrid({ settings }: PropertyTypeGridProps) {
   ];
 
   return (
-    <section className="relative overflow-hidden py-24 bg-[#F5F1E8] border-y border-[#DDD6C8]">
+    <section className="relative overflow-hidden py-24 bg-gradient-to-b from-[#F5F1E8] via-[#FAF7F0] to-[#F5F1E8]">
       {/* Background Architectural Mandala */}
-      <MandalaWatermark seed="category-section-bg" position="bottom-left" size={620} opacity={0.09} spinDuration={180} />
+      <MandalaWatermark seed="category-section-bg" position="bottom-left" size={640} opacity={0.36} spinDuration={180} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

@@ -18,9 +18,9 @@ export default function LocationShowcase({ locations, settings }: LocationShowca
   const linkText = settings?.locationsLinkText || 'View All Localities';
 
   return (
-    <section className="relative overflow-hidden py-24 bg-[#F2EEE5] border-y border-[#D8D2C2]">
+    <section className="relative overflow-hidden py-24 bg-gradient-to-b from-[#F2EEE5] via-[#F8F5EE] to-[#F2EEE5]">
       {/* Background Architectural Mandala */}
-      <MandalaWatermark seed="locations-mandala-watermark" position="top-right" size={620} opacity={0.08} spinDuration={180} />
+      <MandalaWatermark seed="locations-mandala-watermark" position="top-right" size={640} opacity={0.36} spinDuration={180} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

@@ -44,9 +44,9 @@ export default function ProcessSection({ settings }: ProcessSectionProps) {
 
   return (
     <section className="relative overflow-hidden py-24 bg-gradient-to-br from-[#091522] via-[#0E2034] to-[#08121E] text-white">
-      {/* Background Section Watermark */}
-      <MandalaWatermark seed="process-section-watermark" position="top-right" size={620} variant="white" opacity={0.07} spinDuration={170} />
-      <MandalaWatermark seed="process-section-watermark-left" position="bottom-left" size={480} variant="gold" opacity={0.08} spinDuration={210} />
+      {/* Background Section Watermarks */}
+      <MandalaWatermark seed="process-section-watermark" position="top-right" size={640} variant="white" opacity={0.38} spinDuration={170} />
+      <MandalaWatermark seed="process-section-watermark-left" position="bottom-left" size={500} variant="gold" opacity={0.35} spinDuration={210} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

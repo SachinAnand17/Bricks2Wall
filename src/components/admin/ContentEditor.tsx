@@ -23,10 +23,11 @@ import { INITIAL_CONTENT_SETTINGS } from '@/lib/seed-data';
 
 interface ContentEditorProps {
   initialSettings: ContentSettings;
-  onRefresh: () => void;
+  onRefresh?: () => void;
+  onSaved?: () => void;
 }
 
-export default function ContentEditor({ initialSettings, onRefresh }: ContentEditorProps) {
+export default function ContentEditor({ initialSettings, onRefresh, onSaved }: ContentEditorProps) {
   const [settings, setSettings] = useState<ContentSettings>({
     ...INITIAL_CONTENT_SETTINGS,
     ...initialSettings,
@@ -57,7 +58,8 @@ export default function ContentEditor({ initialSettings, onRefresh }: ContentEdi
 
       if (res.ok) {
         setSuccessMsg(true);
-        onRefresh();
+        if (onRefresh) onRefresh();
+        if (onSaved) onSaved();
         setTimeout(() => setSuccessMsg(false), 3500);
       }
     } catch (err) {

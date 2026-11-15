@@ -32,9 +32,9 @@ export default function FeaturedProperties({
 
   return (
     <section className="relative overflow-hidden py-24 bg-gradient-to-b from-[#10243A] via-[#0D1D2E] to-[#091522] text-white">
-      {/* Unique Distinctive Mandala Watermarks */}
-      <MandalaWatermark seed="featured-mandala-main" position="top-right" size={620} variant="white" opacity={0.07} spinDuration={160} />
-      <MandalaWatermark seed="featured-mandala-ambient" position="bottom-left" size={480} variant="gold" opacity={0.08} spinDuration={200} />
+      {/* Unique Distinctive Bold Mandala Watermarks */}
+      <MandalaWatermark seed="featured-mandala-main" position="top-right" size={640} variant="white" opacity={0.38} spinDuration={160} />
+      <MandalaWatermark seed="featured-mandala-ambient" position="bottom-left" size={500} variant="gold" opacity={0.35} spinDuration={200} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

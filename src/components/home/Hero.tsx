@@ -57,10 +57,10 @@ export default function Hero({
   const badgeTopSubtitle = settings?.heroBadgeTopSubtitle || 'Clear Data. Trusted Guidance.';
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFE6] to-[#FAF8F5] pt-12 pb-16 lg:pt-20 lg:pb-28 border-b border-[#E8E4DC]">
-      {/* Dynamic Unique Mandala Watermarks */}
-      <MandalaWatermark seed="hero-mandala-main" position="top-left" size={680} opacity={0.12} spinDuration={140} />
-      <MandalaWatermark seed="hero-mandala-ambient" position="bottom-right" size={540} opacity={0.09} spinDuration={180} />
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFE6] to-[#FAF8F5] pt-12 pb-16 lg:pt-20 lg:pb-28">
+      {/* Dynamic Unique Bold Mandala Watermarks */}
+      <MandalaWatermark seed="hero-mandala-main" position="top-left" size={680} opacity={0.36} spinDuration={140} />
+      <MandalaWatermark seed="hero-mandala-ambient" position="bottom-right" size={540} opacity={0.32} spinDuration={180} />
 
       {/* Background Architectural Radial Glow */}
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-champagne/15 rounded-full blur-3xl pointer-events-none" />

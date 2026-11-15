@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Lead, LeadStatus } from '@/types';
 import { formatDateTime } from '@/lib/utils';
+import GlassSelect from '@/components/ui/GlassSelect';
 
 interface LeadInboxProps {
   leads: Lead[];
@@ -36,13 +37,14 @@ const STATUSES: LeadStatus[] = [
 ];
 
 export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
+  const safeLeads = leads || [];
   const [activeTab, setActiveTab] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(leads[0] || null);
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(safeLeads[0] || null);
   const [noteText, setNoteText] = useState('');
   const [submittingNote, setSubmittingNote] = useState(false);
 
-  const filteredLeads = leads.filter((lead) => {
+  const filteredLeads = safeLeads.filter((lead) => {
     const matchesTab = activeTab === 'all' || lead.status === activeTab;
     const matchesSearch =
       lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -234,17 +236,13 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
               {/* Status Selector */}
               <div className="flex items-center gap-2">
                 <span className="text-xs font-semibold text-text-slate">Status:</span>
-                <select
+                <GlassSelect
                   value={selectedLead.status}
-                  onChange={(e) => handleStatusChange(selectedLead.id, e.target.value as any)}
-                  className="h-9 px-2 text-xs bg-canvas-ivory border border-canvas-grey rounded-lg font-semibold text-navy-midnight"
-                >
-                  {STATUSES.map((st) => (
-                    <option key={st} value={st}>
-                      {st}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(val) => handleStatusChange(selectedLead.id, val as any)}
+                  options={STATUSES.map((st) => ({ value: st, label: st }))}
+                  size="sm"
+                  className="w-44"
+                />
               </div>
             </div>
 
@@ -272,17 +270,19 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
 
               <div className="flex items-center gap-2">
                 <UserCheck className="w-4 h-4 text-gold-champagne shrink-0" />
-                <div>
+                <div className="flex-1 min-w-0">
                   <span className="text-[10px] text-text-muted block">Assigned Advisor</span>
-                  <select
+                  <GlassSelect
                     value={selectedLead.assignedToAgentId || ''}
-                    onChange={(e) => handleAssignAgent(selectedLead.id, e.target.value)}
-                    className="text-xs bg-transparent border-0 font-semibold text-navy-midnight p-0 focus:ring-0 cursor-pointer"
-                  >
-                    <option value="">Unassigned</option>
-                    <option value="agent-1">Vikramaditya Sengupta</option>
-                    <option value="agent-2">Ananya Deshmukh</option>
-                  </select>
+                    onChange={(val) => handleAssignAgent(selectedLead.id, val)}
+                    options={[
+                      { value: '', label: 'Unassigned' },
+                      { value: 'agent-1', label: 'Vikramaditya Sengupta' },
+                      { value: 'agent-2', label: 'Ananya Deshmukh' },
+                    ]}
+                    size="sm"
+                    className="w-full mt-0.5"
+                  />
                 </div>
               </div>
             </div>

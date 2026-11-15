@@ -1,11 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createLead } from '@/lib/db';
+import { checkRateLimit } from '@/lib/rate-limiter';
 
 export const dynamic = 'force-dynamic';
 
+function sanitizeText(input?: string): string {
+  if (!input || typeof input !== 'string') return '';
+  return input
+    .replace(/[<>]/g, '') // Strip HTML tags
+    .trim()
+    .slice(0, 1000); // Enforce max string length
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    // 1. Rate Limiting by IP (Max 15 submissions per minute to prevent bot flooding)
+    const clientIp =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown-ip';
+
+    const rateCheck = checkRateLimit(`lead-submit:${clientIp}`, 15, 60 * 1000);
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Rate limit exceeded. Please wait a moment before submitting again.',
+        },
+        { status: 429 }
+      );
+    }
+
+    const body = await request.json().catch(() => ({}));
 
     // Honeypot spam check: hidden field 'website_hp' must be empty
     if (body.website_hp) {
@@ -45,7 +71,7 @@ export async function POST(request: NextRequest) {
 
     // Normalizing phone number (allow Indian numbers with or without +91, min 10 digits)
     const cleanedPhone = phone ? phone.replace(/[\s\-\(\)]/g, '') : '';
-    if (!cleanedPhone || cleanedPhone.length < 10) {
+    if (!cleanedPhone || cleanedPhone.length < 10 || !/^\+?[0-9]{10,15}$/.test(cleanedPhone)) {
       return NextResponse.json(
         { success: false, error: 'Please provide a valid 10-digit phone number.' },
         { status: 400 }
@@ -59,24 +85,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Persist lead first before any side-effects
+    // Persist sanitized lead
     const newLead = createLead({
-      name: name.trim(),
+      name: sanitizeText(name),
       email: email.trim().toLowerCase(),
       phone: cleanedPhone,
-      enquiryType,
-      propertyId,
-      propertyTitle,
-      preferredContactMethod,
-      preferredTime,
-      viewingDate,
-      viewingTimeSlot,
-      message: message?.trim(),
-      source,
+      enquiryType: sanitizeText(enquiryType) as any,
+      propertyId: propertyId ? sanitizeText(propertyId) : undefined,
+      propertyTitle: propertyTitle ? sanitizeText(propertyTitle) : undefined,
+      preferredContactMethod: sanitizeText(preferredContactMethod) as any,
+      preferredTime: preferredTime ? sanitizeText(preferredTime) : undefined,
+      viewingDate: viewingDate ? sanitizeText(viewingDate) : undefined,
+      viewingTimeSlot: viewingTimeSlot ? sanitizeText(viewingTimeSlot) : undefined,
+      message: message ? sanitizeText(message) : undefined,
+      source: (sanitizeText(source) as any) || 'website',
       consentGiven: true,
     });
 
-    // Enqueue transactional notification (Simulated async queue / SES / SMS dispatcher)
     console.log(`[Notification Queue] Dispatched new lead alert for lead ID: ${newLead.id} (${newLead.name}) to sales team.`);
 
     return NextResponse.json({

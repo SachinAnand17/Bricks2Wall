@@ -1,60 +1,6 @@
 {
   "properties": [
     {
-      "slug": "leafsong-gn-8387",
-      "title": "Leafsong GN",
-      "tagline": "",
-      "transactionType": "buy",
-      "propertyType": "Apartment",
-      "price": 2230000,
-      "priceDisplay": "₹22,30,000",
-      "contactForPrice": false,
-      "isFeatured": false,
-      "isVerified": false,
-      "isDemo": true,
-      "status": "active",
-      "city": "Demo City",
-      "locality": "Greter Noida",
-      "subLocality": "",
-      "addressSummary": "Greter Noida, Demo City",
-      "builtUpAreaSqFt": 1200,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "parkingSpaces": 1,
-      "furnishingStatus": "Unfurnished",
-      "possessionStatus": "Ready to Move",
-      "possessionDate": "Immediate",
-      "facing": "North-East",
-      "description": "Verified residential opportunity represented by Bricks2Wall.",
-      "highlights": [
-        "Verified legal title",
-        "Prime accessibility",
-        "High aesthetic finishes"
-      ],
-      "amenities": [
-        "24/7 Security",
-        "Power Backup",
-        "Dedicated Parking"
-      ],
-      "media": [
-        {
-          "id": "med-1794722708387",
-          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-          "altText": "Leafsong GN",
-          "isPrimary": true,
-          "order": 1
-        }
-      ],
-      "reraRegistrationNumber": "",
-      "reraApproved": false,
-      "projectDeveloper": "",
-      "availabilityConfirmedAt": "2026-11-15T06:05:08.387Z",
-      "assignedAgentId": "agent-1",
-      "id": "prop-1794722708391",
-      "createdAt": "2026-11-15T06:05:08.391Z",
-      "updatedAt": "2026-11-15T06:05:08.391Z"
-    },
-    {
       "id": "prop-1",
       "slug": "demo-contemporary-2-bed-residence",
       "title": "DEMO — Contemporary 2-Bed Residence",
@@ -205,8 +151,8 @@
         },
         {
           "id": "m2-3",
-          "url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
-          "caption": "Ensuite luxury bathroom with soaking tub",
+          "url": "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Ensuite luxury bathroom with stone finish",
           "altText": "Modern bathroom with stone finish",
           "isPrimary": false,
           "order": 3
@@ -974,7 +920,7 @@
     "reraDisclaimerText": "Bricks2Wall is a real estate brokerage and advisory firm. All property details, measurements, pricing, and availability are subject to physical verification and owner confirmation. Please verify all project RERA registration credentials before finalizing any transaction.",
     "footerBrandDescription": "A premium, trustworthy property discovery and brokerage advisory. We present verified residential and commercial opportunities with architectural clarity, transparent documentation, and informed personal guidance.",
     "footerComplianceNotice": "Regulatory & Integrity Notice: Bricks2Wall operates as a dedicated property advisory and real estate brokerage. Listing details, prices, floor measurements, and availability states are published subject to physical verification and owner confirmation. Please verify all individual state RERA project registrations and legal title documentation before entering into formal binding transactions.",
-    "footerDemoNotice": "Demo property records displayed during testing are explicitly designated with a DEMO label and represent illustrative sample listings rather than live proprietary inventory.",
+    "footerDemoNotice": "",
     "footerCopyrightText": "Bricks2Wall Real Estate Advisory. All rights reserved."
   }
 }

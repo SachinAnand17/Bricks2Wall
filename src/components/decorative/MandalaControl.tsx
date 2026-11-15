@@ -1,10 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Sparkles, RefreshCw } from 'lucide-react';
 import MandalaArt from './MandalaArt';
 
 export default function MandalaControl() {
+  const pathname = usePathname();
+  if (pathname && (pathname.startsWith('/sachin') || pathname.startsWith('/admin'))) {
+    return null;
+  }
+
   const [isRotating, setIsRotating] = useState(false);
   const [pulseKey, setPulseKey] = useState(0);
 

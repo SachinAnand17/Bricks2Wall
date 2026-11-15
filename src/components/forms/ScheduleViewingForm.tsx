@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Calendar, Clock, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
+import GlassSelect from '@/components/ui/GlassSelect';
 
 interface ScheduleViewingFormProps {
   propertyId?: string;
@@ -170,17 +171,19 @@ export default function ScheduleViewingForm({
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-text-slate">Preferred Time Slot</label>
-            <select
+            <label className="text-xs font-semibold text-text-slate block">Preferred Time Slot</label>
+            <GlassSelect
               value={formData.timeSlot}
-              onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-              className="w-full h-10 px-2 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
-            >
-              <option value="10:00 AM – 12:00 PM">10:00 AM – 12:00 PM</option>
-              <option value="12:00 PM – 2:00 PM">12:00 PM – 2:00 PM</option>
-              <option value="2:00 PM – 4:00 PM">2:00 PM – 4:00 PM</option>
-              <option value="4:00 PM – 6:30 PM">4:00 PM – 6:30 PM</option>
-            </select>
+              onChange={(val) => setFormData({ ...formData, timeSlot: val })}
+              options={[
+                { value: '10:00 AM – 12:00 PM', label: '10:00 AM – 12:00 PM (Morning)' },
+                { value: '12:00 PM – 2:00 PM', label: '12:00 PM – 2:00 PM (Midday)' },
+                { value: '2:00 PM – 4:00 PM', label: '2:00 PM – 4:00 PM (Afternoon)' },
+                { value: '4:00 PM – 6:30 PM', label: '4:00 PM – 6:30 PM (Evening)' },
+              ]}
+              size="sm"
+              variant="glass"
+            />
           </div>
         </div>
 

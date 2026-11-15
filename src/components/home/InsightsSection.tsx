@@ -19,9 +19,9 @@ export default function InsightsSection({ articles, settings }: InsightsSectionP
   const linkText = settings?.insightsLinkText || 'Browse All Articles';
 
   return (
-    <section className="relative overflow-hidden py-24 bg-[#F6F4ED] border-t border-[#E0DBD0]">
+    <section className="relative overflow-hidden py-24 bg-gradient-to-b from-[#F6F4ED] via-[#FAF9F5] to-[#F6F4ED]">
       {/* Background Architectural Mandala */}
-      <MandalaWatermark seed="insights-mandala-watermark" position="top-right" size={560} opacity={0.08} spinDuration={190} />
+      <MandalaWatermark seed="insights-mandala-watermark" position="top-right" size={580} opacity={0.36} spinDuration={190} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

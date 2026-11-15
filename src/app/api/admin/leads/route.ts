@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getLeads, updateLeadStatus, assignLead, addLeadNote } from '@/lib/db';
+import { getAdminSession } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
+  // 1. Enforce Admin Authentication (Protects sensitive client phone/email data)
+  const session = getAdminSession(request);
+  if (!session.authenticated) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized: Admin authentication required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status') || undefined;
@@ -18,9 +28,18 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
+  // 1. Enforce Admin Authentication
+  const session = getAdminSession(request);
+  if (!session.authenticated) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized: Admin authentication required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
-    const { leadId, status, agentId, note, author = 'Admin' } = body;
+    const { leadId, status, agentId, note, author = session.user || 'Admin' } = body;
 
     if (!leadId) {
       return NextResponse.json({ success: false, error: 'Lead ID is required' }, { status: 400 });

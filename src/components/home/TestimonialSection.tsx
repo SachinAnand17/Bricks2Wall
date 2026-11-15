@@ -60,8 +60,8 @@ export default function TestimonialSection({ testimonials, settings }: Testimoni
   return (
     <section className="relative overflow-hidden py-24 bg-gradient-to-b from-[#0E2034] via-[#10243A] to-[#0A1726] text-white">
       {/* Background Majestic Mandalas */}
-      <MandalaWatermark seed="testimonials-royal-mandala" position="top-right" size={640} variant="white" opacity={0.07} spinDuration={180} />
-      <MandalaWatermark seed="testimonials-ambient-mandala" position="bottom-left" size={520} variant="gold" opacity={0.08} spinDuration={210} />
+      <MandalaWatermark seed="testimonials-royal-mandala" position="top-right" size={640} variant="white" opacity={0.38} spinDuration={180} />
+      <MandalaWatermark seed="testimonials-ambient-mandala" position="bottom-left" size={520} variant="gold" opacity={0.35} spinDuration={210} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

@@ -39,9 +39,9 @@ export default function WhyWorkWithUs({ settings }: WhyWorkWithUsProps) {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-white via-[#FCFAF6] to-white relative overflow-hidden">
       {/* Central Grand Sacred Geometry Mandala Watermark */}
-      <MandalaWatermark seed="why-us-center-mandala" position="center" size={720} opacity={0.06} spinDuration={240} />
+      <MandalaWatermark seed="why-us-center-mandala" position="center" size={740} opacity={0.34} spinDuration={240} />
 
       {/* Decorative architectural background line */}
       <div className="absolute inset-0 bg-[radial-gradient(#C8A45D_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />

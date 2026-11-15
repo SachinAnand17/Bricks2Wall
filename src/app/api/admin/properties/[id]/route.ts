@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { updateProperty, deleteProperty } from '@/lib/db';
+import { getAdminSession } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,6 +8,15 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  // 1. Enforce Admin Authentication
+  const session = getAdminSession(request);
+  if (!session.authenticated) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized: Admin authentication required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
     const updated = updateProperty(params.id, body);
@@ -26,6 +36,15 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  // 1. Enforce Admin Authentication
+  const session = getAdminSession(request);
+  if (!session.authenticated) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized: Admin authentication required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const success = deleteProperty(params.id);
     if (!success) {

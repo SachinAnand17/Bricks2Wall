@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 
 interface AnnouncementBarProps {
@@ -15,6 +16,11 @@ export default function AnnouncementBar({
   linkText = 'Talk to an Advisor',
   linkHref = '/contact',
 }: AnnouncementBarProps) {
+  const pathname = usePathname();
+  if (pathname && (pathname.startsWith('/sachin') || pathname.startsWith('/admin'))) {
+    return null;
+  }
+
   return (
     <div className="bg-[#10243A] text-white/90 text-xs py-2 px-4 border-b border-gold-champagne/20">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">

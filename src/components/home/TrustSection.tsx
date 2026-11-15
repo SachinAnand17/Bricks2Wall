@@ -32,9 +32,9 @@ export default function TrustSection({ settings }: TrustSectionProps) {
   const phone = settings?.phoneContact || '+91 98765 43210';
 
   return (
-    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-canvas-ivory via-white to-canvas-ivory/60 border-y border-canvas-grey">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-canvas-ivory via-white to-canvas-ivory/60">
       {/* Background Sacred Geometry Watermark */}
-      <MandalaWatermark seed="trust-mandala-bg" position="top-right" size={560} opacity={0.07} spinDuration={190} />
+      <MandalaWatermark seed="trust-mandala-bg" position="top-right" size={580} opacity={0.35} spinDuration={190} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
