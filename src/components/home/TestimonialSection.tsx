@@ -1,6 +1,8 @@
 import React from 'react';
 import { Star, Quote, CheckCircle2 } from 'lucide-react';
 import { Testimonial, ContentSettings } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface TestimonialSectionProps {
   testimonials: Testimonial[];
@@ -15,8 +17,11 @@ export default function TestimonialSection({ testimonials, settings }: Testimoni
   const copy = settings?.testimonialsCopy || 'Verified feedback from clients who acquired residences or commercial spaces through our advisory.';
 
   return (
-    <section className="py-20 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-white relative overflow-hidden">
+      {/* Background Royal Filigree Mandala Watermark */}
+      <MandalaWatermark seed="testimonials-watermark" position="top-left" size={560} opacity={0.06} spinDuration={180} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-2xl mx-auto pb-14 space-y-3">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
@@ -34,9 +39,14 @@ export default function TestimonialSection({ testimonials, settings }: Testimoni
           {testimonials.map((item) => (
             <div
               key={item.id}
-              className="bg-canvas-ivory/50 rounded-2xl p-8 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm relative flex flex-col justify-between space-y-6"
+              className="bg-canvas-ivory/50 rounded-2xl p-8 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6"
             >
-              <Quote className="w-8 h-8 text-gold-champagne/40 absolute top-6 right-6" />
+              {/* Subtle Ambient Card Mandala Motif */}
+              <div className="absolute -bottom-10 -right-10 pointer-events-none opacity-15">
+                <MandalaArt seed={`testimonial-card-${item.id}`} size={130} variant="gold" spin={true} spinDuration={100} complexity="medium" />
+              </div>
+
+              <Quote className="w-8 h-8 text-gold-champagne/40 absolute top-6 right-6 relative z-10" />
 
               <div className="space-y-4">
                 <div className="flex items-center gap-1">

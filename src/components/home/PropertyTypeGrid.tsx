@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { ContentSettings } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface PropertyTypeGridProps {
   settings?: ContentSettings;
@@ -45,8 +47,11 @@ export default function PropertyTypeGrid({ settings }: PropertyTypeGridProps) {
   ];
 
   return (
-    <section className="py-20 bg-canvas-ivory/60 border-y border-canvas-grey/70">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 bg-canvas-ivory/60 border-y border-canvas-grey/70">
+      {/* Background Architectural Mandala */}
+      <MandalaWatermark seed="category-section-bg" position="bottom-left" size={540} opacity={0.07} spinDuration={180} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-2xl mx-auto pb-12 space-y-3">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
@@ -74,6 +79,18 @@ export default function PropertyTypeGrid({ settings }: PropertyTypeGridProps) {
                 className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/90 via-navy-midnight/30 to-transparent" />
+
+              {/* Distinctive Unique Card Mandala Motif */}
+              <div className="absolute -top-10 -right-10 pointer-events-none opacity-25 group-hover:opacity-40 transition-opacity duration-300">
+                <MandalaArt
+                  seed={`category-tile-${idx}`}
+                  size={140}
+                  variant="white"
+                  spin={true}
+                  spinDuration={80 + idx * 25}
+                  complexity="medium"
+                />
+              </div>
 
               <div className="absolute bottom-5 left-5 right-5 text-white flex items-end justify-between">
                 <div>

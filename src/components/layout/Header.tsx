@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Phone, Calendar, Search } from 'lucide-react';
+import MandalaArt from '@/components/decorative/MandalaArt';
 
 export interface HeaderProps {
   phone?: string;
@@ -58,14 +59,19 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
           <div className="flex items-center">
             <Link href="/" className="flex items-center group focus:outline-none">
               {/* Desktop Horizontal Logo */}
-              <div className="hidden sm:block relative w-[210px] h-[52px]">
-                <Image
-                  src="/brand/brand-logo.jpg"
-                  alt="Bricks2Wall — Property, With Perspective"
-                  fill
-                  priority
-                  className="object-contain object-left"
-                />
+              <div className="hidden sm:flex items-center gap-3">
+                <div className="relative w-[210px] h-[52px]">
+                  <Image
+                    src="/brand/brand-logo.jpg"
+                    alt="Bricks2Wall — Property, With Perspective"
+                    fill
+                    priority
+                    className="object-contain object-left"
+                  />
+                </div>
+                <div className="opacity-40 group-hover:opacity-90 transition-opacity">
+                  <MandalaArt seed="header-floret" size={24} variant="gold" spin={true} spinDuration={45} complexity="compact" />
+                </div>
               </div>
 
               {/* Mobile Emblem Only */}

@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { CheckCircle2, ShieldCheck, Scale, PhoneCall } from 'lucide-react';
 import { ContentSettings } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface TrustSectionProps {
   settings?: ContentSettings;
@@ -30,8 +32,11 @@ export default function TrustSection({ settings }: TrustSectionProps) {
   const phone = settings?.phoneContact || '+91 98765 43210';
 
   return (
-    <section className="py-20 bg-gradient-to-b from-canvas-ivory via-white to-canvas-ivory/60 border-y border-canvas-grey">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-canvas-ivory via-white to-canvas-ivory/60 border-y border-canvas-grey">
+      {/* Background Sacred Geometry Watermark */}
+      <MandalaWatermark seed="trust-mandala-bg" position="top-right" size={560} opacity={0.07} spinDuration={190} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -92,8 +97,13 @@ export default function TrustSection({ settings }: TrustSectionProps) {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="p-8 rounded-2xl bg-white border border-canvas-grey shadow-luxury space-y-6">
+          <div className="lg:col-span-5 relative">
+            {/* Ambient Mandala Seal behind Guarantee Card */}
+            <div className="absolute -top-12 -right-12 pointer-events-none opacity-20">
+              <MandalaArt seed="guarantee-seal" size={180} variant="gold" spin={true} spinDuration={80} complexity="elaborate" />
+            </div>
+
+            <div className="p-8 rounded-2xl bg-white border border-canvas-grey shadow-luxury space-y-6 relative z-10">
               <div className="flex items-center gap-3 pb-4 border-b border-canvas-grey">
                 <div className="w-12 h-12 rounded-full bg-canvas-ivory flex items-center justify-center text-gold-deep border border-gold-champagne/30">
                   <ShieldCheck className="w-6 h-6" />

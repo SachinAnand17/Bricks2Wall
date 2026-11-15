@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import IntroVideoOverlay from '@/components/motion/IntroVideoOverlay';
+import MandalaControl from '@/components/decorative/MandalaControl';
 import { getContentSettings } from '@/lib/db';
 
 export const metadata: Metadata = {
@@ -136,6 +137,9 @@ export default function RootLayout({
           demoNotice={settings.footerDemoNotice}
           copyrightText={settings.footerCopyrightText}
         />
+
+        {/* Floating Mandala Art Pattern Regenerator */}
+        <MandalaControl />
       </body>
     </html>
   );

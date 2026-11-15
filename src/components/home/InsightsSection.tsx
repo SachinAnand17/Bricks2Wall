@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { ArrowRight, Clock } from 'lucide-react';
 import { InsightArticle, ContentSettings } from '@/types';
 import { formatDate } from '@/lib/utils';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface InsightsSectionProps {
   articles: InsightArticle[];
@@ -17,8 +19,11 @@ export default function InsightsSection({ articles, settings }: InsightsSectionP
   const linkText = settings?.insightsLinkText || 'Browse All Articles';
 
   return (
-    <section className="py-20 bg-canvas-ivory/40 border-t border-canvas-grey">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 bg-canvas-ivory/40 border-t border-canvas-grey">
+      {/* Background Architectural Mandala */}
+      <MandalaWatermark seed="insights-mandala-watermark" position="top-right" size={520} opacity={0.06} spinDuration={190} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6">
           <div className="space-y-3 max-w-2xl">
@@ -58,6 +63,10 @@ export default function InsightsSection({ articles, settings }: InsightsSectionP
                 />
                 <div className="absolute top-3.5 left-3.5 bg-navy-midnight/90 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded">
                   {art.category}
+                </div>
+                {/* Subtle Card Mandala Motif */}
+                <div className="absolute -top-8 -right-8 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
+                  <MandalaArt seed={`article-card-${art.id}`} size={110} variant="white" spin={true} spinDuration={95} complexity="compact" />
                 </div>
               </div>
 

@@ -10,6 +10,7 @@ import TrustSection from '@/components/home/TrustSection';
 import TestimonialSection from '@/components/home/TestimonialSection';
 import InsightsSection from '@/components/home/InsightsSection';
 import LeadCtaSection from '@/components/home/LeadCtaSection';
+import MandalaDivider from '@/components/decorative/MandalaDivider';
 import { 
   getProperties, 
   getLocations, 
@@ -58,11 +59,20 @@ export default function HomePage() {
         ctaText={settings.featuredCtaText}
       />
 
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-featured-categories" />
+
       {/* Property-Type / Service Discovery Tiles */}
       <PropertyTypeGrid settings={settings} />
 
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-categories-why" />
+
       {/* Value Propositions / Why Work With Us */}
       <WhyWorkWithUs settings={settings} />
+
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-why-process" />
 
       {/* Transparent Process / How It Works */}
       <ProcessSection settings={settings} />
@@ -73,11 +83,17 @@ export default function HomePage() {
       {/* Trust & Regulatory Due Diligence */}
       <TrustSection settings={settings} />
 
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-trust-testimonials" />
+
       {/* Verified Client Testimonials */}
       <TestimonialSection testimonials={testimonials} settings={settings} />
 
       {/* Market Insights & RERA Editorial */}
       <InsightsSection articles={articles} settings={settings} />
+
+      {/* Architectural Mandala Transition Ribbon */}
+      <MandalaDivider seed="divider-insights-lead" />
 
       {/* Consultation Request & Final CTA */}
       <LeadCtaSection settings={settings} />

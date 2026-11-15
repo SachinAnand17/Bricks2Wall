@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import MandalaArt from '@/components/decorative/MandalaArt';
 
 interface IntroVideoOverlayProps {
   onComplete?: () => void;
@@ -12,6 +13,7 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
   const [isVisible, setIsVisible] = useState(false);
   const [isSlidingUp, setIsSlidingUp] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -34,21 +36,42 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
     // Safety timeout: if video fails to play or load within 6.5s, slide up anyway
     const safetyTimer = setTimeout(() => {
       dismissIntro();
-    }, 6500);
+    }, 6200);
 
     return () => clearTimeout(safetyTimer);
   }, [forceShow, onComplete]);
+
+  // Attempt autoplay on mount
+  useEffect(() => {
+    if (isVisible && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.warn('Intro video autoplay was blocked or delayed:', error);
+        });
+      }
+    }
+  }, [isVisible]);
+
+  // Track playback time to animate progress bar
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.duration) {
+      const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(pct);
+    }
+  };
 
   const dismissIntro = () => {
     if (isSlidingUp) return;
     setIsSlidingUp(true);
     sessionStorage.setItem('b2w_intro_seen', 'true');
 
-    // Wait for the upward slide animation (800ms) before unmounting
+    // Smooth upward curtain glide (1000ms) before unmounting
     setTimeout(() => {
       setIsVisible(false);
       if (onComplete) onComplete();
-    }, 800);
+    }, 1000);
   };
 
   const handleVideoEnded = () => {
@@ -59,23 +82,34 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
     setVideoError(true);
     setTimeout(() => {
       dismissIntro();
-    }, 1500);
+    }, 1800);
   };
 
   if (!isVisible) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0B1827] text-white transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] ${
+      className={`fixed inset-0 z-[99999] w-screen h-screen bg-white text-navy-midnight overflow-hidden flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform ${
         isSlidingUp ? '-translate-y-full' : 'translate-y-0'
       }`}
-      aria-label="Bricks2Wall Introduction"
+      aria-label="Bricks2Wall Introduction Screen"
     >
-      {/* Background radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(200,164,93,0.18)_0%,transparent_70%)] pointer-events-none" />
+      {/* Subtle corner mandala decorations that complement the logo medallion */}
+      <div className="absolute top-4 left-4 pointer-events-none opacity-20">
+        <MandalaArt seed="intro-tl" size={140} variant="gold" spin={true} spinDuration={90} />
+      </div>
+      <div className="absolute top-4 right-4 pointer-events-none opacity-20">
+        <MandalaArt seed="intro-tr" size={140} variant="gold" spin={true} spinDuration={90} />
+      </div>
+      <div className="absolute bottom-4 left-4 pointer-events-none opacity-20">
+        <MandalaArt seed="intro-bl" size={140} variant="gold" spin={true} spinDuration={90} />
+      </div>
+      <div className="absolute bottom-4 right-4 pointer-events-none opacity-20">
+        <MandalaArt seed="intro-br" size={140} variant="gold" spin={true} spinDuration={90} />
+      </div>
 
-      {/* Video Container */}
-      <div className="relative w-full h-full max-w-5xl max-h-[85vh] flex items-center justify-center p-4">
+      {/* Full Screen Edge-to-Edge Video Viewport */}
+      <div className="relative w-full h-full flex items-center justify-center bg-white">
         {!videoError ? (
           <video
             ref={videoRef}
@@ -83,45 +117,56 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
             autoPlay
             muted
             playsInline
+            onTimeUpdate={handleTimeUpdate}
             onEnded={handleVideoEnded}
             onError={handleVideoError}
-            className="w-full h-full object-contain rounded-xl shadow-2xl"
+            className="w-full h-full object-contain sm:object-cover"
           />
         ) : (
           /* Fallback Poster in case video stream fails */
-          <div className="flex flex-col items-center text-center p-8 space-y-4 animate-fade-in">
-            <div className="w-32 h-32 relative mb-4">
+          <div className="flex flex-col items-center text-center p-8 space-y-5 animate-fade-in">
+            <div className="w-36 h-36 relative mb-2">
               <Image
-                src="/brand/brand-emblem.jpg"
+                src="/brand/brand-logo.jpg"
                 alt="Bricks2Wall Emblem"
                 fill
-                className="object-contain rounded-full shadow-gold-glow"
+                priority
+                className="object-contain"
               />
             </div>
-            <h1 className="font-serif text-3xl md:text-4xl text-gold-champagne tracking-wider">
-              BRICKS2WALL
+            <h1 className="font-serif text-3xl md:text-5xl text-navy-midnight tracking-wider">
+              BRICKS<span className="text-gold-champagne font-light">2</span>WALL
             </h1>
-            <p className="text-white/70 tracking-widest text-xs uppercase">
+            <p className="text-text-slate tracking-widest text-xs uppercase font-medium">
               Property, With Perspective
             </p>
           </div>
         )}
       </div>
 
-      {/* Skip Button & Controls */}
-      <div className="absolute bottom-8 right-8 z-20 flex items-center gap-4">
+      {/* Bottom Progress Bar */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-canvas-grey/40 z-30">
+        <div
+          className="h-full bg-gradient-to-r from-gold-deep via-gold-champagne to-gold-deep transition-all duration-150 ease-linear"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      {/* Floating Skip Button */}
+      <div className="absolute bottom-8 right-8 z-30 flex items-center gap-4">
         <button
           onClick={dismissIntro}
-          className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-gold-champagne/40 bg-navy-midnight/80 backdrop-blur-md text-white/90 text-xs tracking-widest uppercase hover:bg-gold-champagne hover:text-navy-deep hover:border-gold-champagne transition-all duration-300 shadow-luxury"
+          className="group flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-navy-midnight text-white text-xs font-semibold tracking-widest uppercase hover:bg-gold-deep hover:text-navy-deep transition-all duration-300 shadow-luxury border border-gold-champagne/30"
         >
           <span>Skip Intro</span>
-          <span className="transition-transform group-hover:translate-x-1">→</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1 font-bold">→</span>
         </button>
       </div>
 
-      {/* Bottom subtle brand credit */}
-      <div className="absolute bottom-8 left-8 hidden md:block text-white/40 text-xs tracking-wider">
-        A Considered Digital Property Experience
+      {/* Bottom subtle brand tagline */}
+      <div className="absolute bottom-8 left-8 z-30 hidden md:flex items-center gap-2 text-text-slate text-xs tracking-wider font-light">
+        <span className="w-2 h-2 rounded-full bg-gold-champagne" />
+        <span>A Considered Digital Property Experience</span>
       </div>
     </div>
   );

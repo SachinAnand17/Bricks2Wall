@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Calendar, Compass, Key, Search, ArrowRight } from 'lucide-react';
 import { ContentSettings } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface ProcessSectionProps {
   settings?: ContentSettings;
@@ -41,8 +43,11 @@ export default function ProcessSection({ settings }: ProcessSectionProps) {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-canvas-ivory/50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-canvas-ivory/50 to-white">
+      {/* Background Section Watermark */}
+      <MandalaWatermark seed="process-section-watermark" position="top-right" size={500} opacity={0.06} spinDuration={170} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-2xl mx-auto pb-16 space-y-3">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
@@ -66,10 +71,15 @@ export default function ProcessSection({ settings }: ProcessSectionProps) {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-2xl font-bold text-gold-champagne/60">
-                      {item.step}
-                    </span>
-                    <div className="w-10 h-10 rounded-full bg-canvas-ivory flex items-center justify-center text-navy-midnight">
+                    <div className="relative flex items-center justify-center">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                        <MandalaArt seed={`step-halo-${idx}`} size={56} variant="gold" spin={true} spinDuration={60 + idx * 15} complexity="compact" />
+                      </div>
+                      <span className="font-serif text-2xl font-bold text-gold-deep relative z-10 px-2 py-1">
+                        {item.step}
+                      </span>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-canvas-ivory flex items-center justify-center text-navy-midnight border border-canvas-grey/60">
                       <Icon className="w-5 h-5 text-gold-deep" />
                     </div>
                   </div>

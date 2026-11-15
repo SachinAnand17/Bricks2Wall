@@ -4,6 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, PlayCircle, ShieldCheck } from 'lucide-react';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 export interface FooterProps {
   brandDescription?: string;
@@ -43,8 +45,12 @@ export default function Footer({
   };
 
   return (
-    <footer className="bg-gradient-to-b from-[#10243A] to-[#0B1827] text-white pt-16 pb-12 border-t border-gold-champagne/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#10243A] to-[#0B1827] text-white pt-16 pb-12 border-t border-gold-champagne/20">
+      {/* Background Majestic Architectural Mandala Watermark */}
+      <MandalaWatermark seed="footer-tapestry-mandala" position="bottom-right" size={820} variant="white" opacity={0.06} spinDuration={260} />
+      <MandalaWatermark seed="footer-ambient-mandala-left" position="top-left" size={540} variant="gold" opacity={0.05} spinDuration={220} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           
           {/* Brand & Mission Column */}

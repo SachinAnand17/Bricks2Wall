@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Property } from '@/types';
 import PropertyCard from './PropertyCard';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
+import MandalaArt from '@/components/decorative/MandalaArt';
 
 interface FeaturedPropertiesProps {
   properties: Property[];
@@ -29,8 +31,11 @@ export default function FeaturedProperties({
   });
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-canvas-ivory/40 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-canvas-ivory/40 to-white">
+      {/* Unique Distinctive Mandala Watermark */}
+      <MandalaWatermark seed="featured-mandala-main" position="top-right" size={540} opacity={0.08} spinDuration={160} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6">

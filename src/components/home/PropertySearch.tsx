@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, MapPin, Home, IndianRupee, Bed } from 'lucide-react';
 import { TransactionType } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
 
 interface PropertySearchProps {
   title?: string;
@@ -48,17 +49,27 @@ export default function PropertySearch({
 
   return (
     <div className="relative -mt-8 sm:-mt-12 z-20 max-w-6xl mx-auto px-4 sm:px-6">
-      <div className="bg-white rounded-2xl shadow-luxury border border-canvas-grey p-4 sm:p-6 lg:p-7">
+      <div className="relative bg-white rounded-2xl shadow-luxury border border-canvas-grey p-4 sm:p-6 lg:p-7 overflow-hidden">
         
+        {/* Subtle Ambient Mandala Background */}
+        <div className="absolute -top-24 -right-24 pointer-events-none opacity-[0.06]">
+          <MandalaArt seed="search-bg" size={320} variant="gold" spin={true} spinDuration={140} />
+        </div>
+
         {/* Top Header & Intent Tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-canvas-grey gap-4">
-          <div>
-            <h3 className="font-serif text-lg font-semibold text-navy-midnight">
-              {title}
-            </h3>
-            <p className="text-xs text-text-slate">
-              {subtitle}
-            </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-canvas-grey gap-4 relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-canvas-ivory border border-gold-champagne/30 flex items-center justify-center shrink-0">
+              <MandalaArt seed="search-icon" size={24} variant="gold" spin={true} spinDuration={45} />
+            </div>
+            <div>
+              <h3 className="font-serif text-lg font-semibold text-navy-midnight">
+                {title}
+              </h3>
+              <p className="text-xs text-text-slate">
+                {subtitle}
+              </p>
+            </div>
           </div>
 
           <div className="flex items-center p-1 bg-canvas-ivory rounded-full border border-canvas-grey self-start sm:self-auto">

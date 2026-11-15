@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Compass, Shield, Building2 } from 'lucide-react';
 import { ContentSettings } from '@/types';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
+import MandalaArt from '@/components/decorative/MandalaArt';
 
 interface HeroProps {
   settings?: ContentSettings;
@@ -56,6 +58,10 @@ export default function Hero({
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-canvas-ivory/60 to-white pt-12 pb-16 lg:pt-20 lg:pb-28">
+      {/* Dynamic Unique Mandala Watermarks */}
+      <MandalaWatermark seed="hero-mandala-main" position="top-left" size={640} opacity={0.09} spinDuration={150} />
+      <MandalaWatermark seed="hero-mandala-ambient" position="bottom-right" size={480} opacity={0.06} spinDuration={190} />
+
       {/* Background Architectural Radial Glow */}
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-champagne/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -top-20 left-10 w-72 h-72 bg-navy-midnight/5 rounded-full blur-2xl pointer-events-none" />

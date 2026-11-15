@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Send, Phone, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import { ContentSettings } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface LeadCtaSectionProps {
   settings?: ContentSettings;
@@ -89,6 +91,9 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
 
   return (
     <section className="py-24 bg-gradient-to-b from-white via-canvas-ivory to-white relative overflow-hidden">
+      {/* Background Mandala Art Watermark */}
+      <MandalaWatermark seed="lead-cta-watermark" position="top-right" size={620} opacity={0.08} spinDuration={190} />
+
       {/* Champagne Gold Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-champagne/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -138,9 +143,14 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
           </div>
 
           {/* Right Column: Gold-lit Glass Panel Form */}
-          <div className="lg:col-span-7">
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-gold-champagne/30 shadow-luxury">
-              <h3 className="font-serif text-xl font-semibold text-navy-midnight mb-2">
+          <div className="lg:col-span-7 relative">
+            <div className="relative bg-white/90 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-gold-champagne/30 shadow-luxury overflow-hidden">
+              {/* Subtle Form Corner Mandala Seal */}
+              <div className="absolute -top-12 -right-12 pointer-events-none opacity-20">
+                <MandalaArt seed="lead-form-seal" size={170} variant="gold" spin={true} spinDuration={90} complexity="elaborate" />
+              </div>
+
+              <h3 className="font-serif text-xl font-semibold text-navy-midnight mb-2 relative z-10">
                 {formTitle}
               </h3>
               <p className="text-xs text-text-slate mb-6">

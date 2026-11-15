@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { ShieldCheck, FileCheck, Award, Users, ArrowRight } from 'lucide-react';
 import { ContentSettings } from '@/types';
+import MandalaArt from '@/components/decorative/MandalaArt';
+import MandalaWatermark from '@/components/decorative/MandalaWatermark';
 
 interface WhyWorkWithUsProps {
   settings?: ContentSettings;
@@ -38,6 +40,9 @@ export default function WhyWorkWithUs({ settings }: WhyWorkWithUsProps) {
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
+      {/* Central Grand Sacred Geometry Mandala Watermark */}
+      <MandalaWatermark seed="why-us-center-mandala" position="center" size={720} opacity={0.06} spinDuration={240} />
+
       {/* Decorative architectural background line */}
       <div className="absolute inset-0 bg-[radial-gradient(#C8A45D_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
 
@@ -76,9 +81,14 @@ export default function WhyWorkWithUs({ settings }: WhyWorkWithUsProps) {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-canvas-ivory/80 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm hover:shadow-luxury space-y-3"
+                  className="relative overflow-hidden p-6 rounded-2xl bg-canvas-ivory/80 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm hover:shadow-luxury space-y-3"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-gold-deep shadow-sm border border-canvas-grey">
+                  {/* Distinctive Unique Pillar Corner Mandala */}
+                  <div className="absolute -top-8 -right-8 pointer-events-none opacity-20 hover:opacity-40 transition-opacity">
+                    <MandalaArt seed={`pillar-mandala-${idx}`} size={110} variant="gold" spin={true} spinDuration={90 + idx * 20} complexity="compact" />
+                  </div>
+
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-gold-deep shadow-sm border border-canvas-grey relative z-10">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-serif text-base font-semibold text-navy-midnight">
