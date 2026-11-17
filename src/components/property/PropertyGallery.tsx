@@ -36,9 +36,9 @@ export default function PropertyGallery({ media, title }: PropertyGalleryProps) 
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       {/* Main Large Hero Image */}
-      <div className="relative h-[380px] sm:h-[480px] lg:h-[540px] w-full rounded-2xl overflow-hidden bg-canvas-ivory border border-canvas-grey shadow-sm group">
+      <div className="relative h-[250px] sm:h-[400px] lg:h-[500px] w-full rounded-2xl overflow-hidden bg-canvas-ivory border border-canvas-grey shadow-sm group">
         <Image
           src={images[activeIdx].url}
           alt={images[activeIdx].altText || title}
@@ -52,7 +52,7 @@ export default function PropertyGallery({ media, title }: PropertyGalleryProps) 
 
         {/* Caption */}
         {images[activeIdx].caption && (
-          <div className="absolute bottom-4 left-4 z-10 bg-navy-midnight/80 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-white text-xs">
+          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 bg-navy-midnight/80 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-white text-[10px] sm:text-xs">
             {images[activeIdx].caption}
           </div>
         )}
@@ -60,10 +60,10 @@ export default function PropertyGallery({ media, title }: PropertyGalleryProps) 
         {/* Fullscreen Expand Button */}
         <button
           onClick={() => setLightboxOpen(true)}
-          className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/90 backdrop-blur-md text-navy-midnight hover:bg-white text-xs font-medium shadow-md transition-all"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-white/90 backdrop-blur-md text-navy-midnight hover:bg-white text-[11px] sm:text-xs font-medium shadow-md transition-all"
         >
           <Maximize2 className="w-3.5 h-3.5 text-gold-deep" />
-          <span>View Fullscreen</span>
+          <span className="hidden xs:inline">Fullscreen</span>
         </button>
 
         {/* Previous / Next buttons */}
@@ -71,14 +71,14 @@ export default function PropertyGallery({ media, title }: PropertyGalleryProps) 
           <>
             <button
               onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-navy-midnight flex items-center justify-center shadow-md transition-all opacity-0 group-hover:opacity-100"
+              className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/85 hover:bg-white text-navy-midnight flex items-center justify-center shadow-md transition-all opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-navy-midnight flex items-center justify-center shadow-md transition-all opacity-0 group-hover:opacity-100"
+              className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/85 hover:bg-white text-navy-midnight flex items-center justify-center shadow-md transition-all opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5" />
@@ -94,11 +94,10 @@ export default function PropertyGallery({ media, title }: PropertyGalleryProps) 
             <button
               key={img.id || idx}
               onClick={() => setActiveIdx(idx)}
-              className={`relative h-20 w-28 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
-                activeIdx === idx
+              className={`relative h-20 w-28 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${activeIdx === idx
                   ? 'border-gold-champagne shadow-gold-glow scale-105'
                   : 'border-canvas-grey opacity-70 hover:opacity-100'
-              }`}
+                }`}
             >
               <Image
                 src={img.url}

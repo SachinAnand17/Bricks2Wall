@@ -14,9 +14,9 @@ export default function LocationsPage() {
   const locations = getLocations();
 
   return (
-    <div className="py-16 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+    <div className="py-10 sm:py-16 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+
         <div className="max-w-2xl space-y-3">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase text-gold-deep">
             <Compass className="w-3.5 h-3.5 text-gold-champagne" />
@@ -30,14 +30,14 @@ export default function LocationsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {locations.map((loc) => (
             <Link
               key={loc.id}
               href={`/locations/${loc.slug}`}
               className="group bg-white rounded-2xl overflow-hidden border border-canvas-grey hover:border-gold-champagne/50 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col"
             >
-              <div className="relative h-60 w-full overflow-hidden bg-canvas-ivory">
+              <div className="relative h-48 sm:h-60 w-full overflow-hidden bg-canvas-ivory">
                 <Image
                   src={loc.heroImageUrl}
                   alt={loc.name}
@@ -45,7 +45,7 @@ export default function LocationsPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between text-white">
                   <div className="flex items-center gap-1 text-xs">
                     <MapPin className="w-3.5 h-3.5 text-gold-champagne" />
                     <span>{loc.city}</span>
@@ -56,9 +56,9 @@ export default function LocationsPage() {
                 </div>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <h3 className="font-serif text-xl font-semibold text-navy-midnight group-hover:text-gold-deep transition-colors">
+                  <h3 className="font-serif text-lg sm:text-xl font-semibold text-navy-midnight group-hover:text-gold-deep transition-colors">
                     {loc.name}
                   </h3>
                   <p className="text-xs text-text-slate line-clamp-3 leading-relaxed">

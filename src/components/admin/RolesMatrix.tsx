@@ -66,7 +66,7 @@ const ROLES_DATA = [
 
 export default function RolesMatrix() {
   return (
-    <div className="bg-white rounded-2xl border border-canvas-grey p-6 shadow-sm max-w-5xl space-y-6">
+    <div className="bg-white rounded-2xl border border-canvas-grey p-4 sm:p-6 shadow-sm max-w-5xl space-y-6">
       <div className="pb-4 border-b border-canvas-grey">
         <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-gold-deep mb-1">
           <Shield className="w-3.5 h-3.5 text-gold-champagne" />

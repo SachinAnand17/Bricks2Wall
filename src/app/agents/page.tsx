@@ -14,9 +14,9 @@ export default function AgentsPage() {
   const agents = getAgents();
 
   return (
-    <div className="py-16 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+    <div className="py-10 sm:py-16 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+
         <div className="max-w-2xl space-y-3">
           <span className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
             Licensed Advisory Team
@@ -29,15 +29,15 @@ export default function AgentsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl">
           {agents.map((agent) => (
             <div
               key={agent.id}
-              className="bg-canvas-ivory/60 rounded-2xl p-8 border border-canvas-grey hover:border-gold-champagne/40 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col justify-between space-y-6"
+              className="bg-canvas-ivory/60 rounded-2xl p-6 sm:p-8 border border-canvas-grey hover:border-gold-champagne/40 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col justify-between space-y-6"
             >
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
-                  <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 border-2 border-gold-champagne/40">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shrink-0 border-2 border-gold-champagne/40">
                     <Image
                       src={agent.photoUrl}
                       alt={agent.name}
@@ -50,7 +50,7 @@ export default function AgentsPage() {
                       <ShieldCheck className="w-3.5 h-3.5 text-gold-champagne" />
                       <span>{agent.licenseNumber || 'Certified Advisor'}</span>
                     </div>
-                    <h3 className="font-serif text-xl font-semibold text-navy-midnight">
+                    <h3 className="font-serif text-lg sm:text-xl font-semibold text-navy-midnight">
                       {agent.name}
                     </h3>
                     <p className="text-xs text-text-slate">
@@ -59,7 +59,7 @@ export default function AgentsPage() {
                   </div>
                 </div>
 
-                <p className="text-xs text-text-slate leading-relaxed">
+                <p className="text-xs sm:text-sm text-text-slate leading-relaxed">
                   {agent.bio}
                 </p>
 
@@ -81,11 +81,11 @@ export default function AgentsPage() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-canvas-grey/70 flex flex-wrap items-center justify-between gap-3">
+              <div className="pt-4 border-t border-canvas-grey/70 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <a
                     href={`tel:${agent.phone}`}
-                    className="p-2 rounded-lg bg-white border border-canvas-grey hover:bg-gold-champagne hover:text-navy-deep text-navy-midnight transition-colors"
+                    className="p-2.5 rounded-lg bg-white border border-canvas-grey hover:bg-gold-champagne hover:text-navy-deep text-navy-midnight transition-colors"
                     title="Direct Phone Call"
                   >
                     <Phone className="w-4 h-4" />
@@ -94,14 +94,14 @@ export default function AgentsPage() {
                     href={`https://wa.me/${agent.whatsapp}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 transition-colors"
+                    className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 transition-colors"
                     title="WhatsApp Chat"
                   >
                     <MessageCircle className="w-4 h-4" />
                   </a>
                   <a
                     href={`mailto:${agent.email}`}
-                    className="p-2 rounded-lg bg-white border border-canvas-grey hover:bg-gold-champagne hover:text-navy-deep text-navy-midnight transition-colors"
+                    className="p-2.5 rounded-lg bg-white border border-canvas-grey hover:bg-gold-champagne hover:text-navy-deep text-navy-midnight transition-colors"
                     title="Email"
                   >
                     <Mail className="w-4 h-4" />
@@ -110,7 +110,7 @@ export default function AgentsPage() {
 
                 <Link
                   href={`/agents/${agent.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-deep hover:text-navy-midnight"
+                  className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-gold-deep hover:text-navy-midnight py-2 px-3 rounded-lg bg-white sm:bg-transparent border sm:border-transparent border-canvas-grey"
                 >
                   <span>View Profile & Listings</span>
                   <ArrowRight className="w-3.5 h-3.5" />

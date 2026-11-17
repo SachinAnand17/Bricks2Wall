@@ -90,13 +90,13 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
     <div className="bg-white rounded-2xl border border-canvas-grey shadow-sm overflow-hidden max-w-6xl">
       
       {/* Header Bar */}
-      <div className="p-6 bg-gradient-to-r from-canvas-ivory via-white to-canvas-ivory border-b border-canvas-grey flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 bg-gradient-to-r from-canvas-ivory via-white to-canvas-ivory border-b border-canvas-grey flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold-deep mb-1">
             <Sliders className="w-4 h-4 text-gold-champagne" />
             <span>Universal CMS & Visual Studio</span>
           </div>
-          <h3 className="font-serif text-2xl font-bold text-navy-midnight">
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-navy-midnight">
             Website Customizer & Live Text Control Panel
           </h3>
           <p className="text-xs text-text-slate mt-0.5">
@@ -104,9 +104,9 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full md:w-auto">
           {successMsg && (
-            <div className="flex items-center gap-1.5 text-xs text-emerald-800 bg-emerald-100 border border-emerald-300 px-3 py-1.5 rounded-xl font-medium animate-fade-in">
+            <div className="flex items-center gap-1.5 text-xs text-emerald-800 bg-emerald-100 border border-emerald-300 px-3 py-1.5 rounded-xl font-medium animate-fade-in w-full sm:w-auto justify-center">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               <span>All changes saved & live!</span>
             </div>
@@ -115,7 +115,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
           <button
             type="button"
             onClick={handleResetDefaults}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-canvas-grey hover:bg-canvas-ivory text-text-slate text-xs font-medium transition-colors"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl border border-canvas-grey hover:bg-canvas-ivory text-text-slate text-xs font-medium transition-colors"
             title="Reset to factory master defaults"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
             type="button"
             onClick={() => handleSave()}
             disabled={saving}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-navy-midnight text-white text-xs font-semibold uppercase tracking-wider hover:bg-gold-deep transition-all shadow-md disabled:opacity-60"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-navy-midnight text-white text-xs font-semibold uppercase tracking-wider hover:bg-gold-deep transition-all shadow-md disabled:opacity-60"
           >
             <Save className="w-4 h-4 text-gold-champagne" />
             <span>{saving ? 'Publishing...' : 'Save & Publish Live'}</span>
@@ -193,7 +193,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   type="text"
                   value={settings.announcementText}
                   onChange={(e) => handleChange('announcementText', e.target.value)}
-                  className="w-full h-11 px-3 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+                  className="w-full h-11 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
                 />
               </div>
 
@@ -204,7 +204,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.announcementLinkText}
                     onChange={(e) => handleChange('announcementLinkText', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
                   />
                 </div>
 
@@ -214,7 +214,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.announcementLinkHref}
                     onChange={(e) => handleChange('announcementLinkHref', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
                   />
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.headerPhone}
                     onChange={(e) => handleChange('headerPhone', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
                   />
                 </div>
 
@@ -243,7 +243,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.headerCtaText}
                     onChange={(e) => handleChange('headerCtaText', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
                   />
                 </div>
 
@@ -253,7 +253,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.headerCtaHref}
                     onChange={(e) => handleChange('headerCtaHref', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
                   />
                 </div>
               </div>
@@ -282,7 +282,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   type="text"
                   value={settings.heroEyebrow}
                   onChange={(e) => handleChange('heroEyebrow', e.target.value)}
-                  className="w-full h-10 px-3 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-semibold tracking-wider text-gold-deep"
+                  className="w-full h-10 px-3 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-semibold tracking-wider text-gold-deep"
                 />
               </div>
 
@@ -314,7 +314,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={3}
                   value={settings.heroCopy}
                   onChange={(e) => handleChange('heroCopy', e.target.value)}
-                  className="w-full p-3 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none leading-relaxed"
+                  className="w-full p-3 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none leading-relaxed"
                 />
               </div>
 
@@ -328,7 +328,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.primaryCtaText}
                       onChange={(e) => handleChange('primaryCtaText', e.target.value)}
-                      className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                      className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                     />
                   </div>
                   <div className="space-y-1">
@@ -337,7 +337,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.primaryCtaHref}
                       onChange={(e) => handleChange('primaryCtaHref', e.target.value)}
-                      className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                      className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                     />
                   </div>
                 </div>
@@ -350,7 +350,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.secondaryCtaText}
                       onChange={(e) => handleChange('secondaryCtaText', e.target.value)}
-                      className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                      className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                     />
                   </div>
                   <div className="space-y-1">
@@ -359,7 +359,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.secondaryCtaHref}
                       onChange={(e) => handleChange('secondaryCtaHref', e.target.value)}
-                      className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                      className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                     />
                   </div>
                 </div>
@@ -375,13 +375,13 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.heroStat1Value}
                       onChange={(e) => handleChange('heroStat1Value', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg font-bold"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-bold"
                     />
                     <input
                       type="text"
                       value={settings.heroStat1Label}
                       onChange={(e) => handleChange('heroStat1Label', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg mt-1"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg mt-1"
                     />
                   </div>
                   <div className="space-y-1">
@@ -390,13 +390,13 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.heroStat2Value}
                       onChange={(e) => handleChange('heroStat2Value', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg font-bold"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-bold"
                     />
                     <input
                       type="text"
                       value={settings.heroStat2Label}
                       onChange={(e) => handleChange('heroStat2Label', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg mt-1"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg mt-1"
                     />
                   </div>
                   <div className="space-y-1">
@@ -405,13 +405,13 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.heroStat3Value}
                       onChange={(e) => handleChange('heroStat3Value', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg font-bold"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-bold"
                     />
                     <input
                       type="text"
                       value={settings.heroStat3Label}
                       onChange={(e) => handleChange('heroStat3Label', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg mt-1"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg mt-1"
                     />
                   </div>
                 </div>
@@ -427,7 +427,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.heroImageUrl}
                     onChange={(e) => handleChange('heroImageUrl', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
 
@@ -438,7 +438,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.heroCardBadge}
                       onChange={(e) => handleChange('heroCardBadge', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                     />
                   </div>
                   <div className="space-y-1">
@@ -447,7 +447,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.heroCardTitle}
                       onChange={(e) => handleChange('heroCardTitle', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg font-semibold"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-semibold"
                     />
                   </div>
                   <div className="space-y-1">
@@ -456,7 +456,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       type="text"
                       value={settings.heroCardSubtitle}
                       onChange={(e) => handleChange('heroCardSubtitle', e.target.value)}
-                      className="w-full h-8 px-2 text-xs bg-white border border-canvas-grey rounded-lg"
+                      className="w-full h-8 px-2 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                     />
                   </div>
                 </div>
@@ -490,7 +490,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.searchTitle}
                     onChange={(e) => handleChange('searchTitle', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl font-medium"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl font-medium"
                   />
                 </div>
 
@@ -500,7 +500,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.searchButtonText}
                     onChange={(e) => handleChange('searchButtonText', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl font-bold uppercase"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl font-bold uppercase"
                   />
                 </div>
               </div>
@@ -511,7 +511,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   type="text"
                   value={settings.searchSubtitle}
                   onChange={(e) => handleChange('searchSubtitle', e.target.value)}
-                  className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl"
+                  className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl"
                 />
               </div>
             </div>
@@ -526,7 +526,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.featuredEyebrow}
                     onChange={(e) => handleChange('featuredEyebrow', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl font-semibold text-gold-deep"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl font-semibold text-gold-deep"
                   />
                 </div>
 
@@ -536,7 +536,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.featuredCtaText}
                     onChange={(e) => handleChange('featuredCtaText', e.target.value)}
-                    className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl uppercase font-bold"
+                    className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl uppercase font-bold"
                   />
                 </div>
               </div>
@@ -547,7 +547,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   type="text"
                   value={settings.featuredHeading}
                   onChange={(e) => handleChange('featuredHeading', e.target.value)}
-                  className="w-full h-10 px-3 text-xs bg-white border border-canvas-grey rounded-xl font-serif font-bold text-navy-midnight"
+                  className="w-full h-10 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl font-serif font-bold text-navy-midnight"
                 />
               </div>
 
@@ -557,7 +557,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.featuredCopy}
                   onChange={(e) => handleChange('featuredCopy', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-xl resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl resize-none"
                 />
               </div>
             </div>
@@ -700,7 +700,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.whyHeading}
                     onChange={(e) => handleChange('whyHeading', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
                   />
                 </div>
                 <div className="space-y-1">
@@ -709,7 +709,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.whyStoryLinkText}
                     onChange={(e) => handleChange('whyStoryLinkText', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
               </div>
@@ -808,7 +808,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.processHeading}
                     onChange={(e) => handleChange('processHeading', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
                   />
                 </div>
                 <div className="space-y-1">
@@ -817,7 +817,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.processCtaText}
                     onChange={(e) => handleChange('processCtaText', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg uppercase font-bold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg uppercase font-bold"
                   />
                 </div>
               </div>
@@ -901,7 +901,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.locationsHeading}
                     onChange={(e) => handleChange('locationsHeading', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
                   />
                 </div>
 
@@ -911,7 +911,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.locationsLinkText}
                     onChange={(e) => handleChange('locationsLinkText', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
               </div>
@@ -922,7 +922,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.locationsCopy}
                   onChange={(e) => handleChange('locationsCopy', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-lg resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg resize-none"
                 />
               </div>
             </div>
@@ -952,7 +952,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   type="text"
                   value={settings.trustHeading}
                   onChange={(e) => handleChange('trustHeading', e.target.value)}
-                  className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
+                  className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
                 />
               </div>
 
@@ -1064,7 +1064,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.testimonialsHeading}
                     onChange={(e) => handleChange('testimonialsHeading', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
                   />
                 </div>
 
@@ -1074,7 +1074,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.insightsHeading}
                     onChange={(e) => handleChange('insightsHeading', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold"
                   />
                 </div>
               </div>
@@ -1104,7 +1104,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.leadCtaEyebrow}
                     onChange={(e) => handleChange('leadCtaEyebrow', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-semibold text-gold-deep"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-semibold text-gold-deep"
                   />
                 </div>
 
@@ -1114,7 +1114,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.leadSubmitButtonText}
                     onChange={(e) => handleChange('leadSubmitButtonText', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-bold uppercase"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-bold uppercase"
                   />
                 </div>
               </div>
@@ -1125,7 +1125,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   type="text"
                   value={settings.leadCtaHeading}
                   onChange={(e) => handleChange('leadCtaHeading', e.target.value)}
-                  className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold text-navy-midnight"
+                  className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-serif font-bold text-navy-midnight"
                 />
               </div>
 
@@ -1135,7 +1135,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.leadCtaCopy}
                   onChange={(e) => handleChange('leadCtaCopy', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-lg resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg resize-none"
                 />
               </div>
 
@@ -1146,7 +1146,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.leadFormTitle}
                     onChange={(e) => handleChange('leadFormTitle', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-semibold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-semibold"
                   />
                 </div>
 
@@ -1156,7 +1156,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.leadFormSubtitle}
                     onChange={(e) => handleChange('leadFormSubtitle', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
               </div>
@@ -1167,7 +1167,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.leadConsentText}
                   onChange={(e) => handleChange('leadConsentText', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-lg resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg resize-none"
                 />
               </div>
             </div>
@@ -1201,7 +1201,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                       handleChange('phoneContact', e.target.value);
                       handleChange('headerPhone', e.target.value);
                     }}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg font-semibold"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg font-semibold"
                   />
                 </div>
 
@@ -1211,7 +1211,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.whatsappContact}
                     onChange={(e) => handleChange('whatsappContact', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
 
@@ -1221,7 +1221,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="email"
                     value={settings.emailContact}
                     onChange={(e) => handleChange('emailContact', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
               </div>
@@ -1233,7 +1233,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.officeAddress}
                     onChange={(e) => handleChange('officeAddress', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
 
@@ -1243,7 +1243,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.businessHours}
                     onChange={(e) => handleChange('businessHours', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
               </div>
@@ -1254,7 +1254,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.reraDisclaimerText}
                   onChange={(e) => handleChange('reraDisclaimerText', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-lg resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg resize-none"
                 />
               </div>
             </div>
@@ -1269,7 +1269,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.footerBrandDescription}
                   onChange={(e) => handleChange('footerBrandDescription', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-lg resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg resize-none"
                 />
               </div>
 
@@ -1279,7 +1279,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                   rows={2}
                   value={settings.footerComplianceNotice}
                   onChange={(e) => handleChange('footerComplianceNotice', e.target.value)}
-                  className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-lg resize-none"
+                  className="w-full p-2.5 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg resize-none"
                 />
               </div>
 
@@ -1290,7 +1290,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.footerDemoNotice}
                     onChange={(e) => handleChange('footerDemoNotice', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
 
@@ -1300,7 +1300,7 @@ export default function ContentEditor({ initialSettings, onRefresh, onSaved }: C
                     type="text"
                     value={settings.footerCopyrightText}
                     onChange={(e) => handleChange('footerCopyrightText', e.target.value)}
-                    className="w-full h-9 px-3 text-xs bg-white border border-canvas-grey rounded-lg"
+                    className="w-full h-9 px-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-lg"
                   />
                 </div>
               </div>

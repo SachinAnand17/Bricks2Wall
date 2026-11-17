@@ -49,7 +49,7 @@ export default function PropertySearch({
   };
 
   return (
-    <div className="relative -mt-8 sm:-mt-12 z-40 max-w-6xl mx-auto px-4 sm:px-6">
+    <div className="relative -mt-6 sm:-mt-10 lg:-mt-12 z-40 max-w-6xl mx-auto px-3 sm:px-6">
       <div className="relative bg-white rounded-2xl shadow-luxury border border-canvas-grey p-4 sm:p-6 lg:p-7 overflow-visible">
         
         {/* Prominent Bold Mandala Background safely contained in rounded corners without clipping dropdowns */}
@@ -60,28 +60,28 @@ export default function PropertySearch({
         </div>
 
         {/* Top Header & Intent Tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-canvas-grey gap-4 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 sm:pb-6 border-b border-canvas-grey gap-3 sm:gap-4 relative z-10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-canvas-ivory border border-gold-champagne/30 flex items-center justify-center shrink-0">
-              <MandalaArt seed="search-icon" size={24} variant="gold" spin={true} spinDuration={45} />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-canvas-ivory border border-gold-champagne/30 flex items-center justify-center shrink-0">
+              <MandalaArt seed="search-icon" size={20} variant="gold" spin={true} spinDuration={45} />
             </div>
             <div>
-              <h3 className="font-serif text-lg font-semibold text-navy-midnight">
+              <h3 className="font-serif text-base sm:text-lg font-semibold text-navy-midnight">
                 {title}
               </h3>
-              <p className="text-xs text-text-slate">
+              <p className="text-[11px] sm:text-xs text-text-slate">
                 {subtitle}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center p-1 bg-canvas-ivory rounded-full border border-canvas-grey self-start sm:self-auto">
+          <div className="flex items-center p-1 bg-canvas-ivory rounded-full border border-canvas-grey self-start sm:self-auto overflow-x-auto max-w-full no-scrollbar">
             {(['all', 'buy', 'rent', 'commercial'] as const).map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-200 ${
+                className={`px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider uppercase whitespace-nowrap transition-all duration-200 ${
                   activeTab === tab
                     ? 'bg-navy-midnight text-white shadow-sm'
                     : 'text-text-slate hover:text-navy-midnight'
@@ -94,7 +94,7 @@ export default function PropertySearch({
         </div>
 
         {/* Search Controls Form */}
-        <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-5 items-end relative z-20">
+        <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 pt-4 sm:pt-5 items-end relative z-20">
           
           {/* Location Field */}
           <div className="space-y-1.5">

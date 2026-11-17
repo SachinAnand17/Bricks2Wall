@@ -21,7 +21,7 @@ export default function IntroVideoOverlay({ onComplete, forceShow = false }: Int
 
   const isAdminRoute = Boolean(
     isClientAdmin ||
-      (pathname && (pathname.startsWith('/sachin') || pathname.startsWith('/admin')))
+    (pathname && (pathname.startsWith('/sachin') || pathname.startsWith('/admin')))
   );
 
   // If on admin routes, do not even render a single DOM node
@@ -49,7 +49,7 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
 
     try {
       sessionStorage.setItem('b2w_intro_seen', 'true');
-    } catch {}
+    } catch { }
 
     // Smooth upward curtain glide (1200ms) before unmounting
     setTimeout(() => {
@@ -69,13 +69,13 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
       } else if ((performance as any).navigation) {
         isReload = (performance as any).navigation.type === 1;
       }
-    } catch {}
+    } catch { }
 
     // On browser reload or hard refresh (CTRL+SHIFT+R), always clear intro seen flag so it plays!
     if (isReload) {
       try {
         sessionStorage.removeItem('b2w_intro_seen');
-      } catch {}
+      } catch { }
     }
 
     // 2. Keyboard listeners for Ctrl+Shift+R, Ctrl+R, F5, Cmd+Shift+R, Cmd+R
@@ -86,7 +86,7 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
       ) {
         try {
           sessionStorage.removeItem('b2w_intro_seen');
-        } catch {}
+        } catch { }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -96,7 +96,7 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
     const handleUnload = () => {
       try {
         sessionStorage.removeItem('b2w_intro_seen');
-      } catch {}
+      } catch { }
     };
     window.addEventListener('beforeunload', handleUnload);
     window.addEventListener('pagehide', handleUnload);
@@ -157,7 +157,7 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
   const handleMetadataLoaded = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     try {
       e.currentTarget.playbackRate = 0.8;
-    } catch {}
+    } catch { }
   };
 
   const handleVideoEnded = () => {
@@ -185,18 +185,18 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
       }}
       aria-label="Bricks2Wall Introduction Screen"
     >
-      {/* Corner mandala architectural accents */}
-      <div className="absolute top-4 left-4 pointer-events-none opacity-25">
-        <MandalaArt seed="intro-tl" size={130} variant="gold" spin={true} spinDuration={90} />
+      {/* Corner mandala architectural accents (hidden on small mobile screens to prevent clutter) */}
+      <div className="hidden sm:block absolute top-4 left-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-tl" size={120} variant="gold" spin={true} spinDuration={90} />
       </div>
-      <div className="absolute top-4 right-4 pointer-events-none opacity-25">
-        <MandalaArt seed="intro-tr" size={130} variant="gold" spin={true} spinDuration={90} />
+      <div className="hidden sm:block absolute top-4 right-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-tr" size={120} variant="gold" spin={true} spinDuration={90} />
       </div>
-      <div className="absolute bottom-4 left-4 pointer-events-none opacity-25">
-        <MandalaArt seed="intro-bl" size={130} variant="gold" spin={true} spinDuration={90} />
+      <div className="hidden sm:block absolute bottom-4 left-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-bl" size={120} variant="gold" spin={true} spinDuration={90} />
       </div>
-      <div className="absolute bottom-4 right-4 pointer-events-none opacity-25">
-        <MandalaArt seed="intro-br" size={130} variant="gold" spin={true} spinDuration={90} />
+      <div className="hidden sm:block absolute bottom-4 right-4 pointer-events-none opacity-25">
+        <MandalaArt seed="intro-br" size={120} variant="gold" spin={true} spinDuration={90} />
       </div>
 
       {/* Full Screen Edge-to-Edge Video Viewport */}
@@ -244,10 +244,10 @@ function IntroVideoPlayer({ onComplete, forceShow = false }: IntroVideoOverlayPr
       </div>
 
       {/* Floating Skip Button */}
-      <div className="absolute bottom-8 right-8 z-30 flex items-center gap-4">
+      <div className="absolute bottom-5 right-5 sm:bottom-8 sm:right-8 z-30 flex items-center gap-4">
         <button
           onClick={dismissIntro}
-          className="group flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-navy-midnight text-white text-xs font-semibold tracking-widest uppercase hover:bg-gold-deep hover:text-navy-deep transition-all duration-300 shadow-luxury border border-gold-champagne/30"
+          className="group flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-navy-midnight text-white text-[11px] sm:text-xs font-semibold tracking-widest uppercase hover:bg-gold-deep hover:text-navy-deep transition-all duration-300 shadow-luxury border border-gold-champagne/30"
         >
           <span>Skip Intro</span>
           <span className="transition-transform duration-300 group-hover:translate-x-1 font-bold">→</span>

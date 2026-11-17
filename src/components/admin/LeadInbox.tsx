@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { 
+  ArrowLeft,
   Users, 
   Search, 
   Filter, 
@@ -41,6 +42,7 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
   const [activeTab, setActiveTab] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(safeLeads[0] || null);
+  const [mobileView, setMobileView] = useState<'list' | 'detail'>('list');
   const [noteText, setNoteText] = useState('');
   const [submittingNote, setSubmittingNote] = useState(false);
 
@@ -118,7 +120,7 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
     <div className="bg-white rounded-2xl border border-canvas-grey shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
       
       {/* Left Column: Lead List & Status Tabs */}
-      <div className="lg:col-span-5 border-r border-canvas-grey flex flex-col">
+      <div className={`lg:col-span-5 border-r border-canvas-grey flex flex-col ${mobileView === 'detail' ? 'hidden lg:flex' : 'flex'}`}>
         {/* Header & Search */}
         <div className="p-4 border-b border-canvas-grey space-y-3">
           <div className="flex items-center justify-between">
@@ -135,7 +137,7 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
               placeholder="Search by visitor, email, property..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full h-9 pl-9 pr-3 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+              className="w-full h-10 pl-9 pr-3 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
             />
           </div>
 
@@ -179,7 +181,10 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
               return (
                 <div
                   key={lead.id}
-                  onClick={() => setSelectedLead(lead)}
+                  onClick={() => {
+                    setSelectedLead(lead);
+                    setMobileView('detail');
+                  }}
                   className={`p-4 cursor-pointer transition-colors ${
                     isSelected ? 'bg-canvas-ivory/90 border-l-4 border-l-gold-deep' : 'hover:bg-canvas-ivory/40'
                   }`}
@@ -215,10 +220,20 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
       </div>
 
       {/* Right Column: Lead Detail & CRM Activity Tracker */}
-      <div className="lg:col-span-7 flex flex-col justify-between p-6">
+      <div className={`lg:col-span-7 flex flex-col justify-between p-4 sm:p-6 ${mobileView === 'list' ? 'hidden lg:flex' : 'flex'}`}>
         {selectedLead ? (
           <div className="space-y-6">
             
+            {/* Mobile Back Button */}
+            <button
+              type="button"
+              onClick={() => setMobileView('list')}
+              className="lg:hidden inline-flex items-center gap-1.5 text-xs font-semibold text-navy-midnight mb-1 py-1.5 px-3 rounded-xl bg-canvas-ivory border border-canvas-grey w-fit active:bg-canvas-grey transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 text-gold-deep" />
+              <span>← Back to Enquiries List</span>
+            </button>
+
             {/* Header / Status Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-canvas-grey">
               <div>
@@ -333,18 +348,18 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
               </div>
 
               {/* Add Note Form */}
-              <form onSubmit={handleAddNote} className="flex gap-2 pt-2">
+              <form onSubmit={handleAddNote} className="flex flex-col sm:flex-row gap-2 pt-2">
                 <input
                   type="text"
                   placeholder="Log call attempt, meeting note, or next follow-up..."
                   value={noteText}
                   onChange={(e) => setNoteText(e.target.value)}
-                  className="flex-1 h-9 px-3 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                  className="flex-1 h-10 px-3.5 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
                 />
                 <button
                   type="submit"
                   disabled={submittingNote || !noteText.trim()}
-                  className="px-4 h-9 bg-navy-midnight text-white text-xs font-semibold rounded-xl hover:bg-gold-deep transition-colors disabled:opacity-50 flex items-center gap-1.5"
+                  className="px-4 h-10 bg-navy-midnight text-white text-xs font-semibold rounded-xl hover:bg-gold-deep transition-colors disabled:opacity-50 flex items-center justify-center gap-1.5 shrink-0"
                 >
                   <Send className="w-3 h-3 text-gold-champagne" />
                   <span>Log Note</span>

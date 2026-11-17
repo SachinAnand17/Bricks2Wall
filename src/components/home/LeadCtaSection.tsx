@@ -101,7 +101,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left Column Text */}
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C8A45D]/40 text-xs font-semibold tracking-widest uppercase text-[#C8A45D]">
@@ -167,7 +167,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                
+
                 {/* Honeypot anti-bot */}
                 <input
                   type="text"
@@ -188,7 +188,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
                       placeholder="e.g. Vikram Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full h-11 px-3.5 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                      className="w-full h-11 px-3.5 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
                     />
                   </div>
 
@@ -200,7 +200,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
                       placeholder="+91 98765 00000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full h-11 px-3.5 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                      className="w-full h-11 px-3.5 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
                     />
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
                       placeholder="vikram@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full h-11 px-3.5 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+                      className="w-full h-11 px-3.5 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
                     />
                   </div>
 
@@ -242,7 +242,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
                     placeholder="Tell us preferred localities, budget brackets, or specific requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none"
+                    className="w-full p-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none leading-relaxed"
                   />
                 </div>
 

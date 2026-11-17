@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <div className="py-16 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-        
+
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
@@ -35,7 +35,7 @@ export default function AboutPage() {
           </div>
 
           <div className="lg:col-span-5 relative">
-            <div className="relative h-[420px] w-full rounded-3xl overflow-hidden shadow-luxury border-4 border-canvas-ivory">
+            <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-luxury border-2 sm:border-4 border-canvas-ivory">
               <Image
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
                 alt="Bricks2Wall Architectural Philosophy"

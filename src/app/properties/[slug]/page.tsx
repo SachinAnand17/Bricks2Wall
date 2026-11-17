@@ -3,23 +3,23 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Maximize2, 
-  ShieldCheck, 
-  Calendar, 
-  Building2, 
-  Check, 
-  Share2, 
-  ArrowLeft, 
-  Clock, 
-  FileCheck2, 
-  Compass, 
-  Car, 
-  Phone, 
-  Mail, 
+import {
+  MapPin,
+  Bed,
+  Bath,
+  Maximize2,
+  ShieldCheck,
+  Calendar,
+  Building2,
+  Check,
+  Share2,
+  ArrowLeft,
+  Clock,
+  FileCheck2,
+  Compass,
+  Car,
+  Phone,
+  Mail,
   MessageSquare
 } from 'lucide-react';
 import { getPropertyBySlug, getProperties, getAgents } from '@/lib/db';
@@ -91,7 +91,7 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
+
         {/* Navigation Breadcrumb & Back Link */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-canvas-grey">
           <div className="flex items-center gap-2 text-xs text-text-slate">
@@ -141,18 +141,18 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
           </div>
 
           {/* Price Header Card */}
-          <div className="lg:text-right bg-canvas-ivory/80 p-5 rounded-2xl border border-gold-champagne/30 shrink-0">
+          <div className="lg:text-right bg-canvas-ivory/80 p-4 sm:p-5 rounded-2xl border border-gold-champagne/30 shrink-0 w-full lg:w-auto">
             <span className="text-xs uppercase tracking-wider text-text-muted block">
               {property.transactionType === 'rent' || (property.transactionType === 'commercial' && property.price < 500000)
                 ? 'Asking Monthly Lease'
                 : 'Asking Consideration'}
             </span>
-            <div className="font-serif text-3xl font-bold text-navy-midnight">
+            <div className="font-serif text-2xl sm:text-3xl font-bold text-navy-midnight">
               {property.contactForPrice
                 ? 'Price on Request'
                 : property.transactionType === 'rent' || (property.transactionType === 'commercial' && property.price < 500000)
-                ? `${formatINR(property.price)} / mo`
-                : formatINR(property.price)}
+                  ? `${formatINR(property.price)} / mo`
+                  : formatINR(property.price)}
             </div>
             {property.builtUpAreaSqFt > 0 && !property.contactForPrice && (
               <span className="text-xs text-text-muted mt-1 block">
@@ -166,7 +166,7 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
         <PropertyGallery media={property.media} title={property.title} />
 
         {/* Core Specs Grid Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 p-5 rounded-2xl bg-canvas-ivory/70 border border-canvas-grey">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-canvas-ivory/70 border border-canvas-grey">
           <div className="space-y-1">
             <span className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Built-Up Area</span>
             <div className="flex items-center gap-1.5 font-semibold text-navy-midnight text-sm">
@@ -221,10 +221,10 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
 
         {/* Content Split: Left (Details) vs Right (Enquiry Form & Agent Card) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
+
           {/* Left Column: Facts, Description, Amenities */}
           <div className="lg:col-span-8 space-y-10">
-            
+
             {/* Description */}
             <div className="space-y-4">
               <h2 className="font-serif text-2xl font-semibold text-navy-midnight">
@@ -274,11 +274,11 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
               <h3 className="font-serif text-xl font-semibold text-navy-midnight">
                 Detailed Property Specifications
               </h3>
-              <div className="rounded-2xl border border-canvas-grey overflow-hidden">
-                <table className="w-full text-xs text-left">
+              <div className="rounded-2xl border border-canvas-grey overflow-x-auto">
+                <table className="w-full text-xs text-left min-w-[320px]">
                   <tbody className="divide-y divide-canvas-grey">
                     <tr className="bg-canvas-ivory/40">
-                      <td className="py-3 px-4 font-semibold text-text-slate w-1/3">Property Category</td>
+                      <td className="py-3 px-4 font-semibold text-text-slate w-1/3 min-w-[130px]">Property Category</td>
                       <td className="py-3 px-4 text-text-ink">{property.propertyType}</td>
                     </tr>
                     <tr>
@@ -327,7 +327,7 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
 
           {/* Right Column: Sticky Enquiry Box & Assigned Advisor Card */}
           <div className="lg:col-span-4 space-y-6">
-            
+
             {/* Quick Property Enquiry Form */}
             <PropertyEnquiryForm property={property} />
 

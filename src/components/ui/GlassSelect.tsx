@@ -127,9 +127,8 @@ export default function GlassSelect({
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className={`w-full flex items-center justify-between font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 ${sizeStyles} ${variantStyles} ${
-          disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-        } ${isOpen ? 'ring-2 ring-[#C8A45D]/40 border-[#C8A45D]' : ''}`}
+        className={`w-full flex items-center justify-between font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 ${sizeStyles} ${variantStyles} ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+          } ${isOpen ? 'ring-2 ring-[#C8A45D]/40 border-[#C8A45D]' : ''}`}
       >
         <div className="flex items-center gap-2 truncate">
           {selectedOption?.icon && <span className="shrink-0">{selectedOption.icon}</span>}
@@ -139,9 +138,8 @@ export default function GlassSelect({
         </div>
 
         <ChevronDown
-          className={`w-4 h-4 shrink-0 transition-transform duration-200 text-[#C8A45D] ${
-            isOpen ? 'rotate-180' : ''
-          }`}
+          className={`w-4 h-4 shrink-0 transition-transform duration-200 text-[#C8A45D] ${isOpen ? 'rotate-180' : ''
+            }`}
         />
       </button>
 
@@ -149,9 +147,8 @@ export default function GlassSelect({
       {isOpen && (
         <div
           role="listbox"
-          className={`absolute left-0 ${
-            openUpwards ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
-          } w-full min-w-[200px] z-[9999] rounded-2xl p-1.5 overflow-hidden shadow-2xl transition-all duration-150 animate-in fade-in zoom-in-95 ${menuVariantStyles} ${menuClassName}`}
+          className={`absolute left-0 ${openUpwards ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
+            } w-full min-w-[150px] sm:min-w-[180px] max-w-[calc(100vw-2rem)] z-[9999] rounded-2xl p-1.5 overflow-hidden shadow-2xl transition-all duration-150 animate-in fade-in zoom-in-95 ${menuVariantStyles} ${menuClassName}`}
         >
           <div className="max-h-60 overflow-y-auto space-y-1 pr-0.5 custom-scrollbar">
             {options.map((opt) => {
@@ -163,13 +160,12 @@ export default function GlassSelect({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(opt.value)}
-                  className={`w-full flex items-center justify-between px-3 py-2 text-xs rounded-xl font-medium transition-all duration-150 text-left ${
-                    isSelected
+                  className={`w-full flex items-center justify-between px-3 py-2 text-xs rounded-xl font-medium transition-all duration-150 text-left ${isSelected
                       ? 'bg-[#FAF6EE] text-[#9E782F] font-bold border border-[#C8A45D]/30 shadow-xs'
                       : variant === 'dark'
-                      ? 'text-white/85 hover:bg-white/10 hover:text-white'
-                      : 'text-navy-midnight hover:bg-[#FAF6EE]/80 hover:text-[#9E782F]'
-                  }`}
+                        ? 'text-white/85 hover:bg-white/10 hover:text-white'
+                        : 'text-navy-midnight hover:bg-[#FAF6EE]/80 hover:text-[#9E782F]'
+                    }`}
                 >
                   <div className="flex items-center gap-2 truncate">
                     {opt.icon && <span className="shrink-0">{opt.icon}</span>}

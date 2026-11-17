@@ -35,16 +35,18 @@ export default function MandalaWatermark({
   }[position];
 
   return (
-    <div className={`overflow-hidden ${positionClasses} ${className}`} aria-hidden="true">
-      <MandalaArt
-        seed={seed}
-        size={size}
-        variant={variant}
-        opacity={opacity}
-        spin={spin}
-        spinDuration={spinDuration}
-        complexity="architectural"
-      />
+    <div className={`overflow-hidden pointer-events-none select-none max-w-[100vw] ${positionClasses} ${className}`} aria-hidden="true">
+      <div className="scale-65 sm:scale-100 origin-center transition-transform">
+        <MandalaArt
+          seed={seed}
+          size={size}
+          variant={variant}
+          opacity={opacity}
+          spin={spin}
+          spinDuration={spinDuration}
+          complexity="architectural"
+        />
+      </div>
     </div>
   );
 }

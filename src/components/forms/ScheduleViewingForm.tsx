@@ -128,7 +128,7 @@ export default function ScheduleViewingForm({
             placeholder="Full Name"
             value={formData.visitorName}
             onChange={(e) => setFormData({ ...formData, visitorName: e.target.value })}
-            className="w-full h-10 px-3 text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+            className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
           />
         </div>
 
@@ -141,7 +141,7 @@ export default function ScheduleViewingForm({
               placeholder="+91 98765 00000"
               value={formData.visitorPhone}
               onChange={(e) => setFormData({ ...formData, visitorPhone: e.target.value })}
-              className="w-full h-10 px-3 text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+              className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
             />
           </div>
 
@@ -152,7 +152,7 @@ export default function ScheduleViewingForm({
               placeholder="you@email.com"
               value={formData.visitorEmail}
               onChange={(e) => setFormData({ ...formData, visitorEmail: e.target.value })}
-              className="w-full h-10 px-3 text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+              className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
             />
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function ScheduleViewingForm({
               min={minDate}
               value={formData.preferredDate}
               onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-              className="w-full h-10 px-3 text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+              className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
             />
           </div>
 

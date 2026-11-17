@@ -33,7 +33,7 @@ export default function LocationDetailPage({ params }: LocationDetailPageProps) 
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-text-slate">
           <Link href="/" className="hover:text-gold-deep">Home</Link>
@@ -44,7 +44,7 @@ export default function LocationDetailPage({ params }: LocationDetailPageProps) 
         </div>
 
         {/* Hero Banner */}
-        <div className="relative h-[360px] sm:h-[440px] rounded-3xl overflow-hidden shadow-luxury">
+        <div className="relative h-[250px] sm:h-[380px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-luxury">
           <Image
             src={loc.heroImageUrl}
             alt={loc.name}
@@ -54,7 +54,7 @@ export default function LocationDetailPage({ params }: LocationDetailPageProps) 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/90 via-navy-midnight/40 to-transparent" />
 
-          <div className="absolute bottom-8 left-6 sm:left-10 right-6 sm:right-10 text-white space-y-2">
+          <div className="absolute bottom-4 left-4 right-4 sm:bottom-8 sm:left-10 sm:right-10 text-white space-y-1.5 sm:space-y-2">
             <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-gold-champagne font-semibold">
               <MapPin className="w-4 h-4" />
               <span>{loc.city}</span>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { 
-  Building2, 
-  ShieldCheck, 
-  KeyRound, 
-  Briefcase, 
-  Scale, 
-  LineChart, 
+import {
+  Building2,
+  ShieldCheck,
+  KeyRound,
+  Briefcase,
+  Scale,
+  LineChart,
   ArrowRight,
   PhoneCall
 } from 'lucide-react';
@@ -58,9 +58,9 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <div className="py-16 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
+    <div className="py-10 sm:py-16 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-16">
+
         {/* Header */}
         <div className="max-w-3xl space-y-4">
           <span className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
@@ -75,22 +75,22 @@ export default function ServicesPage() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {SERVICES.map((s, idx) => {
             const Icon = s.icon;
             return (
               <div
                 key={idx}
-                className="bg-canvas-ivory/50 rounded-2xl p-8 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm hover:shadow-luxury flex flex-col justify-between space-y-6"
+                className="bg-canvas-ivory/50 rounded-2xl p-6 sm:p-8 border border-canvas-grey hover:border-gold-champagne/40 transition-all duration-300 shadow-sm hover:shadow-luxury flex flex-col justify-between space-y-6"
               >
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-gold-deep border border-canvas-grey shadow-sm">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-navy-midnight">
+                  <h3 className="font-serif text-lg sm:text-xl font-semibold text-navy-midnight">
                     {s.title}
                   </h3>
-                  <p className="text-xs text-text-slate leading-relaxed">
+                  <p className="text-xs sm:text-sm text-text-slate leading-relaxed">
                     {s.description}
                   </p>
                 </div>
@@ -98,7 +98,7 @@ export default function ServicesPage() {
                 <div className="pt-4 border-t border-canvas-grey/60 space-y-2">
                   {s.features.map((f, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs text-text-ink">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gold-champagne" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-gold-champagne shrink-0" />
                       <span>{f}</span>
                     </div>
                   ))}
@@ -109,9 +109,9 @@ export default function ServicesPage() {
         </div>
 
         {/* CTA Banner */}
-        <div className="bg-navy-midnight text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-luxury">
+        <div className="bg-navy-midnight text-white rounded-3xl p-6 sm:p-12 relative overflow-hidden shadow-luxury">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gold-champagne/10 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="relative z-10 max-w-2xl space-y-4">
             <span className="text-xs font-semibold tracking-widest uppercase text-gold-champagne">
               Have a Specific Mandate?
@@ -122,17 +122,17 @@ export default function ServicesPage() {
             <p className="text-sm text-white/75 leading-relaxed">
               Whether you are acquiring a flagship home or leasing a 20,000 sq ft corporate office, our senior partners are at your service.
             </p>
-            <div className="pt-2 flex flex-wrap gap-4">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-champagne text-navy-deep text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gold-champagne text-navy-deep text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
               >
                 <span>Request Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="tel:+919876543210"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-xs font-semibold uppercase tracking-wider hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-xs font-semibold uppercase tracking-wider hover:bg-white/10 transition-colors"
               >
                 <PhoneCall className="w-4 h-4 text-gold-champagne" />
                 <span>Call +91 98765 43210</span>

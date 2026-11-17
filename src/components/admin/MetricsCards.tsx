@@ -58,28 +58,28 @@ export default function MetricsCards({ metrics }: MetricsCardsProps) {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
       {cards.map((c, i) => {
         const Icon = c.icon;
         return (
           <div
             key={i}
-            className="bg-white rounded-2xl p-5 border border-canvas-grey shadow-sm space-y-3"
+            className="bg-white rounded-2xl p-3.5 sm:p-5 border border-canvas-grey shadow-sm flex flex-col justify-between space-y-2 sm:space-y-3"
           >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-text-slate uppercase tracking-wider">
+            <div className="flex items-start sm:items-center justify-between gap-1">
+              <span className="text-[10px] sm:text-xs font-semibold text-text-slate uppercase tracking-wider line-clamp-1">
                 {c.title}
               </span>
-              <div className={`w-9 h-9 rounded-xl ${c.bgColor} ${c.color} flex items-center justify-center`}>
-                <Icon className="w-4 h-4" />
+              <div className={`w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl ${c.bgColor} ${c.color} flex items-center justify-center shrink-0`}>
+                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
             </div>
 
             <div>
-              <div className="font-serif text-3xl font-bold text-navy-midnight">
+              <div className="font-serif text-2xl sm:text-3xl font-bold text-navy-midnight">
                 {c.value}
               </div>
-              <p className="text-xs text-text-muted mt-1">{c.subtext}</p>
+              <p className="text-[10px] sm:text-xs text-text-muted mt-0.5 sm:mt-1 truncate">{c.subtext}</p>
             </div>
           </div>
         );

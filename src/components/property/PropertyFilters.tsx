@@ -53,10 +53,10 @@ export default function PropertyFilters({
   return (
     <div className="bg-white rounded-2xl border border-canvas-grey p-5 shadow-sm space-y-4">
       {/* Top Filter Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+
         {/* Search Input */}
-        <div className="relative flex-1 max-w-md">
+        <div className="relative flex-1 w-full lg:max-w-md">
           <Search className="w-4 h-4 text-gold-champagne absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -67,12 +67,12 @@ export default function PropertyFilters({
                 updateParam('q', (e.target as HTMLInputElement).value);
               }
             }}
-            className="w-full h-10 pl-10 pr-4 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+            className="w-full h-10 pl-10 pr-4 text-xs sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
           />
         </div>
 
         {/* View Mode & Sorter */}
-        <div className="flex items-center gap-3 self-end lg:self-auto">
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
           {/* Sorting Dropdown */}
           <GlassSelect
             value={currentSort}
@@ -85,34 +85,32 @@ export default function PropertyFilters({
             ]}
             size="md"
             variant="glass"
-            className="w-48"
+            className="flex-1 sm:w-48"
           />
 
           {/* Grid / Map Toggle */}
           <div className="flex items-center p-1 bg-canvas-ivory rounded-xl border border-canvas-grey shrink-0">
             <button
               onClick={() => onViewModeChange('grid')}
-              className={`p-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-colors ${
-                viewMode === 'grid'
-                  ? 'bg-navy-midnight text-white shadow-sm'
+              className={`p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-colors ${viewMode === 'grid'
+                  ? 'bg-navy-midnight text-white shadow-sm font-semibold'
                   : 'text-text-slate hover:text-navy-midnight'
-              }`}
+                }`}
               title="List & Grid View"
             >
               <LayoutGrid className="w-4 h-4" />
-              <span className="hidden sm:inline">Grid</span>
+              <span className="inline">Grid</span>
             </button>
             <button
               onClick={() => onViewModeChange('map')}
-              className={`p-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-colors ${
-                viewMode === 'map'
-                  ? 'bg-navy-midnight text-white shadow-sm'
+              className={`p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-colors ${viewMode === 'map'
+                  ? 'bg-navy-midnight text-white shadow-sm font-semibold'
                   : 'text-text-slate hover:text-navy-midnight'
-              }`}
+                }`}
               title="Interactive Map View"
             >
               <Map className="w-4 h-4" />
-              <span className="hidden sm:inline">Map</span>
+              <span className="inline">Map</span>
             </button>
           </div>
         </div>
@@ -121,7 +119,7 @@ export default function PropertyFilters({
 
       {/* Filter Selectors Bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-canvas-grey/60">
-        
+
         {/* Transaction Type */}
         <GlassSelect
           value={currentType}

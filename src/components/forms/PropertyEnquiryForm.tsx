@@ -115,7 +115,7 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             placeholder="Your Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full h-10 px-3 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+            className="w-full h-10 px-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
           />
         </div>
 
@@ -127,7 +127,7 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             placeholder="+91 98765 00000"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="w-full h-10 px-3 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+            className="w-full h-10 px-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
           />
         </div>
 
@@ -139,11 +139,11 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             placeholder="you@domain.com"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full h-10 px-3 text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+            className="w-full h-10 px-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1">
             <label className="text-xs font-semibold text-text-slate block">Preferred Mode</label>
             <GlassSelect
@@ -154,7 +154,7 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
                 { value: 'whatsapp', label: 'WhatsApp' },
                 { value: 'email', label: 'Email' },
               ]}
-              size="sm"
+              size="md"
               variant="glass"
             />
           </div>
@@ -169,7 +169,7 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
                 { value: 'Afternoon (1:00 PM – 4:00 PM)', label: 'Afternoon' },
                 { value: 'Evening (4:00 PM – 7:00 PM)', label: 'Evening' },
               ]}
-              size="sm"
+              size="md"
               variant="glass"
             />
           </div>
@@ -181,7 +181,7 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             rows={2}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="w-full p-2.5 text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none"
+            className="w-full p-2.5 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none leading-relaxed"
           />
         </div>
 

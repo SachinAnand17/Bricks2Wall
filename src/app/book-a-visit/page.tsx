@@ -13,8 +13,8 @@ export default function BookAVisitPage() {
   const properties = getProperties();
 
   return (
-    <div className="py-16 bg-white min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="py-10 sm:py-16 bg-white min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase text-gold-deep bg-canvas-ivory px-3.5 py-1.5 rounded-full border border-canvas-grey">

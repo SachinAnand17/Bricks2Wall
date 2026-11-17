@@ -23,7 +23,7 @@ export default function ContactPage() {
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         <div className="max-w-3xl space-y-3">
           <span className="text-xs font-semibold tracking-widest uppercase text-gold-deep">
             Direct Communication
@@ -37,7 +37,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
           <div className="p-6 rounded-2xl bg-canvas-ivory/60 border border-canvas-grey space-y-2">
             <Phone className="w-5 h-5 text-gold-champagne" />
             <h4 className="font-serif text-sm font-semibold text-navy-midnight">Direct Phone</h4>

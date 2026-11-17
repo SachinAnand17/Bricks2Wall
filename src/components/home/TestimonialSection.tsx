@@ -107,12 +107,14 @@ export default function TestimonialSection({ testimonials, settings }: Testimoni
           ref={scrollContainerRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="flex gap-6 overflow-x-hidden select-none py-4 cursor-grab active:cursor-grabbing no-scrollbar scroll-smooth"
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          className="flex gap-4 sm:gap-6 overflow-x-hidden select-none py-4 cursor-grab active:cursor-grabbing no-scrollbar scroll-smooth"
         >
           {carouselItems.map((item, idx) => (
             <div
               key={`${item.id}-${idx}`}
-              className="w-[340px] sm:w-[420px] shrink-0 bg-white/95 text-navy-midnight rounded-3xl p-7 border border-[#C8A45D]/40 shadow-2xl relative overflow-hidden flex flex-col justify-between space-y-5 hover:-translate-y-1.5 transition-all duration-300 group"
+              className="w-[85vw] max-w-[340px] sm:w-[420px] shrink-0 bg-white/95 text-navy-midnight rounded-3xl p-5 sm:p-7 border border-[#C8A45D]/40 shadow-2xl relative overflow-hidden flex flex-col justify-between space-y-4 sm:space-y-5 hover:-translate-y-1.5 transition-all duration-300 group"
             >
               {/* Unique Distinctive Card Mandala Motif */}
               <div className="absolute -bottom-10 -right-10 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">

@@ -42,30 +42,30 @@ export default function Footer({
   const displayCopyright = copyrightText || 'Bricks2Wall Real Estate Advisory. All rights reserved.';
 
   return (
-    <footer className="relative overflow-hidden bg-white text-[#8C6D2D] pt-16 pb-12 border-t border-[#C8A45D]/30">
+    <footer className="relative overflow-hidden bg-white text-[#8C6D2D] pt-12 sm:pt-16 pb-10 sm:pb-12 border-t border-[#C8A45D]/30 w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#C8A45D]/25">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-[#C8A45D]/25">
           
           {/* Brand & Mission Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="sm:col-span-2 space-y-5">
             <Link href="/" className="inline-block group focus:outline-none">
-              <div className="relative w-[280px] sm:w-[340px] h-[72px] sm:h-[86px] overflow-visible">
+              <div className="relative w-[220px] sm:w-[280px] md:w-[320px] h-[55px] sm:h-[70px] md:h-[80px]">
                 <Image
                   src="/brand/brand-logo.png"
                   alt="Bricks2Wall Logo"
                   fill
                   priority
-                  className="object-contain object-left scale-[1.3] origin-left transition-transform duration-300 group-hover:scale-[1.35]"
+                  className="object-contain object-left"
                 />
               </div>
             </Link>
 
-            <p className="text-[#8C6D2D] text-sm leading-relaxed max-w-sm font-medium">
+            <p className="text-[#8C6D2D] text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
               {displayBrand}
             </p>
 
-            <div className="pt-2 flex items-center gap-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF6EE] border border-[#C8A45D]/40 text-xs font-semibold text-[#9E782F] shadow-sm">
+            <div className="pt-1 flex items-center gap-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FAF6EE] border border-[#C8A45D]/40 text-xs font-semibold text-[#9E782F] shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-[#B38A38]" />
                 <span>Verified Listings Advisory</span>
               </div>
@@ -185,9 +185,9 @@ export default function Footer({
         </div>
 
         {/* Copyright and Legal Links */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9E782F]">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9E782F] text-center sm:text-left">
           <p className="font-medium">© {new Date().getFullYear()} {displayCopyright}</p>
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <Link href="/privacy-policy" className="hover:text-[#B8860B] font-medium transition-colors">
               Privacy Policy
             </Link>

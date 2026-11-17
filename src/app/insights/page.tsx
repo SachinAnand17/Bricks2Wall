@@ -15,9 +15,9 @@ export default function InsightsPage() {
   const articles = getArticles();
 
   return (
-    <div className="py-16 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+    <div className="py-10 sm:py-16 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+
         <div className="max-w-2xl space-y-3">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase text-gold-deep">
             <BookOpen className="w-3.5 h-3.5 text-gold-champagne" />
@@ -31,14 +31,14 @@ export default function InsightsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {articles.map((art) => (
             <Link
               key={art.id}
               href={`/insights/${art.slug}`}
               className="group bg-white rounded-2xl overflow-hidden border border-canvas-grey hover:border-gold-champagne/50 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col"
             >
-              <div className="relative h-56 w-full overflow-hidden bg-canvas-ivory">
+              <div className="relative h-44 sm:h-56 w-full overflow-hidden bg-canvas-ivory">
                 <Image
                   src={art.heroImageUrl}
                   alt={art.title}
@@ -50,7 +50,7 @@ export default function InsightsPage() {
                 </div>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 text-xs text-text-muted">
                     <span>{formatDate(art.publishedAt)}</span>
@@ -61,7 +61,7 @@ export default function InsightsPage() {
                     </div>
                   </div>
 
-                  <h3 className="font-serif text-lg font-semibold text-navy-midnight group-hover:text-gold-deep transition-colors line-clamp-2 leading-snug">
+                  <h3 className="font-serif text-base sm:text-lg font-semibold text-navy-midnight group-hover:text-gold-deep transition-colors line-clamp-2 leading-snug">
                     {art.title}
                   </h3>
 

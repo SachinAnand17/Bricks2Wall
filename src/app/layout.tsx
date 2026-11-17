@@ -1,10 +1,17 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import MandalaControl from '@/components/decorative/MandalaControl';
 import { getContentSettings } from '@/lib/db';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#10243A',
+};
 
 export const metadata: Metadata = {
   title: 'Bricks2Wall — Property, With Perspective | Verified Real Estate Advisory',
@@ -102,7 +109,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-text-ink antialiased">
+      <body className="min-h-screen w-full min-w-0 overflow-x-hidden flex flex-col bg-white text-text-ink antialiased">
         {/* Announcement Bar */}
         {settings.announcementActive && (
           <AnnouncementBar
@@ -120,7 +127,7 @@ export default function RootLayout({
         />
 
         {/* Main Body */}
-        <main className="flex-1">
+        <main className="flex-1 w-full min-w-0">
           {children}
         </main>
 

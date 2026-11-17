@@ -20,9 +20,9 @@ export default function PropertiesClient({
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
 
   return (
-    <div className="py-12 bg-canvas-ivory/30 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
+    <div className="py-8 sm:py-12 bg-canvas-ivory/30 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+
         {/* Page Header */}
         <div className="space-y-2">
           <p className="text-xs font-semibold tracking-widest uppercase text-gold-deep">

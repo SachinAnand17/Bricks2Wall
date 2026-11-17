@@ -15,7 +15,7 @@ export default function PropertyMap({ properties }: PropertyMapProps) {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
 
   return (
-    <div className="relative w-full h-[600px] bg-canvas-ivory rounded-2xl overflow-hidden border border-canvas-grey shadow-inner flex flex-col items-center justify-center">
+    <div className="relative w-full h-[460px] sm:h-[600px] bg-canvas-ivory rounded-2xl overflow-hidden border border-canvas-grey shadow-inner flex flex-col items-center justify-center">
       {/* Map Graphic Canvas / Stylized Architectural Locality Grid */}
       <div className="absolute inset-0 bg-[#EFECE6] bg-[radial-gradient(#C8A45D_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-40" />
 
@@ -28,7 +28,7 @@ export default function PropertyMap({ properties }: PropertyMapProps) {
       </svg>
 
       {/* Map Notice Overlay */}
-      <div className="absolute top-4 left-4 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-canvas-grey shadow-sm text-xs text-text-slate">
+      <div className="absolute top-3 left-3 right-3 sm:right-auto sm:top-4 sm:left-4 z-20 bg-white/95 backdrop-blur-md px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-canvas-grey shadow-sm text-[11px] sm:text-xs text-text-slate">
         <span className="font-semibold text-navy-midnight block">Interactive Locality View</span>
         <span>Showing {properties.length} verified listings in protected locality zones</span>
       </div>
@@ -53,11 +53,10 @@ export default function PropertyMap({ properties }: PropertyMapProps) {
             >
               <button
                 onClick={() => setSelectedProperty(prop)}
-                className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-luxury text-xs font-semibold transition-all transform hover:scale-110 ${
-                  isSelected
+                className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-luxury text-xs font-semibold transition-all transform hover:scale-110 ${isSelected
                     ? 'bg-gold-deep text-white scale-110 ring-4 ring-gold-champagne/30'
                     : 'bg-navy-midnight text-white hover:bg-gold-champagne hover:text-navy-deep'
-                }`}
+                  }`}
               >
                 <MapPin className="w-3.5 h-3.5 text-gold-champagne" />
                 <span>
@@ -73,7 +72,7 @@ export default function PropertyMap({ properties }: PropertyMapProps) {
 
       {/* Selected Property Preview Popup Card */}
       {selectedProperty && (
-        <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 z-30 bg-white rounded-2xl p-4 shadow-luxury border border-canvas-grey animate-fade-in">
+        <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-auto sm:right-6 sm:w-96 z-30 bg-white rounded-2xl p-4 shadow-luxury border border-canvas-grey animate-fade-in">
           <div className="flex items-start justify-between pb-2">
             <span className="text-[10px] font-bold uppercase tracking-wider text-gold-deep bg-canvas-ivory px-2 py-0.5 rounded">
               {selectedProperty.transactionType.toUpperCase()}
