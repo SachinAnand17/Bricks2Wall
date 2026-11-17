@@ -26,10 +26,10 @@ export default function HalfMandala({
     variant === 'gold'
       ? '#C8A45D'
       : variant === 'champagne'
-      ? '#D8B878'
-      : variant === 'navy'
-      ? '#10243A'
-      : '#EBD5A0';
+        ? '#D8B878'
+        : variant === 'navy'
+          ? '#10243A'
+          : '#EBD5A0';
 
   // Corner anchoring styles
   const positionStyles = {
@@ -56,10 +56,10 @@ export default function HalfMandala({
         style={
           spin
             ? {
-                animation: `mandala-spin ${spinDuration}s linear infinite`,
-                transformOrigin: 'center center',
-                willChange: 'transform',
-              }
+              animation: `mandala-spin ${spinDuration}s linear infinite`,
+              transformOrigin: 'center center',
+              willChange: 'transform',
+            }
             : undefined
         }
       >

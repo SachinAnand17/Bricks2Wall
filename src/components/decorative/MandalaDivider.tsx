@@ -127,7 +127,7 @@ export default function MandalaDivider({
 
   return (
     <div
-      className={`relative w-full overflow-visible select-none -mb-[1px] block z-10 ${className}`}
+      className={`relative w-full overflow-visible select-none -mb-[1px] block z-0 ${className}`}
       style={{ backgroundColor: fromBg }}
       aria-hidden="true"
     >
