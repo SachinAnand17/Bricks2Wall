@@ -54,7 +54,7 @@ export default function PropertySearch({
         
         {/* Prominent Bold Mandala Background safely contained in rounded corners without clipping dropdowns */}
         <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -right-24 opacity-30">
+          <div className="absolute -top-24 -left-24 opacity-30">
             <MandalaArt seed="search-bg" size={340} variant="gold" spin={true} spinDuration={120} />
           </div>
         </div>

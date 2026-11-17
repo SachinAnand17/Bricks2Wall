@@ -34,7 +34,7 @@ export default function TrustSection({ settings }: TrustSectionProps) {
   return (
     <section className="relative overflow-hidden py-20 bg-gradient-to-b from-canvas-ivory via-white to-canvas-ivory/60">
       {/* Background Sacred Geometry Watermark */}
-      <MandalaWatermark seed="trust-mandala-bg" position="top-right" size={580} opacity={0.35} spinDuration={190} />
+      <MandalaWatermark seed="trust-mandala-bg" position="bottom-left" size={580} opacity={0.35} spinDuration={190} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
