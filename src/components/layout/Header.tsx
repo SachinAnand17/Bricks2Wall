@@ -149,13 +149,13 @@ export default function Header({ phone, ctaText, ctaHref }: HeaderProps = {}) {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-2 group focus:outline-none shrink-0"
               >
-                <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-gold-champagne/80 shrink-0 shadow-sm bg-[#10243A]">
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
                   <Image
                     src="/brand/brand-emblem.png"
                     alt="Bricks2Wall Emblem"
                     fill
                     priority
-                    className="object-cover scale-110"
+                    className="object-contain drop-shadow-sm"
                   />
                 </div>
                 <div className="flex flex-col">
