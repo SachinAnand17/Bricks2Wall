@@ -13,6 +13,7 @@
 
 # Local Environment Variables & Secrets (CRITICAL: Never commit to GitHub)
 .env
+.env*
 .env.local
 .env.development.local
 .env.test.local

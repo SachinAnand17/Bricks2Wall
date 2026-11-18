@@ -215,12 +215,22 @@ export default function PropertyTable({ properties, onRefresh }: PropertyTablePr
           alert('Failed to update property: ' + (errData.error || res.statusText));
         }
       } else {
-        // POST
-        const res = await fetch('/api/admin/properties', {
+        // POST to /api/properties (persisting to MongoDB Atlas & local store)
+        let res = await fetch('/api/properties', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
         });
+
+        // Fallback to /api/admin/properties if needed
+        if (!res.ok) {
+          res = await fetch('/api/admin/properties', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          });
+        }
+
         if (res.ok) {
           setModalOpen(false);
           onRefresh();

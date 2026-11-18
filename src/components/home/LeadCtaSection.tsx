@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Phone, Mail, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, Phone, Mail, AlertCircle, Loader2, CheckCircle2 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import { ContentSettings } from '@/types';
 import MandalaArt from '@/components/decorative/MandalaArt';
@@ -40,6 +40,7 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
   });
 
   const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -79,7 +80,10 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
 
       if (res.ok && data.success) {
         analytics.generateLead('general');
-        router.push('/thank-you');
+        setIsSubmitted(true);
+        setTimeout(() => {
+          router.push('/thank-you');
+        }, 1200);
       } else {
         setErrorMsg(data.error || 'Unable to submit enquiry. Please try again or call our direct line.');
       }
@@ -144,18 +148,18 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
             </div>
           </div>
 
-          {/* Right Column: Gold-lit Glass Panel Form */}
+          {/* Right Column: High-Contrast Card Form */}
           <div className="lg:col-span-7 relative">
-            <div className="relative bg-white/90 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-gold-champagne/30 shadow-luxury overflow-hidden">
+            <div className="relative bg-white rounded-2xl p-6 sm:p-8 border border-[#C8A45D]/40 shadow-luxury overflow-hidden text-[#10243A]">
               {/* Subtle Form Corner Mandala Seal */}
               <div className="absolute -top-12 -right-12 pointer-events-none opacity-20">
                 <MandalaArt seed="lead-form-seal" size={170} variant="gold" spin={true} spinDuration={90} complexity="elaborate" />
               </div>
 
-              <h3 className="font-serif text-xl font-semibold text-navy-midnight mb-2 relative z-10">
+              <h3 className="font-serif text-xl font-semibold text-[#10243A] mb-2 relative z-10">
                 {formTitle}
               </h3>
-              <p className="text-xs text-text-slate mb-6">
+              <p className="text-xs text-[#4D5661] mb-6">
                 {formSubtitle}
               </p>
 
@@ -166,119 +170,137 @@ export default function LeadCtaSection({ settings }: LeadCtaSectionProps) {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-
-                {/* Honeypot anti-bot */}
-                <input
-                  type="text"
-                  name="website_hp"
-                  value={formData.website_hp}
-                  onChange={(e) => setFormData({ ...formData, website_hp: e.target.value })}
-                  className="hidden"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-slate">Full Name *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Vikram Sharma"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full h-11 px-3.5 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
-                    />
+              {isSubmitted ? (
+                <div className="py-10 text-center space-y-4 animate-fade-in">
+                  <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-slate">Phone Number *</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+91 98765 00000"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full h-11 px-3.5 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
-                    />
-                  </div>
+                  <h4 className="font-serif text-2xl font-semibold text-[#10243A]">
+                    Enquiry Received
+                  </h4>
+                  <p className="text-sm text-[#4D5661] max-w-md mx-auto leading-relaxed">
+                    Thank you, <span className="font-semibold text-[#10243A]">{formData.name}</span>. Your enquiry has been registered with our advisory desk. Redirecting to your confirmation...
+                  </p>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4 text-[#10243A]">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-slate">Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="vikram@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full h-11 px-3.5 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-slate block">Requirement Type</label>
-                    <GlassSelect
-                      value={formData.enquiryType}
-                      onChange={(val) => setFormData({ ...formData, enquiryType: val as any })}
-                      options={[
-                        { value: 'general', label: 'Residential Purchase (Buy)' },
-                        { value: 'property', label: 'Luxury Apartment / Villa' },
-                        { value: 'callback', label: 'Commercial Leasing / Office' },
-                        { value: 'viewing', label: 'Schedule Site Walkthrough' },
-                      ]}
-                      size="md"
-                      variant="glass"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold text-text-slate">Your Requirements or Questions</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Tell us preferred localities, budget brackets, or specific requirements..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none leading-relaxed"
-                  />
-                </div>
-
-                {/* Consent checkbox */}
-                <div className="flex items-start gap-2.5 pt-1">
+                  {/* Honeypot anti-bot */}
                   <input
-                    type="checkbox"
-                    id="consentCheck"
-                    checked={formData.consent}
-                    onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-                    className="mt-1 rounded text-gold-deep focus:ring-gold-champagne"
+                    type="text"
+                    name="website_hp"
+                    value={formData.website_hp}
+                    onChange={(e) => setFormData({ ...formData, website_hp: e.target.value })}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
-                  <label htmlFor="consentCheck" className="text-xs text-text-slate leading-relaxed">
-                    {consentText}
-                  </label>
-                </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full h-12 flex items-center justify-center gap-2 rounded-xl bg-navy-midnight text-white text-xs font-semibold uppercase tracking-widest hover:bg-gold-deep transition-all duration-300 shadow-luxury disabled:opacity-60"
-                >
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Transmitting Enquiry...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 text-gold-champagne" />
-                      <span>{submitButtonText}</span>
-                    </>
-                  )}
-                </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-[#4D5661]">Full Name *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Vikram Sharma"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+                        className="w-full h-11 px-3.5 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
+                      />
+                    </div>
 
-              </form>
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-[#4D5661]">Phone Number *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+91 98765 00000"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+                        className="w-full h-11 px-3.5 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-[#4D5661]">Email Address *</label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="vikram@example.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+                        className="w-full h-11 px-3.5 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-[#4D5661] block">Requirement Type</label>
+                      <GlassSelect
+                        value={formData.enquiryType}
+                        onChange={(val) => setFormData({ ...formData, enquiryType: val as any })}
+                        options={[
+                          { value: 'general', label: 'Residential Purchase (Buy)' },
+                          { value: 'property', label: 'Luxury Apartment / Villa' },
+                          { value: 'callback', label: 'Commercial Leasing / Office' },
+                          { value: 'viewing', label: 'Schedule Site Walkthrough' },
+                        ]}
+                        size="md"
+                        variant="glass"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#4D5661]">Your Requirements or Questions</label>
+                    <textarea
+                      rows={3}
+                      placeholder="Tell us preferred localities, budget brackets, or specific requirements..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+                      className="w-full p-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] resize-none leading-relaxed placeholder:text-[#717D8A] shadow-xs"
+                    />
+                  </div>
+
+                  {/* Consent checkbox */}
+                  <div className="flex items-start gap-2.5 pt-1">
+                    <input
+                      type="checkbox"
+                      id="consentCheck"
+                      checked={formData.consent}
+                      onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
+                      className="mt-1 rounded text-[#9B783A] focus:ring-[#C8A45D]"
+                    />
+                    <label htmlFor="consentCheck" className="text-xs text-[#4D5661] leading-relaxed cursor-pointer select-none">
+                      {consentText}
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full h-12 flex items-center justify-center gap-2 rounded-xl bg-[#10243A] text-white text-xs font-semibold uppercase tracking-widest hover:bg-[#9B783A] transition-all duration-300 shadow-luxury disabled:opacity-60 cursor-pointer"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Transmitting Enquiry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-[#C8A45D]" />
+                        <span>{submitButtonText}</span>
+                      </>
+                    )}
+                  </button>
+
+                </form>
+              )}
             </div>
           </div>
 

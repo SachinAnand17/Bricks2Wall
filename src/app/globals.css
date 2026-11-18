@@ -80,3 +80,29 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   outline: 2px solid #C8A45D;
   outline-offset: 2px;
 }
+
+/* Form inputs, textareas, and selects: Crisp high-contrast readable text */
+input:not([class*="text-white"]),
+textarea:not([class*="text-white"]),
+select:not([class*="text-white"]) {
+  color: #10243A;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #717D8A;
+  opacity: 0.85;
+}
+
+/* Chrome/Safari/Edge Autofill styling fix - Prevents invisible white-on-white text */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #10243A !important;
+  -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+  box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

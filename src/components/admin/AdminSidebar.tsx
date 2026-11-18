@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Building2, Users, FileText, Shield, ExternalLink, X } from 'lucide-react';
+import { LayoutDashboard, Building2, Users, FileText, Shield, ExternalLink, X, BookOpen } from 'lucide-react';
 
 interface AdminSidebarProps {
   activeTab: string;
@@ -23,6 +23,7 @@ export default function AdminSidebar({
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard & Metrics', icon: LayoutDashboard },
     { id: 'properties', label: 'Property Portfolio', icon: Building2 },
+    { id: 'blogs', label: 'Blog & Insights', icon: BookOpen },
     { id: 'leads', label: 'Lead CRM & Inquiries', icon: Users },
     { id: 'content', label: 'Content & Announcement', icon: FileText },
     { id: 'roles', label: 'Roles & Permissions', icon: Shield },
@@ -81,8 +82,8 @@ export default function AdminSidebar({
                 key={item.id}
                 onClick={() => handleItemClick(item.id)}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all ${isActive
-                    ? 'bg-gold-champagne text-navy-deep shadow-md'
-                    : 'text-white/70 hover:bg-white/10 hover:text-white'
+                  ? 'bg-gold-champagne text-navy-deep shadow-md'
+                  : 'text-white/70 hover:bg-white/10 hover:text-white'
                   }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? 'text-navy-deep' : 'text-gold-champagne'}`} />

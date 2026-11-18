@@ -128,7 +128,8 @@ export default function ScheduleViewingForm({
             placeholder="Full Name"
             value={formData.visitorName}
             onChange={(e) => setFormData({ ...formData, visitorName: e.target.value })}
-            className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
           />
         </div>
 
@@ -141,7 +142,8 @@ export default function ScheduleViewingForm({
               placeholder="+91 98765 00000"
               value={formData.visitorPhone}
               onChange={(e) => setFormData({ ...formData, visitorPhone: e.target.value })}
-              className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+              style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+              className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
             />
           </div>
 
@@ -152,7 +154,8 @@ export default function ScheduleViewingForm({
               placeholder="you@email.com"
               value={formData.visitorEmail}
               onChange={(e) => setFormData({ ...formData, visitorEmail: e.target.value })}
-              className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+              style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+              className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
             />
           </div>
         </div>
@@ -166,7 +169,8 @@ export default function ScheduleViewingForm({
               min={minDate}
               value={formData.preferredDate}
               onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-              className="w-full h-10 px-3 text-base sm:text-sm bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+              style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+              className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium shadow-xs"
             />
           </div>
 
@@ -194,7 +198,8 @@ export default function ScheduleViewingForm({
             placeholder="e.g., Accompanied by family, interested in parking bays and club amenities..."
             value={formData.notes}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-            className="w-full p-2.5 text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full p-2.5 text-base sm:text-xs !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] resize-none placeholder:text-[#717D8A] shadow-xs"
           />
         </div>
 

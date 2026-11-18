@@ -115,7 +115,8 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             placeholder="Your Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full h-10 px-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
           />
         </div>
 
@@ -127,7 +128,8 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             placeholder="+91 98765 00000"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="w-full h-10 px-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
           />
         </div>
 
@@ -139,7 +141,8 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             placeholder="you@domain.com"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full h-10 px-3 text-base sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne font-medium"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full h-10 px-3 text-base sm:text-sm !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] font-medium placeholder:text-[#717D8A] shadow-xs"
           />
         </div>
 
@@ -181,7 +184,8 @@ export default function PropertyEnquiryForm({ property }: PropertyEnquiryFormPro
             rows={2}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="w-full p-2.5 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne resize-none leading-relaxed"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full p-2.5 text-base sm:text-xs !text-[#10243A] !bg-white border border-[#C8A45D]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/40 focus:border-[#C8A45D] resize-none leading-relaxed placeholder:text-[#717D8A] shadow-xs"
           />
         </div>
 

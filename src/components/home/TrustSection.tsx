@@ -13,7 +13,7 @@ export default function TrustSection({ settings }: TrustSectionProps) {
   const eyebrow = settings?.trustEyebrow || 'Integrity & Regulatory Rigor';
   const heading = settings?.trustHeading || 'Clarity matters in every property decision.';
   const copy = settings?.trustCopy || 'We focus on accurate listing information, responsive communication and practical guidance. Ask our team to confirm current availability, pricing and documentation for any property before committing capital.';
-  
+
   const p1Title = settings?.trustPoint1Title || 'Zero Fabricated Inventory';
   const p1Desc = settings?.trustPoint1Desc || 'We refuse to list fictitious demo units or phantom listings to attract leads. In development environments, sample listings are visibly watermarked DEMO.';
 
@@ -37,9 +37,9 @@ export default function TrustSection({ settings }: TrustSectionProps) {
       <MandalaWatermark seed="trust-mandala-bg" position="bottom-left" size={580} opacity={0.35} spinDuration={190} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-gold-champagne/40 text-xs font-semibold tracking-widest uppercase text-gold-deep shadow-sm">
               <MandalaArt seed="trust-banner-icon" size={18} variant="gold" spin={true} spinDuration={32} />

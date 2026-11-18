@@ -67,7 +67,8 @@ export default function PropertyFilters({
                 updateParam('q', (e.target as HTMLInputElement).value);
               }
             }}
-            className="w-full h-10 pl-10 pr-4 text-xs sm:text-sm bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+            style={{ color: '#10243A', backgroundColor: '#FFFFFF' }}
+            className="w-full h-10 pl-10 pr-4 text-xs sm:text-sm !text-[#10243A] !bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne placeholder:text-[#717D8A]"
           />
         </div>
 

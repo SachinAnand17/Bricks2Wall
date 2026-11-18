@@ -1,20 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
-import { 
+import React, { useState, useEffect } from 'react';
+import {
   ArrowLeft,
-  Users, 
-  Search, 
-  Filter, 
-  Phone, 
-  Mail, 
-  Calendar, 
-  MessageSquare, 
-  CheckCircle2, 
-  Clock, 
-  UserCheck, 
+  Users,
+  Search,
+  Filter,
+  Phone,
+  Mail,
+  Calendar,
+  MessageSquare,
+  CheckCircle2,
+  Clock,
+  UserCheck,
   Send,
-  Plus
+  Plus,
+  Trash2,
+  RefreshCw,
+  Sparkles
 } from 'lucide-react';
 import { Lead, LeadStatus } from '@/types';
 import { formatDateTime } from '@/lib/utils';
@@ -45,13 +48,27 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
   const [mobileView, setMobileView] = useState<'list' | 'detail'>('list');
   const [noteText, setNoteText] = useState('');
   const [submittingNote, setSubmittingNote] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (safeLeads.length > 0) {
+      if (!selectedLead || !safeLeads.some((l) => l.id === selectedLead.id)) {
+        setSelectedLead(safeLeads[0]);
+      } else {
+        const updated = safeLeads.find((l) => l.id === selectedLead.id);
+        if (updated) setSelectedLead(updated);
+      }
+    } else {
+      setSelectedLead(null);
+    }
+  }, [leads]);
 
   const filteredLeads = safeLeads.filter((lead) => {
     const matchesTab = activeTab === 'all' || lead.status === activeTab;
     const matchesSearch =
-      lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      lead.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      lead.phone.includes(searchTerm) ||
+      (lead.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (lead.email || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (lead.phone || '').includes(searchTerm) ||
       (lead.propertyTitle && lead.propertyTitle.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesTab && matchesSearch;
   });
@@ -116,18 +133,87 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
     }
   };
 
+  const handleDeleteLead = async (leadId: string, leadName: string) => {
+    if (!confirm(`Are you sure you want to delete the enquiry for "${leadName}"?`)) return;
+
+    setDeletingId(leadId);
+    try {
+      const res = await fetch(`/api/admin/leads?id=${encodeURIComponent(leadId)}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        if (selectedLead?.id === leadId) {
+          setSelectedLead(null);
+        }
+        onRefresh();
+      } else {
+        alert('Failed to delete lead.');
+      }
+    } catch (err) {
+      console.error('Error deleting lead:', err);
+      alert('Network error while deleting enquiry.');
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  const handleClearAllLeads = async () => {
+    if (!confirm('Are you sure you want to clear all test/dummy enquiries from the CRM? This will reset the pipeline.')) return;
+
+    try {
+      const res = await fetch('/api/admin/leads?action=clear_all', {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        setSelectedLead(null);
+        onRefresh();
+      } else {
+        alert('Failed to clear leads.');
+      }
+    } catch (err) {
+      console.error('Error clearing leads:', err);
+      alert('Network error while clearing leads.');
+    }
+  };
+
   return (
-    <div className="bg-white rounded-2xl border border-canvas-grey shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
-      
+    <div className="bg-white rounded-2xl border border-canvas-grey shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[620px]">
+
       {/* Left Column: Lead List & Status Tabs */}
       <div className={`lg:col-span-5 border-r border-canvas-grey flex flex-col ${mobileView === 'detail' ? 'hidden lg:flex' : 'flex'}`}>
         {/* Header & Search */}
-        <div className="p-4 border-b border-canvas-grey space-y-3">
+        <div className="p-4 border-b border-canvas-grey space-y-3 bg-canvas-ivory/30">
           <div className="flex items-center justify-between">
-            <h3 className="font-serif text-base font-semibold text-navy-midnight">
-              Enquiries Inbox ({leads.length})
-            </h3>
-            <span className="text-[10px] text-text-muted">Live Pipeline</span>
+            <div>
+              <h3 className="font-serif text-base font-semibold text-navy-midnight flex items-center gap-2">
+                <span>Enquiries Inbox</span>
+                <span className="px-2 py-0.5 rounded-full bg-navy-midnight text-white text-[11px] font-sans font-bold">
+                  {safeLeads.length}
+                </span>
+              </h3>
+              <p className="text-[10px] text-text-muted">Live Pipeline • Synced to Database</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {safeLeads.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleClearAllLeads}
+                  className="px-2 py-1 rounded-lg text-[10px] font-medium text-rose-600 hover:bg-rose-50 border border-rose-200 transition-colors"
+                  title="Purge all dummy enquiries"
+                >
+                  Clear All
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={onRefresh}
+                className="p-1.5 rounded-lg text-text-muted hover:text-navy-midnight hover:bg-canvas-grey/50 transition-colors"
+                title="Refresh enquiries"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
 
           <div className="relative">
@@ -137,7 +223,7 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
               placeholder="Search by visitor, email, property..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full h-10 pl-9 pr-3 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
+              className="w-full h-10 pl-9 pr-3 text-base sm:text-xs bg-white border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
             />
           </div>
 
@@ -145,23 +231,21 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-[11px]">
             <button
               onClick={() => setActiveTab('all')}
-              className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-                activeTab === 'all'
+              className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${activeTab === 'all'
                   ? 'bg-navy-midnight text-white font-semibold'
                   : 'bg-canvas-ivory text-text-slate hover:text-navy-midnight'
-              }`}
+                }`}
             >
-              All ({leads.length})
+              All ({safeLeads.length})
             </button>
             {STATUSES.slice(0, 5).map((st) => (
               <button
                 key={st}
                 onClick={() => setActiveTab(st)}
-                className={`px-2.5 py-1 rounded-full whitespace-nowrap transition-colors ${
-                  activeTab === st
+                className={`px-2.5 py-1 rounded-full whitespace-nowrap transition-colors ${activeTab === st
                     ? 'bg-gold-deep text-white font-semibold'
                     : 'bg-canvas-ivory text-text-slate hover:text-navy-midnight'
-                }`}
+                  }`}
               >
                 {st}
               </button>
@@ -172,8 +256,16 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
         {/* Lead List Cards */}
         <div className="flex-1 overflow-y-auto divide-y divide-canvas-grey/60 max-h-[550px]">
           {filteredLeads.length === 0 ? (
-            <div className="p-8 text-center text-xs text-text-muted">
-              No leads match this filter.
+            <div className="p-8 text-center space-y-2">
+              <Users className="w-8 h-8 text-text-muted/50 mx-auto" />
+              <p className="text-xs font-medium text-navy-midnight">
+                {safeLeads.length === 0 ? 'No Enquiries in CRM' : 'No matching enquiries'}
+              </p>
+              <p className="text-[11px] text-text-muted max-w-xs mx-auto">
+                {safeLeads.length === 0
+                  ? 'All forms on the website (Book a Visit, Property Enquiries, Contact) are active and connected. Real submissions will appear here instantly.'
+                  : 'Try adjusting your search keywords or filter status.'}
+              </p>
             </div>
           ) : (
             filteredLeads.map((lead) => {
@@ -185,31 +277,29 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
                     setSelectedLead(lead);
                     setMobileView('detail');
                   }}
-                  className={`p-4 cursor-pointer transition-colors ${
-                    isSelected ? 'bg-canvas-ivory/90 border-l-4 border-l-gold-deep' : 'hover:bg-canvas-ivory/40'
-                  }`}
+                  className={`p-4 cursor-pointer transition-colors relative group ${isSelected ? 'bg-canvas-ivory/90 border-l-4 border-l-gold-deep' : 'hover:bg-canvas-ivory/40'
+                    }`}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <h4 className="font-semibold text-xs text-navy-midnight truncate">
+                    <h4 className="font-semibold text-xs text-navy-midnight truncate flex-1">
                       {lead.name}
                     </h4>
-                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 ${
-                      lead.status === 'New'
+                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 ${lead.status === 'New'
                         ? 'bg-rose-100 text-rose-800'
                         : lead.status === 'Viewing scheduled'
-                        ? 'bg-emerald-100 text-emerald-800'
-                        : 'bg-canvas-grey text-text-ink'
-                    }`}>
+                          ? 'bg-emerald-100 text-emerald-800'
+                          : 'bg-canvas-grey text-text-ink'
+                      }`}>
                       {lead.status}
                     </span>
                   </div>
 
                   <p className="text-[11px] text-text-slate truncate mt-0.5">
-                    {lead.propertyTitle || 'General Advisory Enquiry'}
+                    {lead.propertyTitle || (lead.enquiryType === 'viewing' ? 'Site Walkthrough Request' : 'General Advisory Enquiry')}
                   </p>
 
                   <div className="flex items-center justify-between text-[10px] text-text-muted mt-2">
-                    <span>{lead.phone}</span>
+                    <span className="font-medium">{lead.phone}</span>
                     <span>{formatDateTime(lead.createdAt).split(',')[0]}</span>
                   </div>
                 </div>
@@ -223,7 +313,7 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
       <div className={`lg:col-span-7 flex flex-col justify-between p-4 sm:p-6 ${mobileView === 'list' ? 'hidden lg:flex' : 'flex'}`}>
         {selectedLead ? (
           <div className="space-y-6">
-            
+
             {/* Mobile Back Button */}
             <button
               type="button"
@@ -248,16 +338,28 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
                 </p>
               </div>
 
-              {/* Status Selector */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-text-slate">Status:</span>
-                <GlassSelect
-                  value={selectedLead.status}
-                  onChange={(val) => handleStatusChange(selectedLead.id, val as any)}
-                  options={STATUSES.map((st) => ({ value: st, label: st }))}
-                  size="sm"
-                  className="w-44"
-                />
+              {/* Status Selector & Delete */}
+              <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-text-slate">Status:</span>
+                  <GlassSelect
+                    value={selectedLead.status}
+                    onChange={(val) => handleStatusChange(selectedLead.id, val as any)}
+                    options={STATUSES.map((st) => ({ value: st, label: st }))}
+                    size="sm"
+                    className="w-44"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleDeleteLead(selectedLead.id, selectedLead.name)}
+                  disabled={deletingId === selectedLead.id}
+                  className="p-2 rounded-xl text-rose-500 hover:text-white hover:bg-rose-600 border border-rose-200 transition-colors"
+                  title="Delete this enquiry"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
             </div>
 
@@ -275,9 +377,9 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
 
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-gold-champagne shrink-0" />
-                <div>
+                <div className="min-w-0">
                   <span className="text-[10px] text-text-muted block">Email</span>
-                  <a href={`mailto:${selectedLead.email}`} className="font-semibold text-navy-midnight hover:underline truncate block max-w-[130px]">
+                  <a href={`mailto:${selectedLead.email}`} className="font-semibold text-navy-midnight hover:underline truncate block max-w-[150px]">
                     {selectedLead.email}
                   </a>
                 </div>
@@ -305,7 +407,7 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
             {/* Enquiry Specifics */}
             <div className="space-y-2">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-text-slate">
-                Property & Notes
+                Enquiry Details & Notes
               </h4>
               <div className="p-4 rounded-xl border border-canvas-grey bg-white space-y-2 text-xs">
                 {selectedLead.propertyTitle && (
@@ -315,13 +417,21 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
                 )}
                 {selectedLead.viewingDate && (
                   <p>
-                    <strong className="text-emerald-700">Requested Site Visit:</strong> {selectedLead.viewingDate} at {selectedLead.viewingTimeSlot}
+                    <strong className="text-emerald-700">Requested Site Visit:</strong> {selectedLead.viewingDate} at {selectedLead.viewingTimeSlot || '11:00 AM'}
+                  </p>
+                )}
+                {selectedLead.preferredContactMethod && (
+                  <p>
+                    <strong className="text-text-slate">Preferred Mode:</strong> <span className="capitalize">{selectedLead.preferredContactMethod}</span>
+                    {selectedLead.preferredTime && ` (${selectedLead.preferredTime})`}
                   </p>
                 )}
                 {selectedLead.message && (
-                  <p className="text-text-slate italic">
-                    "{selectedLead.message}"
-                  </p>
+                  <div className="pt-2 border-t border-canvas-grey/50">
+                    <p className="text-navy-midnight font-medium whitespace-pre-line leading-relaxed">
+                      {selectedLead.message}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
@@ -329,29 +439,35 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
             {/* Activity History & Add Note */}
             <div className="space-y-3">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-text-slate">
-                Activity & Notes History
+                Activity & Follow-Up Log
               </h4>
 
               <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
-                {selectedLead.notes && selectedLead.notes.map((note) => (
-                  <div key={note.id} className="p-3 rounded-lg bg-canvas-ivory/50 border border-canvas-grey text-xs flex items-start gap-2.5">
-                    <Clock className="w-3.5 h-3.5 text-gold-champagne shrink-0 mt-0.5" />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between text-[10px] text-text-muted">
-                        <span className="font-semibold text-navy-midnight">{note.author}</span>
-                        <span>{formatDateTime(note.timestamp)}</span>
+                {selectedLead.notes && selectedLead.notes.length > 0 ? (
+                  selectedLead.notes.map((note) => (
+                    <div key={note.id} className="p-3 rounded-lg bg-canvas-ivory/50 border border-canvas-grey text-xs flex items-start gap-2.5">
+                      <Clock className="w-3.5 h-3.5 text-gold-champagne shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between text-[10px] text-text-muted">
+                          <span className="font-semibold text-navy-midnight">{note.author}</span>
+                          <span>{formatDateTime(note.timestamp)}</span>
+                        </div>
+                        <p className="text-text-slate mt-0.5">{note.description}</p>
                       </div>
-                      <p className="text-text-slate mt-0.5">{note.description}</p>
                     </div>
+                  ))
+                ) : (
+                  <div className="p-3 rounded-lg bg-canvas-ivory/30 border border-canvas-grey text-[11px] text-text-muted italic">
+                    No activity notes logged yet.
                   </div>
-                ))}
+                )}
               </div>
 
               {/* Add Note Form */}
               <form onSubmit={handleAddNote} className="flex flex-col sm:flex-row gap-2 pt-2">
                 <input
                   type="text"
-                  placeholder="Log call attempt, meeting note, or next follow-up..."
+                  placeholder="Log call attempt, client requirement, or next step..."
                   value={noteText}
                   onChange={(e) => setNoteText(e.target.value)}
                   className="flex-1 h-10 px-3.5 text-base sm:text-xs bg-canvas-ivory/60 border border-canvas-grey rounded-xl focus:outline-none focus:border-gold-champagne"
@@ -369,8 +485,18 @@ export default function LeadInbox({ leads, onRefresh }: LeadInboxProps) {
 
           </div>
         ) : (
-          <div className="flex items-center justify-center h-full text-xs text-text-muted">
-            Select an enquiry to view customer details and manage follow-ups.
+          <div className="flex flex-col items-center justify-center h-full text-center p-8 space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-canvas-ivory flex items-center justify-center text-gold-champagne border border-canvas-grey">
+              <Users className="w-6 h-6" />
+            </div>
+            <h4 className="font-serif text-sm font-semibold text-navy-midnight">
+              {safeLeads.length === 0 ? 'CRM Pipeline Ready' : 'Select an Enquiry'}
+            </h4>
+            <p className="text-xs text-text-muted max-w-sm">
+              {safeLeads.length === 0
+                ? 'All dummy records have been cleared. Any enquiry submitted via the website forms will flow into this CRM workspace.'
+                : 'Choose an enquiry from the list on the left to review contact details, schedule callbacks, and update advisory status.'}
+            </p>
           </div>
         )}
       </div>

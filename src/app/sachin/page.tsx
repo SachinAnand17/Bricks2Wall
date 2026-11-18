@@ -7,8 +7,9 @@ import PropertyTable from '@/components/admin/PropertyTable';
 import LeadInbox from '@/components/admin/LeadInbox';
 import ContentEditor from '@/components/admin/ContentEditor';
 import RolesMatrix from '@/components/admin/RolesMatrix';
+import BlogPublisher from '@/components/admin/BlogPublisher';
 import { Property, Lead, ContentSettings } from '@/types';
-import { Lock, LogOut, RefreshCw, KeyRound, CheckCircle2, ShieldCheck, User, Menu, LayoutDashboard, Building2, Users, FileText, Shield } from 'lucide-react';
+import { Lock, LogOut, RefreshCw, KeyRound, CheckCircle2, ShieldCheck, User, Menu, LayoutDashboard, Building2, Users, FileText, Shield, BookOpen } from 'lucide-react';
 import MandalaArt from '@/components/decorative/MandalaArt';
 
 export default function SachinControlPanel() {
@@ -58,10 +59,22 @@ export default function SachinControlPanel() {
       const mData = await mRes.json();
       if (mData.success) setMetrics(mData.metrics);
 
-      // 2. Properties
-      const pRes = await fetch('/api/admin/properties');
-      const pData = await pRes.json();
-      if (pData.success) setProperties(pData.properties);
+      // 2. Properties (Fetch live from /api/properties with fallback to /api/admin/properties)
+      try {
+        const pRes = await fetch('/api/properties');
+        const pData = await pRes.json();
+        if (pData.success && Array.isArray(pData.properties)) {
+          setProperties(pData.properties);
+        } else {
+          const fallbackRes = await fetch('/api/admin/properties');
+          const fallbackData = await fallbackRes.json();
+          if (fallbackData.success) setProperties(fallbackData.properties);
+        }
+      } catch (pErr) {
+        const fallbackRes = await fetch('/api/admin/properties');
+        const fallbackData = await fallbackRes.json();
+        if (fallbackData.success) setProperties(fallbackData.properties);
+      }
 
       // 3. Leads
       const lRes = await fetch('/api/admin/leads');
@@ -353,6 +366,13 @@ export default function SachinControlPanel() {
           {activeTab === 'properties' && (
             <div className="space-y-6">
               <PropertyTable properties={properties} onRefresh={loadData} />
+            </div>
+          )}
+
+          {/* TAB: BLOG & INSIGHTS PUBLISHER */}
+          {activeTab === 'blogs' && (
+            <div className="space-y-6 animate-fade-in">
+              <BlogPublisher onRefreshParent={loadData} />
             </div>
           )}
 

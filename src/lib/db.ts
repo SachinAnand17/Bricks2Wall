@@ -1,26 +1,26 @@
 import fs from 'fs';
 import path from 'path';
-import { 
-  Property, 
-  Lead, 
-  ViewingAppointment, 
-  Agent, 
-  LocationGuide, 
-  InsightArticle, 
-  Testimonial, 
-  ContentSettings, 
-  FilterState, 
+import {
+  Property,
+  Lead,
+  ViewingAppointment,
+  Agent,
+  LocationGuide,
+  InsightArticle,
+  Testimonial,
+  ContentSettings,
+  FilterState,
   LeadStatus,
   LeadActivity
 } from '../types';
-import { 
-  INITIAL_PROPERTIES, 
-  INITIAL_AGENTS, 
-  INITIAL_LOCATIONS, 
-  INITIAL_ARTICLES, 
-  INITIAL_TESTIMONIALS, 
-  INITIAL_CONTENT_SETTINGS, 
-  INITIAL_LEADS 
+import {
+  INITIAL_PROPERTIES,
+  INITIAL_AGENTS,
+  INITIAL_LOCATIONS,
+  INITIAL_ARTICLES,
+  INITIAL_TESTIMONIALS,
+  INITIAL_CONTENT_SETTINGS,
+  INITIAL_LEADS
 } from './seed-data';
 
 interface DatabaseSchema {
@@ -37,74 +37,73 @@ interface DatabaseSchema {
 const DB_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DB_DIR, 'database.json');
 
-function ensureDatabase(): DatabaseSchema {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
-  }
+let memoryDb: DatabaseSchema | null = null;
 
-  if (!fs.existsSync(DB_FILE)) {
-    const initialData: DatabaseSchema = {
-      properties: INITIAL_PROPERTIES,
-      leads: INITIAL_LEADS,
-      viewings: [
-        {
-          id: 'view-1',
-          leadId: 'lead-1',
-          propertyId: 'prop-1',
-          propertyTitle: 'DEMO — Contemporary 2-Bed Residence',
-          visitorName: 'Aravind Swaminathan',
-          visitorPhone: '+91 98111 22334',
-          visitorEmail: 'aravind.s@example.com',
-          preferredDate: '2026-11-20',
-          timeSlot: '11:00 AM',
-          status: 'confirmed',
-          assignedAgentName: 'Vikramaditya Sengupta',
-          notes: 'Spouse accompanying. Needs floor plan and basement parking confirmation.',
-          createdAt: '2026-11-13T10:15:00Z'
-        }
-      ],
-      agents: INITIAL_AGENTS,
-      locations: INITIAL_LOCATIONS,
-      articles: INITIAL_ARTICLES,
-      testimonials: INITIAL_TESTIMONIALS,
-      contentSettings: INITIAL_CONTENT_SETTINGS,
-    };
-    fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), 'utf-8');
-    return initialData;
+function ensureDatabase(): DatabaseSchema {
+  if (memoryDb) {
+    if (!Array.isArray(memoryDb.leads)) memoryDb.leads = [];
+    if (!Array.isArray(memoryDb.viewings)) memoryDb.viewings = [];
+    return memoryDb;
   }
 
   try {
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    const parsed = JSON.parse(raw) as DatabaseSchema;
-    if (!parsed.properties || parsed.properties.length === 0) {
-      parsed.properties = INITIAL_PROPERTIES;
-      saveDatabase(parsed);
+    if (!fs.existsSync(DB_DIR)) {
+      try {
+        fs.mkdirSync(DB_DIR, { recursive: true });
+      } catch (e) {}
     }
-    parsed.contentSettings = {
-      ...INITIAL_CONTENT_SETTINGS,
-      ...(parsed.contentSettings || {}),
-    };
-    return parsed;
+
+    if (fs.existsSync(DB_FILE)) {
+      const raw = fs.readFileSync(DB_FILE, 'utf-8');
+      const parsed = JSON.parse(raw) as DatabaseSchema;
+      if (!Array.isArray(parsed.properties) || parsed.properties.length === 0) {
+        parsed.properties = INITIAL_PROPERTIES;
+      }
+      if (!Array.isArray(parsed.leads)) parsed.leads = [];
+      if (!Array.isArray(parsed.viewings)) parsed.viewings = [];
+      parsed.contentSettings = {
+        ...INITIAL_CONTENT_SETTINGS,
+        ...(parsed.contentSettings || {}),
+      };
+      memoryDb = parsed;
+      return memoryDb;
+    }
   } catch (err) {
-    console.error('Error reading database file, resetting to fallback:', err);
-    return {
-      properties: INITIAL_PROPERTIES,
-      leads: INITIAL_LEADS,
-      viewings: [],
-      agents: INITIAL_AGENTS,
-      locations: INITIAL_LOCATIONS,
-      articles: INITIAL_ARTICLES,
-      testimonials: INITIAL_TESTIMONIALS,
-      contentSettings: INITIAL_CONTENT_SETTINGS,
-    };
+    console.warn('Filesystem read warning in ensureDatabase, using memory fallback:', err);
   }
+
+  const initialData: DatabaseSchema = {
+    properties: INITIAL_PROPERTIES,
+    leads: [],
+    viewings: [],
+    agents: INITIAL_AGENTS,
+    locations: INITIAL_LOCATIONS,
+    articles: INITIAL_ARTICLES,
+    testimonials: INITIAL_TESTIMONIALS,
+    contentSettings: INITIAL_CONTENT_SETTINGS,
+  };
+
+  memoryDb = initialData;
+  try {
+    if (!fs.existsSync(DB_DIR)) {
+      fs.mkdirSync(DB_DIR, { recursive: true });
+    }
+    fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), 'utf-8');
+  } catch (e) {}
+
+  return memoryDb;
 }
 
 function saveDatabase(data: DatabaseSchema): void {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
+  memoryDb = data;
+  try {
+    if (!fs.existsSync(DB_DIR)) {
+      fs.mkdirSync(DB_DIR, { recursive: true });
+    }
+    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (err: any) {
+    console.warn('Filesystem write warning in saveDatabase (saved to memory store):', err.message);
   }
-  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 // ---------------- PROPERTIES ---------------- //
@@ -125,8 +124,8 @@ export function getProperties(filters?: FilterState): Property[] {
 
   if (filters.locality && filters.locality !== 'all') {
     const loc = filters.locality.toLowerCase();
-    list = list.filter(p => 
-      p.locality.toLowerCase().includes(loc) || 
+    list = list.filter(p =>
+      p.locality.toLowerCase().includes(loc) ||
       p.city.toLowerCase().includes(loc)
     );
   }
@@ -156,7 +155,7 @@ export function getProperties(filters?: FilterState): Property[] {
 
   if (filters.searchQuery) {
     const q = filters.searchQuery.toLowerCase().trim();
-    list = list.filter(p => 
+    list = list.filter(p =>
       p.title.toLowerCase().includes(q) ||
       p.locality.toLowerCase().includes(q) ||
       p.propertyType.toLowerCase().includes(q) ||
@@ -241,7 +240,7 @@ export function getLeads(statusFilter?: string, query?: string): Lead[] {
 
   if (query) {
     const q = query.toLowerCase().trim();
-    list = list.filter(l => 
+    list = list.filter(l =>
       l.name.toLowerCase().includes(q) ||
       l.email.toLowerCase().includes(q) ||
       l.phone.toLowerCase().includes(q) ||
@@ -310,12 +309,12 @@ export function createLead(data: {
   db.leads.unshift(newLead);
 
   // If this was a viewing request, also create a viewing appointment entry
-  if (data.enquiryType === 'viewing' && data.propertyId && data.viewingDate) {
+  if (data.enquiryType === 'viewing' && data.viewingDate) {
     const viewing: ViewingAppointment = {
       id: `view-${Date.now()}`,
       leadId: newLead.id,
-      propertyId: data.propertyId,
-      propertyTitle: data.propertyTitle || 'Property Viewing',
+      propertyId: data.propertyId || 'general',
+      propertyTitle: data.propertyTitle || 'General Site Walkthrough',
       visitorName: data.name,
       visitorPhone: data.phone,
       visitorEmail: data.email,
@@ -399,6 +398,24 @@ export function addLeadNote(id: string, author: string, description: string, typ
   return lead;
 }
 
+export function deleteLead(id: string): boolean {
+  const db = ensureDatabase();
+  const prevLen = db.leads.length;
+  db.leads = db.leads.filter(l => l.id !== id);
+  if (db.leads.length !== prevLen) {
+    saveDatabase(db);
+    return true;
+  }
+  return false;
+}
+
+export function clearAllLeads(): void {
+  const db = ensureDatabase();
+  db.leads = [];
+  db.viewings = [];
+  saveDatabase(db);
+}
+
 // ---------------- VIEWINGS ---------------- //
 
 export function getViewings(): ViewingAppointment[] {
@@ -472,7 +489,7 @@ export function updateContentSettings(updates: Partial<ContentSettings>): Conten
 
 export function getDashboardMetrics() {
   const db = ensureDatabase();
-  
+
   const totalProperties = db.properties.length;
   const activeProperties = db.properties.filter(p => p.status === 'active').length;
   const totalLeads = db.leads.length;
